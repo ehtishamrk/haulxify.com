@@ -1,0 +1,3468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haulxify | Premium Dispatch Services for American Truckers</title>
+    <meta name="description" content="Haulxify provides premium dispatch services, backoffice support, and route planning for American truckers at just $4/hour. Weekend hauling? Saturdays & Sundays are FREE.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-dark: #0a0f1a;
+            --primary-navy: #0d1929;
+            --accent-gold: #c9a227;
+            --accent-gold-light: #e8c547;
+            --accent-amber: #f4a261;
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --glass-bg: rgba(13, 25, 41, 0.7);
+            --glass-border: rgba(201, 162, 39, 0.2);
+            --gradient-gold: linear-gradient(135deg, #c9a227 0%, #e8c547 50%, #c9a227 100%);
+            --gradient-dark: linear-gradient(180deg, #0a0f1a 0%, #0d1929 100%);
+            --shadow-gold: 0 0 40px rgba(201, 162, 39, 0.3);
+            --shadow-deep: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease, background 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10001;
+        }
+
+        .cursor.hover {
+            transform: scale(2);
+            background: rgba(201, 162, 39, 0.3);
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .preloader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .preloader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(201, 162, 39, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            height: 100%;
+            background: var(--gradient-gold);
+            width: 0;
+            animation: load 2s ease forwards;
+        }
+
+        @keyframes load {
+            to { width: 100%; }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 15, 26, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(201, 162, 39, 0.5);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--primary-dark);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transition: right 0.5s ease;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu .nav-link {
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 5%;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
+                        var(--gradient-dark);
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .hero-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(201, 162, 39, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 162, 39, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            animation: underline 1s ease 1s forwards;
+        }
+
+        @keyframes underline {
+            to { transform: scaleX(1); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 80px rgba(201, 162, 39, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent-gold), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.5; }
+        }
+
+        /* Sections Common */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201, 162, 39, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(201, 162, 39, 0.4);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--gradient-gold);
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(201, 162, 39, 0.1);
+            line-height: 1;
+        }
+
+        /* Weekend Free Banner */
+        .weekend-banner {
+            background: var(--gradient-gold);
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .weekend-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .weekend-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .weekend-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .weekend-subtitle {
+            font-size: 1.2rem;
+            color: rgba(10, 15, 26, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .weekend-badge {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--accent-gold);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Services Page */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .services-hero {
+            padding-top: 10rem;
+            text-align: center;
+            background: radial-gradient(ellipse at center top, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+                        var(--gradient-dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--accent-gold), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent-gold);
+            box-shadow: 0 30px 60px rgba(201, 162, 39, 0.2);
+        }
+
+        .service-card-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2) 0%, rgba(201, 162, 39, 0.05) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            border: 2px solid var(--glass-border);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--gradient-gold);
+            border-color: transparent;
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price {
+            display: inline-block;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Additional Services */
+        .additional-services {
+            background: var(--primary-navy);
+        }
+
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .additional-card {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .additional-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-gold);
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, transparent 100%);
+        }
+
+        .additional-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .additional-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .additional-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .additional-price {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Pricing Section */
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 4rem;
+            background: var(--glass-bg);
+            padding: 0.5rem;
+            border-radius: 50px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid var(--glass-border);
+        }
+
+        .toggle-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+        }
+
+        .toggle-btn:hover:not(.active) {
+            color: var(--text-light);
+        }
+
+        .discount-badge {
+            font-size: 0.75rem;
+            background: rgba(201, 162, 39, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.15) 0%, var(--glass-bg) 100%);
+            border-color: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-tier {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .pricing-original {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.1);
+            color: var(--text-muted);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-main {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2) 0%, var(--primary-navy) 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-main::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(201, 162, 39, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+
+        .about-stats-card {
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .about-stats-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-stats-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .about-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .about-feature::before {
+            content: '◆';
+            color: var(--accent-gold);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.3) 0%, var(--primary-navy) 100%);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid var(--glass-border);
+        }
+
+        .team-card:hover .team-avatar {
+            border-color: var(--accent-gold);
+        }
+
+        .team-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            padding: 3rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info > p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-item h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(201, 162, 39, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .blog-image {
+            height: 220px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2) 0%, var(--primary-navy) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, var(--glass-bg) 100%);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-category {
+            background: rgba(201, 162, 39, 0.1);
+            color: var(--accent-gold);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+        }
+
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .blog-link:hover {
+            gap: 1rem;
+        }
+
+        /* Careers Section */
+        .careers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .careers-intro p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .jobs-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .job-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .job-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateX(10px);
+        }
+
+        .job-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tag {
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--primary-navy);
+            overflow: hidden;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            gap: 2rem;
+            animation: slide 30s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .testimonial-stars {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.3) 0%, var(--primary-navy) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-author h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(201, 162, 39, 0.4);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-gold);
+        }
+
+        .faq-question h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 2rem 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            padding: 5rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Legal Pages */
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 10rem;
+        }
+
+        .legal-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-content .last-updated {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 0.9rem;
+        }
+
+        .legal-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--accent-gold);
+        }
+
+        .legal-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .legal-content ul {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.1) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .footer-brand {
+                grid-column: 1 / -1;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .pricing-card.featured {
+                transform: none;
+            }
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cursor, .cursor-dot {
+                display: none;
+            }
+            body {
+                cursor: auto;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+            .hero-stats {
+                gap: 2rem;
+            }
+            .stat-value {
+                font-size: 2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .services-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-toggle {
+                flex-wrap: wrap;
+            }
+            .toggle-btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.85rem;
+            }
+            .testimonial-card {
+                min-width: 300px;
+            }
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            .job-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 5rem 5%;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-legal {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Magnetic Button Effect */
+        .magnetic {
+            transition: transform 0.3s ease;
+        }
+
+        /* Text Gradient Animation */
+        .text-shimmer {
+            background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-gold-light) 50%, var(--accent-gold) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        /* Glow Effect */
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(201, 162, 39, 0.2); }
+            to { box-shadow: 0 0 40px rgba(201, 162, 39, 0.4); }
+        }
+
+        /* Parallax Lines */
+        .parallax-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .parallax-line {
+            position: absolute;
+            width: 1px;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, rgba(201, 162, 39, 0.2), transparent);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-logo">Haulxify</div>
+        <div class="preloader-bar">
+            <div class="preloader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo" data-page="home">Haulxify</a>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+            <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+            <li><a href="#" class="nav-link" data-page="pricing">Pricing</a></li>
+            <li><a href="#" class="nav-link" data-page="about">About</a></li>
+            <li><a href="#" class="nav-link" data-page="blog">Blog</a></li>
+            <li><a href="#" class="nav-link" data-page="careers">Careers</a></li>
+            <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+        </ul>
+        <a href="#" class="nav-cta magnetic" data-page="contact">Get Started</a>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" class="nav-link" data-page="home">Home</a>
+        <a href="#" class="nav-link" data-page="services">Services</a>
+        <a href="#" class="nav-link" data-page="pricing">Pricing</a>
+        <a href="#" class="nav-link" data-page="about">About</a>
+        <a href="#" class="nav-link" data-page="blog">Blog</a>
+        <a href="#" class="nav-link" data-page="careers">Careers</a>
+        <a href="#" class="nav-link" data-page="contact">Contact</a>
+        <a href="#" class="btn btn-primary" data-page="contact">Get Started</a>
+    </div>
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-grid"></div>
+            
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Premium Dispatch Services
+                </div>
+                <h1 class="hero-title">
+                    Hauling Made <span class="highlight text-shimmer">Effortless</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Elite dispatch services for American truckers. Expert support at $4/hour with weekends FREE when you haul. Your success is our mission.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value" data-count="500">0</div>
+                        <div class="stat-label">Active Truckers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">$4</div>
+                        <div class="stat-label">Per Hour</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">FREE</div>
+                        <div class="stat-label">Weekends*</div>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#" class="btn btn-primary magnetic" data-page="pricing">View Pricing</a>
+                    <a href="#" class="btn btn-secondary magnetic" data-page="services">Our Services</a>
+                </div>
+            </div>
+
+            <div class="hero-scroll">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-header">
+                <span class="section-tag">Why Choose Us</span>
+                <h2 class="section-title reveal">The Haulxify <span class="text-shimmer">Advantage</span></h2>
+                <p class="section-subtitle reveal">Premium services designed for the modern trucker. We handle the complexity so you can focus on the road.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal stagger-1">
+                    <span class="feature-number">01</span>
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Dedicated Dispatchers</h3>
+                    <p class="feature-desc">Your personal dispatcher works exclusively to find you the best loads and negotiate the highest rates.</p>
+                </div>
+                <div class="feature-card reveal stagger-2">
+                    <span class="feature-number">02</span>
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Complete Back Office</h3>
+                    <p class="feature-desc">From paperwork to compliance, we handle all administrative tasks so you never miss a deadline.</p>
+                </div>
+                <div class="feature-card reveal stagger-3">
+                    <span class="feature-number">03</span>
+                    <div class="feature-icon">🗺️</div>
+                    <h3 class="feature-title">Smart Route Planning</h3>
+                    <p class="feature-desc">Optimized routes that minimize deadhead miles and maximize your earnings per trip.</p>
+                </div>
+                <div class="feature-card reveal stagger-4">
+                    <span class="feature-number">04</span>
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Profit Analysis</h3>
+                    <p class="feature-desc">Detailed cost breakdowns and profit analysis to help you understand and grow your business.</p>
+                </div>
+                <div class="feature-card reveal stagger-5">
+                    <span class="feature-number">05</span>
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">24/7 Availability</h3>
+                    <p class="feature-desc">Round-the-clock support means you're never alone on the road, no matter the timezone.</p>
+                </div>
+                <div class="feature-card reveal stagger-6">
+                    <span class="feature-number">06</span>
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Compliance Assured</h3>
+                    <p class="feature-desc">Stay compliant with DOT regulations, HOS rules, and all federal requirements effortlessly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekend Banner -->
+        <section class="weekend-banner">
+            <div class="weekend-content">
+                <h2 class="weekend-title">Haul on Weekends? We've Got You Covered!</h2>
+                <p class="weekend-subtitle">Saturday & Sunday dispatch services are completely FREE when you work weekends.</p>
+                <span class="weekend-badge">🎁 Weekend Hauling = $0 Dispatch Fee</span>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title reveal">Trusted by <span class="text-shimmer">Truckers</span> Nationwide</h2>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Haulxify transformed my business. Their dispatchers consistently find me high-paying loads and the weekend free service is a game changer."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">🚛</div>
+                        <div>
+                            <h5>Mike Johnson</h5>
+                            <span>Owner Operator, Texas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The back office support alone is worth every penny. No more paperwork nightmares. These guys handle everything professionally."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">🚛</div>
+                        <div>
+                            <h5>Sarah Williams</h5>
+                            <span>Fleet Owner, California</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"At $4/hour with their expertise? It's a no-brainer. My revenue is up 30% since switching to Haulxify. Best decision I made."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">🚛</div>
+                        <div>
+                            <h5>Robert Chen</h5>
+                            <span>Owner Operator, Florida</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Professional, responsive, and always looking out for my best interests. The route optimization has saved me thousands in fuel costs."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">🚛</div>
+                        <div>
+                            <h5>James Martinez</h5>
+                            <span>Fleet Owner, Arizona</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate for infinite scroll -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Haulxify transformed my business. Their dispatchers consistently find me high-paying loads and the weekend free service is a game changer."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">🚛</div>
+                        <div>
+                            <h5>Mike Johnson</h5>
+                            <span>Owner Operator, Texas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The back office support alone is worth every penny. No more paperwork nightmares. These guys handle everything professionally."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">🚛</div>
+                        <div>
+                            <h5>Sarah Williams</h5>
+                            <span>Fleet Owner, California</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title reveal">Ready to <span class="text-shimmer">Maximize</span> Your Earnings?</h2>
+                <p class="cta-subtitle reveal">Join hundreds of successful truckers who trust Haulxify for their dispatch needs.</p>
+                <a href="#" class="btn btn-primary magnetic reveal" data-page="contact">Start Your Journey</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div class="page" id="page-services">
+        <section class="services-hero">
+            <div class="section-header">
+                <span class="section-tag">Our Services</span>
+                <h1 class="section-title reveal">Premium <span class="text-shimmer">Solutions</span> for Truckers</h1>
+                <p class="section-subtitle reveal">Comprehensive services designed to handle every aspect of your trucking business.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <span class="section-tag">Core Services</span>
+                <h2 class="section-title reveal">Under <span class="text-shimmer">$5/Hour</span></h2>
+                <p class="section-subtitle reveal">Essential services to keep your business running smoothly</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal stagger-1">
+                    <div class="service-card-inner">
+                        <div class="service-icon">🎯</div>
+                        <h3 class="service-title">Dedicated Dispatcher</h3>
+                        <p class="service-desc">Your personal dispatcher finds the best loads, negotiates rates, and ensures you're always hauling profitably.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-2">
+                    <div class="service-card-inner">
+                        <div class="service-icon">📋</div>
+                        <h3 class="service-title">Back Office Support</h3>
+                        <p class="service-desc">Complete administrative support including document management, invoicing, and carrier packets.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-3">
+                    <div class="service-card-inner">
+                        <div class="service-icon">🗺️</div>
+                        <h3 class="service-title">Route Planning</h3>
+                        <p class="service-desc">Optimized route planning to minimize deadhead miles, reduce fuel costs, and maximize earnings.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-4">
+                    <div class="service-card-inner">
+                        <div class="service-icon">💹</div>
+                        <h3 class="service-title">Cost & Profit Breakdown</h3>
+                        <p class="service-desc">Detailed analysis of your operating costs and profit margins to help you make informed decisions.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-5">
+                    <div class="service-card-inner">
+                        <div class="service-icon">📒</div>
+                        <h3 class="service-title">Simple Bookkeeping</h3>
+                        <p class="service-desc">Basic bookkeeping services to track income, expenses, and keep your finances organized.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-6">
+                    <div class="service-card-inner">
+                        <div class="service-icon">📞</div>
+                        <h3 class="service-title">Broker Negotiations</h3>
+                        <p class="service-desc">Expert negotiators work to secure the best rates from brokers and shippers on your behalf.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-1">
+                    <div class="service-card-inner">
+                        <div class="service-icon">⚡</div>
+                        <h3 class="service-title">Load Board Monitoring</h3>
+                        <p class="service-desc">24/7 monitoring of top load boards to find the best opportunities before they're gone.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-2">
+                    <div class="service-card-inner">
+                        <div class="service-icon">📄</div>
+                        <h3 class="service-title">Document Processing</h3>
+                        <p class="service-desc">Quick processing of BOLs, PODs, rate confirmations, and all essential documentation.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+                <div class="service-card reveal stagger-3">
+                    <div class="service-card-inner">
+                        <div class="service-icon">🔔</div>
+                        <h3 class="service-title">Appointment Setting</h3>
+                        <p class="service-desc">We handle all pickup and delivery appointments, ensuring smooth operations.</p>
+                        <span class="service-price">$4/hour</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="additional-services">
+            <div class="section-header">
+                <span class="section-tag">Additional Services</span>
+                <h2 class="section-title reveal">Specialized <span class="text-shimmer">Solutions</span></h2>
+                <p class="section-subtitle reveal">Premium add-ons to expand your business capabilities</p>
+            </div>
+
+            <div class="additional-grid">
+                <div class="additional-card reveal stagger-1">
+                    <div class="additional-icon">👥</div>
+                    <div class="additional-info">
+                        <h4>Driver Recruitment</h4>
+                        <p>Find qualified CDL drivers for your fleet</p>
+                        <span class="additional-price">$150/driver placed</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-2">
+                    <div class="additional-icon">💳</div>
+                    <div class="additional-info">
+                        <h4>Factoring Assistance</h4>
+                        <p>Connect with top factoring companies</p>
+                        <span class="additional-price">Free consultation</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-3">
+                    <div class="additional-icon">🚚</div>
+                    <div class="additional-info">
+                        <h4>Trailer Rentals</h4>
+                        <p>Access to rental trailer partnerships</p>
+                        <span class="additional-price">Varies by type</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-4">
+                    <div class="additional-icon">🛡️</div>
+                    <div class="additional-info">
+                        <h4>Insurance Assistance</h4>
+                        <p>Help finding the best insurance rates</p>
+                        <span class="additional-price">Free consultation</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-5">
+                    <div class="additional-icon">🔧</div>
+                    <div class="additional-info">
+                        <h4>Maintenance Coordination</h4>
+                        <p>Schedule and coordinate truck repairs</p>
+                        <span class="additional-price">$25/incident</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-6">
+                    <div class="additional-icon">📊</div>
+                    <div class="additional-info">
+                        <h4>IFTA Filing</h4>
+                        <p>Quarterly IFTA tax filing service</p>
+                        <span class="additional-price">$75/quarter</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-1">
+                    <div class="additional-icon">🚗</div>
+                    <div class="additional-info">
+                        <h4>MC Authority Setup</h4>
+                        <p>Complete MC authority application</p>
+                        <span class="additional-price">$500 one-time</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-2">
+                    <div class="additional-icon">📈</div>
+                    <div class="additional-info">
+                        <h4>Business Consulting</h4>
+                        <p>Strategic growth consulting for fleets</p>
+                        <span class="additional-price">$75/hour</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title reveal">Need a Custom <span class="text-shimmer">Solution</span>?</h2>
+                <p class="cta-subtitle reveal">Let's discuss your specific needs and create a tailored package for your business.</p>
+                <a href="#" class="btn btn-primary magnetic reveal" data-page="contact">Contact Us</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRICING PAGE -->
+    <div class="page" id="page-pricing">
+        <section class="services-hero">
+            <div class="section-header">
+                <span class="section-tag">Pricing</span>
+                <h1 class="section-title reveal">Transparent <span class="text-shimmer">Pricing</span></h1>
+                <p class="section-subtitle reveal">Simple, affordable rates with no hidden fees. Choose your billing cycle and save.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="pricing-toggle">
+                <button class="toggle-btn active" data-billing="weekly">Weekly</button>
+                <button class="toggle-btn" data-billing="monthly">Monthly <span class="discount-badge">15% OFF</span></button>
+                <button class="toggle-btn" data-billing="quarterly">Quarterly <span class="discount-badge">25% OFF</span></button>
+            </div>
+
+            <div class="pricing-cards">
+                <div class="pricing-card reveal stagger-1">
+                    <span class="pricing-tier">Starter</span>
+                    <h3 class="pricing-name">Basic Dispatch</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount" data-weekly="4" data-monthly="3.40" data-quarterly="3">$4</span>
+                        <span class="pricing-period">/hour</span>
+                    </div>
+                    <p class="pricing-original" style="visibility: hidden;">Originally $4/hour</p>
+                    <ul class="pricing-features">
+                        <li>Dedicated Dispatcher</li>
+                        <li>Load Finding & Booking</li>
+                        <li>Rate Negotiation</li>
+                        <li>Basic Document Handling</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary pricing-cta magnetic" data-page="contact">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured reveal stagger-2 glow">
+                    <span class="pricing-badge">Most Popular</span>
+                    <span class="pricing-tier">Professional</span>
+                    <h3 class="pricing-name">Full Service</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount" data-weekly="4" data-monthly="3.40" data-quarterly="3">$4</span>
+                        <span class="pricing-period">/hour</span>
+                    </div>
+                    <p class="pricing-original" style="visibility: hidden;">Originally $4/hour</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Basic</li>
+                        <li>Back Office Support</li>
+                        <li>Route Optimization</li>
+                        <li>Cost & Profit Analysis</li>
+                        <li>Simple Bookkeeping</li>
+                        <li>Broker Negotiations</li>
+                        <li>24/7 Phone Support</li>
+                        <li>FREE Weekend Service*</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary pricing-cta magnetic" data-page="contact">Get Started</a>
+                </div>
+
+                <div class="pricing-card reveal stagger-3">
+                    <span class="pricing-tier">Enterprise</span>
+                    <h3 class="pricing-name">Fleet Solutions</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">Custom</span>
+                    </div>
+                    <p class="pricing-original" style="visibility: hidden;">Contact for pricing</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Professional</li>
+                        <li>Multi-Truck Management</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Driver Recruitment Support</li>
+                        <li>Custom Reporting</li>
+                        <li>Priority Support Line</li>
+                        <li>Volume Discounts</li>
+                        <li>Compliance Management</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary pricing-cta magnetic" data-page="contact">Contact Sales</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; color: var(--text-muted);">
+                <p>*Weekend service (Saturday & Sunday) is FREE when you haul on weekends</p>
+            </div>
+        </section>
+
+        <section class="additional-services">
+            <div class="section-header">
+                <span class="section-tag">Add-Ons</span>
+                <h2 class="section-title reveal">Additional <span class="text-shimmer">Services</span> Pricing</h2>
+            </div>
+
+            <div class="additional-grid">
+                <div class="additional-card reveal stagger-1">
+                    <div class="additional-icon">👥</div>
+                    <div class="additional-info">
+                        <h4>Driver Recruitment</h4>
+                        <p>Qualified CDL driver placement</p>
+                        <span class="additional-price">$150/driver</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-2">
+                    <div class="additional-icon">📊</div>
+                    <div class="additional-info">
+                        <h4>IFTA Filing</h4>
+                        <p>Quarterly tax filing</p>
+                        <span class="additional-price">$75/quarter</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-3">
+                    <div class="additional-icon">🔧</div>
+                    <div class="additional-info">
+                        <h4>Maintenance Coordination</h4>
+                        <p>Repair scheduling</p>
+                        <span class="additional-price">$25/incident</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-4">
+                    <div class="additional-icon">🚗</div>
+                    <div class="additional-info">
+                        <h4>MC Authority Setup</h4>
+                        <p>Complete application</p>
+                        <span class="additional-price">$500 one-time</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-5">
+                    <div class="additional-icon">📈</div>
+                    <div class="additional-info">
+                        <h4>Business Consulting</h4>
+                        <p>Growth strategy sessions</p>
+                        <span class="additional-price">$75/hour</span>
+                    </div>
+                </div>
+                <div class="additional-card reveal stagger-6">
+                    <div class="additional-icon">💳</div>
+                    <div class="additional-info">
+                        <h4>Factoring Setup</h4>
+                        <p>Connect with factoring companies</p>
+                        <span class="additional-price">Free</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title reveal">Common <span class="text-shimmer">Questions</span></h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item reveal stagger-1">
+                    <div class="faq-question">
+                        <h4>How does the $4/hour pricing work?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You're billed for the actual hours our team works on your account. This includes load finding, negotiations, paperwork, and coordination. We track hours transparently and provide detailed reports.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal stagger-2">
+                    <div class="faq-question">
+                        <h4>What does "Free Weekends" mean?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you haul loads on Saturday or Sunday, we don't charge for dispatch services on those days. It's our way of supporting truckers who work weekends.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal stagger-3">
+                    <div class="faq-question">
+                        <h4>How do the billing discounts work?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Monthly billing saves you 15% off the hourly rate ($3.40/hour). Quarterly billing saves you 25% ($3.00/hour). The longer the commitment, the more you save.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal stagger-4">
+                    <div class="faq-question">
+                        <h4>Is there a minimum commitment?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No long-term contracts required for weekly billing. Monthly and quarterly plans require the respective minimum periods but can be canceled at any time after.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal stagger-5">
+                    <div class="faq-question">
+                        <h4>What payment methods do you accept?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards, ACH transfers, Zelle, and PayPal. Invoices are sent weekly/monthly/quarterly based on your billing cycle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div class="page" id="page-about">
+        <section class="services-hero">
+            <div class="section-header">
+                <span class="section-tag">About Us</span>
+                <h1 class="section-title reveal">Our <span class="text-shimmer">Story</span></h1>
+                <p class="section-subtitle reveal">Building bridges between American truckers and premium support services.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="about-grid">
+                <div class="about-image reveal-left">
+                    <div class="about-image-main">🚛</div>
+                    <div class="about-stats-card">
+                        <h4>500+</h4>
+                        <p>Truckers Served</p>
+                    </div>
+                </div>
+                <div class="about-content reveal-right">
+                    <h3>Why We Exist</h3>
+                    <p>Haulxify was born from a simple observation: American truckers deserve premium support services without premium prices. Based in Pakistan, we leverage global talent to provide world-class dispatch services at rates that make sense.</p>
+                    <p>Our team understands the American trucking industry inside and out. We know the load boards, we know the lanes, and we know what it takes to keep owner-operators profitable.</p>
+                    <div class="about-features">
+                        <div class="about-feature">24/7 Operations</div>
+                        <div class="about-feature">US Market Experts</div>
+                        <div class="about-feature">100+ Trained Staff</div>
+                        <div class="about-feature">Premium Quality</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <span class="section-tag">Our Values</span>
+                <h2 class="section-title reveal">What Drives <span class="text-shimmer">Us</span></h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal stagger-1">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Excellence</h3>
+                    <p class="feature-desc">We don't settle for good enough. Every load, every negotiation, every document is handled with precision.</p>
+                </div>
+                <div class="feature-card reveal stagger-2">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">Partnership</h3>
+                    <p class="feature-desc">Your success is our success. We treat every trucker's business as if it were our own.</p>
+                </div>
+                <div class="feature-card reveal stagger-3">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">Innovation</h3>
+                    <p class="feature-desc">We constantly improve our processes and tools to serve you better.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <span class="section-tag">Leadership</span>
+                <h2 class="section-title reveal">Meet Our <span class="text-shimmer">Team</span></h2>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card reveal stagger-1">
+                    <div class="team-avatar">👨‍💼</div>
+                    <h4 class="team-name">Ahmad Hassan</h4>
+                    <p class="team-role">Founder & CEO</p>
+                    <p class="team-desc">10+ years in logistics with deep expertise in American trucking markets.</p>
+                </div>
+                <div class="team-card reveal stagger-2">
+                    <div class="team-avatar">👩‍💼</div>
+                    <h4 class="team-name">Sarah Khan</h4>
+                    <p class="team-role">Operations Director</p>
+                    <p class="team-desc">Former dispatcher with experience managing 50+ truck fleets.</p>
+                </div>
+                <div class="team-card reveal stagger-3">
+                    <div class="team-avatar">👨‍💻</div>
+                    <h4 class="team-name">Ali Raza</h4>
+                    <p class="team-role">Technology Lead</p>
+                    <p class="team-desc">Building tools and systems to optimize trucking operations.</p>
+                </div>
+                <div class="team-card reveal stagger-4">
+                    <div class="team-avatar">👩‍🏫</div>
+                    <h4 class="team-name">Fatima Malik</h4>
+                    <p class="team-role">Training Manager</p>
+                    <p class="team-desc">Ensures every dispatcher meets our quality standards.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title reveal">Ready to Partner with <span class="text-shimmer">Excellence</span>?</h2>
+                <p class="cta-subtitle reveal">Join the Haulxify family and experience the difference.</p>
+                <a href="#" class="btn btn-primary magnetic reveal" data-page="contact">Get Started</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- BLOG PAGE -->
+    <div class="page" id="page-blog">
+        <section class="services-hero">
+            <div class="section-header">
+                <span class="section-tag">Blog</span>
+                <h1 class="section-title reveal">Industry <span class="text-shimmer">Insights</span></h1>
+                <p class="section-subtitle reveal">Tips, trends, and strategies to grow your trucking business.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="blog-grid">
+                <article class="blog-card reveal stagger-1">
+                    <div class="blog-image">📈</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Business</span>
+                            <span>Dec 15, 2024</span>
+                        </div>
+                        <h3 class="blog-title">10 Ways to Increase Your Per-Mile Revenue in 2025</h3>
+                        <p class="blog-excerpt">Discover proven strategies to boost your earnings without adding more miles to your truck.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal stagger-2">
+                    <div class="blog-image">🗺️</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Routes</span>
+                            <span>Dec 10, 2024</span>
+                        </div>
+                        <h3 class="blog-title">The Most Profitable Lanes for Owner Operators</h3>
+                        <p class="blog-excerpt">An analysis of the highest-paying routes across America and how to access them.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal stagger-3">
+                    <div class="blog-image">💰</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Finance</span>
+                            <span>Dec 5, 2024</span>
+                        </div>
+                        <h3 class="blog-title">Understanding Factoring: A Complete Guide</h3>
+                        <p class="blog-excerpt">Everything you need to know about factoring your invoices and improving cash flow.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal stagger-4">
+                    <div class="blog-image">⛽</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Operations</span>
+                            <span>Nov 28, 2024</span>
+                        </div>
+                        <h3 class="blog-title">Fuel Optimization Strategies That Actually Work</h3>
+                        <p class="blog-excerpt">Practical tips to reduce your fuel costs by 15-20% without sacrificing performance.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal stagger-5">
+                    <div class="blog-image">📱</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Technology</span>
+                            <span>Nov 20, 2024</span>
+                        </div>
+                        <h3 class="blog-title">Essential Apps Every Trucker Needs in 2025</h3>
+                        <p class="blog-excerpt">From load boards to fuel finders, these apps will make your life on the road easier.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal stagger-6">
+                    <div class="blog-image">📋</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Compliance</span>
+                            <span>Nov 15, 2024</span>
+                        </div>
+                        <h3 class="blog-title">DOT Compliance Checklist for Owner Operators</h3>
+                        <p class="blog-excerpt">Stay compliant and avoid costly fines with this comprehensive checklist.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title reveal">Want More <span class="text-shimmer">Insights</span>?</h2>
+                <p class="cta-subtitle reveal">Subscribe to our newsletter for weekly tips and industry updates.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" class="reveal">
+                    <input type="email" placeholder="Enter your email" style="padding: 1rem 1.5rem; border-radius: 50px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-light); font-family: 'Outfit', sans-serif; width: 300px;">
+                    <button class="btn btn-primary magnetic">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CAREERS PAGE -->
+    <div class="page" id="page-careers">
+        <section class="services-hero">
+            <div class="section-header">
+                <span class="section-tag">Careers</span>
+                <h1 class="section-title reveal">Join Our <span class="text-shimmer">Team</span></h1>
+                <p class="section-subtitle reveal">Build a career helping American truckers succeed.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="careers-intro reveal">
+                <p>At Haulxify, we're building a team of passionate professionals who want to make a difference in the trucking industry. We offer competitive salaries, flexible work arrangements, and the opportunity to grow with a fast-paced startup.</p>
+            </div>
+
+            <div class="jobs-list">
+                <div class="job-card reveal stagger-1">
+                    <div class="job-info">
+                        <h4>Senior Dispatcher</h4>
+                        <div class="job-meta">
+                            <span>📍 Remote - Pakistan</span>
+                            <span>💼 Full-time</span>
+                        </div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">2+ Years Exp</span>
+                        <span class="job-tag">Night Shift</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary magnetic" data-page="contact">Apply Now</a>
+                </div>
+
+                <div class="job-card reveal stagger-2">
+                    <div class="job-info">
+                        <h4>Dispatcher (Entry Level)</h4>
+                        <div class="job-meta">
+                            <span>📍 Remote - Pakistan</span>
+                            <span>💼 Full-time</span>
+                        </div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">Training Provided</span>
+                        <span class="job-tag">Night Shift</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary magnetic" data-page="contact">Apply Now</a>
+                </div>
+
+                <div class="job-card reveal stagger-3">
+                    <div class="job-info">
+                        <h4>Back Office Specialist</h4>
+                        <div class="job-meta">
+                            <span>📍 Remote - Pakistan</span>
+                            <span>💼 Full-time</span>
+                        </div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">1+ Year Exp</span>
+                        <span class="job-tag">Flexible Hours</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary magnetic" data-page="contact">Apply Now</a>
+                </div>
+
+                <div class="job-card reveal stagger-4">
+                    <div class="job-info">
+                        <h4>Sales Representative</h4>
+                        <div class="job-meta">
+                            <span>📍 Remote - USA/Pakistan</span>
+                            <span>💼 Full-time</span>
+                        </div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">Commission Based</span>
+                        <span class="job-tag">B2B Sales</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary magnetic" data-page="contact">Apply Now</a>
+                </div>
+
+                <div class="job-card reveal stagger-5">
+                    <div class="job-info">
+                        <h4>Quality Assurance Lead</h4>
+                        <div class="job-meta">
+                            <span>📍 Remote - Pakistan</span>
+                            <span>💼 Full-time</span>
+                        </div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">3+ Years Exp</span>
+                        <span class="job-tag">Leadership</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary magnetic" data-page="contact">Apply Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <span class="section-tag">Benefits</span>
+                <h2 class="section-title reveal">Why Work at <span class="text-shimmer">Haulxify</span></h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal stagger-1">
+                    <div class="feature-icon">🏠</div>
+                    <h3 class="feature-title">Remote Work</h3>
+                    <p class="feature-desc">Work from the comfort of your home with flexible scheduling options.</p>
+                </div>
+                <div class="feature-card reveal stagger-2">
+                    <div class="feature-icon">💵</div>
+                    <h3 class="feature-title">Competitive Pay</h3>
+                    <p class="feature-desc">Above-market salaries with performance bonuses and regular raises.</p>
+                </div>
+                <div class="feature-card reveal stagger-3">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Growth & Training</h3>
+                    <p class="feature-desc">Continuous learning opportunities and clear career advancement paths.</p>
+                </div>
+                <div class="feature-card reveal stagger-4">
+                    <div class="feature-icon">🏥</div>
+                    <h3 class="feature-title">Health Benefits</h3>
+                    <p class="feature-desc">Comprehensive health insurance for you and your family.</p>
+                </div>
+                <div class="feature-card reveal stagger-5">
+                    <div class="feature-icon">🎉</div>
+                    <h3 class="feature-title">Team Culture</h3>
+                    <p class="feature-desc">Regular team events, celebrations, and a supportive work environment.</p>
+                </div>
+                <div class="feature-card reveal stagger-6">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">Work-Life Balance</h3>
+                    <p class="feature-desc">Paid time off, sick leave, and flexible scheduling to maintain balance.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div class="page" id="page-contact">
+        <section class="services-hero">
+            <div class="section-header">
+                <span class="section-tag">Contact</span>
+                <h1 class="section-title reveal">Get in <span class="text-shimmer">Touch</span></h1>
+                <p class="section-subtitle reveal">Ready to elevate your trucking business? We'd love to hear from you.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="contact-wrapper">
+                <div class="contact-info reveal-left">
+                    <h3>Let's Talk</h3>
+                    <p>Whether you're an owner-operator looking for dispatch services or a fleet owner seeking a reliable partner, we're here to help.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@haulxify.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone (US)</h4>
+                            <p>+1 (800) XXX-XXXX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+92 XXX XXXXXXX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>24/7 Support Available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal-right">
+                    <form id="contactForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" required placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" required placeholder="Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" placeholder="+1 (555) 000-0000">
+                            </div>
+                            <div class="form-group full">
+                                <label>Service Interest</label>
+                                <select>
+                                    <option value="">Select a service</option>
+                                    <option value="dispatch">Dispatch Services</option>
+                                    <option value="backoffice">Back Office Support</option>
+                                    <option value="fleet">Fleet Solutions</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group full">
+                                <label>Message</label>
+                                <textarea placeholder="Tell us about your business and needs..."></textarea>
+                            </div>
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary magnetic" style="width: 100%;">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="success-message" id="successMessage">
+                        <p style="color: var(--accent-gold); font-weight: 600;">✓ Message Sent Successfully!</p>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem;">We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRIVACY POLICY PAGE -->
+    <div class="page" id="page-privacy">
+        <section class="legal-content">
+            <h1 class="reveal">Privacy Policy</h1>
+            <p class="last-updated reveal">Last Updated: December 1, 2024</p>
+
+            <div class="reveal">
+                <h2>1. Information We Collect</h2>
+                <p>At Haulxify, we collect information you provide directly to us, including name, email address, phone number, company information, and any other information you choose to provide.</p>
+
+                <h2>2. How We Use Your Information</h2>
+                <p>We use the information we collect to provide, maintain, and improve our services, communicate with you about our services, and respond to your inquiries.</p>
+
+                <h2>3. Information Sharing</h2>
+                <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties except to provide services you have requested.</p>
+
+                <h2>4. Data Security</h2>
+                <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+
+                <h2>5. Cookies</h2>
+                <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information to improve your experience.</p>
+
+                <h2>6. Third-Party Services</h2>
+                <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites.</p>
+
+                <h2>7. Your Rights</h2>
+                <p>You have the right to access, update, or delete your personal information at any time by contacting us.</p>
+
+                <h2>8. Changes to This Policy</h2>
+                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+
+                <h2>9. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us at privacy@haulxify.com.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- TERMS OF SERVICE PAGE -->
+    <div class="page" id="page-terms">
+        <section class="legal-content">
+            <h1 class="reveal">Terms of Service</h1>
+            <p class="last-updated reveal">Last Updated: December 1, 2024</p>
+
+            <div class="reveal">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using Haulxify's services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+
+                <h2>2. Description of Services</h2>
+                <p>Haulxify provides dispatch services, back office support, route planning, and related services for trucking businesses operating in the United States.</p>
+
+                <h2>3. User Responsibilities</h2>
+                <p>You are responsible for providing accurate information, maintaining the confidentiality of your account, and complying with all applicable laws and regulations.</p>
+
+                <h2>4. Billing and Payments</h2>
+                <p>Services are billed based on hourly rates as agreed upon. Payment is due according to the billing cycle selected. Late payments may incur additional fees.</p>
+
+                <h2>5. Service Level</h2>
+                <p>We strive to provide consistent, high-quality service. However, we do not guarantee specific outcomes such as load availability or rates.</p>
+
+                <h2>6. Termination</h2>
+                <p>Either party may terminate services with appropriate notice as specified in the service agreement. Outstanding balances must be settled upon termination.</p>
+
+                <h2>7. Limitation of Liability</h2>
+                <p>Haulxify shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of our services.</p>
+
+                <h2>8. Intellectual Property</h2>
+                <p>All content on this website, including logos, text, and graphics, is the property of Haulxify and is protected by copyright laws.</p>
+
+                <h2>9. Governing Law</h2>
+                <p>These terms shall be governed by and construed in accordance with applicable laws.</p>
+
+                <h2>10. Contact</h2>
+                <p>For questions about these Terms of Service, please contact us at legal@haulxify.com.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="footer-logo">Haulxify</span>
+                <p>Premium dispatch services for American truckers. Based in Pakistan, serving truckers nationwide with excellence and dedication.</p>
+                <div class="footer-social">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="Instagram">📷</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#" data-page="services">Dispatch</a></li>
+                    <li><a href="#" data-page="services">Back Office</a></li>
+                    <li><a href="#" data-page="services">Route Planning</a></li>
+                    <li><a href="#" data-page="services">Bookkeeping</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#" data-page="about">About Us</a></li>
+                    <li><a href="#" data-page="careers">Careers</a></li>
+                    <li><a href="#" data-page="blog">Blog</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#" data-page="pricing">Pricing</a></li>
+                    <li><a href="#" data-page="blog">Guides</a></li>
+                    <li><a href="#" data-page="contact">Support</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#" data-page="privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-page="terms">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 Haulxify. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#" data-page="privacy">Privacy</a>
+                <a href="#" data-page="terms">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                preloader.style.pointerEvents = 'none';
+                setTimeout(() => preloader.style.display = 'none', 500);
+            }, 2000);
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .magnetic').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Magnetic Effect
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Feature Card Mouse Follow
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                this.style.setProperty('--mouse-x', x + '%');
+                this.style.setProperty('--mouse-y', y + '%');
+            });
+        });
+
+        // Navigation Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        navToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Page Navigation
+        function navigateToPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Close mobile menu
+                mobileMenu.classList.remove('active');
+                
+                // Trigger reveal animations
+                setTimeout(() => {
+                    revealOnScroll();
+                }, 100);
+            }
+        }
+
+        // Page link clicks
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                navigateToPage(page);
+            });
+        });
+
+        // Create Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Counter Animation
+        const animateCounters = () => {
+            document.querySelectorAll('.stat-value[data-count]').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+                
+                updateCounter();
+            });
+        };
+
+        // Reveal on Scroll
+        const revealOnScroll = () => {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', () => {
+            revealOnScroll();
+            animateCounters();
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Pricing Toggle
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const billing = btn.getAttribute('data-billing');
+                
+                // Update prices
+                document.querySelectorAll('.pricing-amount').forEach(price => {
+                    const weekly = price.getAttribute('data-weekly');
+                    const monthly = price.getAttribute('data-monthly');
+                    const quarterly = price.getAttribute('data-quarterly');
+                    
+                    if (weekly) {
+                        let newPrice, originalText;
+                        const originalPrice = document.querySelector('.pricing-original');
+                        
+                        switch(billing) {
+                            case 'weekly':
+                                newPrice = weekly;
+                                if (originalPrice) originalPrice.style.visibility = 'hidden';
+                                break;
+                            case 'monthly':
+                                newPrice = monthly;
+                                if (originalPrice) {
+                                    originalPrice.textContent = 'Originally $' + weekly + '/hour';
+                                    originalPrice.style.visibility = 'visible';
+                                }
+                                break;
+                            case 'quarterly':
+                                newPrice = quarterly;
+                                if (originalPrice) {
+                                    originalPrice.textContent = 'Originally $' + weekly + '/hour';
+                                    originalPrice.style.visibility = 'visible';
+                                }
+                                break;
+                        }
+                        
+                        price.textContent = '$' + newPrice;
+                    }
+                });
+            });
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('successMessage').classList.add('show');
+            e.target.reset();
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animation
+        gsap.from('.hero-content', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            delay: 2.2,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-badge', {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            delay: 2.4,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-title', {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 2.6,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-subtitle', {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            delay: 2.8,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-stats', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            delay: 3,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-cta', {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            delay: 3.2,
+            ease: 'power3.out'
+        });
+
+        // Parallax effect on scroll
+        gsap.to('.hero-grid', {
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            },
+            y: 200,
+            opacity: 0
+        });
+    </script>
+</body>
+</html>
