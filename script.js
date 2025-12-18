@@ -281,3 +281,27 @@
             y: 200,
             opacity: 0
         });
+/* THEME TOGGLE LOGIC */
+const themeToggleBtn = document.getElementById('themeToggle');
+const htmlRoot = document.documentElement;
+
+// 1. Check for saved theme in localStorage
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    htmlRoot.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+}
+
+// 2. Toggle function
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlRoot.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlRoot.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon(newTheme);
+});
+
+function updateIcon(theme) {
+    themeToggleBtn.textContent = theme === 'light' ? '🌙' : '☀️';
+}
