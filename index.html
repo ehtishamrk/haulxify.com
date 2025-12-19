@@ -1802,12 +1802,6 @@
         }
 
         @media (max-width: 768px) {
-            .cursor, .cursor-dot {
-                display: none;
-            }
-            body {
-                cursor: auto;
-            }
             .nav-links {
                 display: none;
             }
@@ -2235,13 +2229,11 @@
 
         <!-- CTA Section -->
         <section class="cta-section">
-            <section class="cta-section">
-    <div class="cta-content">
-        <h2 class="cta-title reveal">Ready to <span class="text-shimmer">Maximize</span> Your Earnings?</h2>
-        <p class="cta-subtitle reveal">Join hundreds of successful truckers who trust Haulxify for their dispatch needs.</p>
-        <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Start Your Journey</span></a>
-    </div>
-</section>
+            <div class="cta-content">
+                <h2 class="cta-title reveal">Ready to <span class="text-shimmer">Maximize</span> Your Earnings?</h2>
+                <p class="cta-subtitle reveal">Join hundreds of successful truckers who trust Haulxify for their dispatch needs.</p>
+                <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Start Your Journey</span></a>
+            </div>
         </section>
     </div>
 <div class="page" id="page-drivers">
@@ -3371,24 +3363,28 @@
         // NEW ROUTER LOGIC
         function handleRoute() {
             // 1. Get the hash (e.g., "pricing") or default to "home"
-            const hash = window.location.hash.substring(1) || 'home';
+            let hash = window.location.hash.substring(1) || 'home';
             
-            // 2. Hide all pages
+            // 2. Check if the page actually exists, if not, force "home"
+            let targetPage = document.getElementById('page-' + hash);
+            if (!targetPage) {
+                hash = 'home';
+                targetPage = document.getElementById('page-home');
+            }
+
+            // 3. Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
 
-            // 3. Find the target page ID (e.g., "page-pricing")
-            const targetPage = document.getElementById('page-' + hash);
-            
-            // 4. If page exists, show it
+            // 4. Show target page
             if (targetPage) {
                 targetPage.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
                 // Close mobile menu if open
-                if (mobileMenu) mobileMenu.classList.remove('active');
-                if (navToggle) navToggle.classList.remove('active');
+                if (typeof mobileMenu !== 'undefined' && mobileMenu) mobileMenu.classList.remove('active');
+                if (typeof navToggle !== 'undefined' && navToggle) navToggle.classList.remove('active');
 
                 // Trigger animations
                 setTimeout(() => {
