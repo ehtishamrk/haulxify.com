@@ -416,8 +416,11 @@
             text-decoration: none;
             transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* This MUST be here */
             
+            /* FIX: This forces the browser to strictly clip the silver shine */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            transform: translateZ(0); 
         }
         .btn span {
             position: relative;
@@ -2077,8 +2080,9 @@
             <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
         </ul>
         
-        <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
-        
+<div id="nav-action-container">
+            <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
+        </div>        
         <div class="nav-toggle" id="navToggle">
             <span></span>
             <span></span>
@@ -2648,7 +2652,7 @@
                         <li>24/7 Phone Support</li>
                         <li>FREE Weekend Service*</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary pricing-cta magnetic" data-page="contact"><span>Get Started</span></a>
+                    <a href="#contact" class="btn btn-primary pricing-cta" data-page="contact"><span>Get Started</span></a>
                 </div>
 
                 <div class="pricing-card reveal stagger-3">
@@ -3351,8 +3355,8 @@
             <div class="footer-column">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="#page-privacy" data-page="privacy">Privacy Policy</a></li>
-                    <li><a href="#page-terms" data-page="terms">Terms of Service</a></li>
+                    <li><a href="#privacy" data-page="privacy">Privacy Policy</a></li>
+                    <li><a href="#terms" data-page="terms">Terms of Service</a></li>
                     <li><a href="#">Cookie Policy</a></li>
                     <li><a href="#">Disclaimer</a></li>
                 </ul>
@@ -3509,9 +3513,47 @@
             // 2. Check if the page actually exists, if not, force "home"
             let targetPage = document.getElementById('page-' + hash);
             if (!targetPage) {
-                hash = 'home';
-                targetPage = document.getElementById('page-home');
+                // Special check: If user clicks "drivers" but the page ID is "page-drivers"
+                if (document.getElementById('page-' + hash)) {
+                     // This is fine
+                } else {
+                    hash = 'home';
+                    targetPage = document.getElementById('page-home');
+                }
             }
+
+            // --- DYNAMIC NAV BUTTON LOGIC (NEW) ---
+            const navContainer = document.getElementById('nav-action-container');
+            if (navContainer) {
+                if (hash === 'drivers') {
+                    // Show Login/Sign Up buttons
+                    navContainer.innerHTML = `
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="openModal('loginModal')" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; border-color: var(--accent-gold); color: var(--accent-gold);">Login</button>
+                            <button onclick="openModal('signupModal')" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; background: var(--gradient-gold); color: var(--primary-dark); border: none;">Sign Up</button>
+                        </div>
+                    `;
+                } else {
+                    // Revert to "Get Started" for all other pages
+                    navContainer.innerHTML = `
+                        <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
+                    `;
+                    // Re-initialize magnetic effect for the newly added button
+                    const newBtn = navContainer.querySelector('.magnetic');
+                    if(newBtn) {
+                        newBtn.addEventListener('mousemove', function(e) {
+                            const rect = this.getBoundingClientRect();
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                        });
+                        newBtn.addEventListener('mouseleave', function() {
+                            this.style.transform = '';
+                        });
+                    }
+                }
+            }
+            // ---------------------------------------
 
             // 3. Hide all pages
             document.querySelectorAll('.page').forEach(page => {
