@@ -2103,7 +2103,6 @@
             <a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>
         </div>
     </div>
-    </div>
 
     <!-- HOME PAGE -->
     <div class="page active" id="page-home">
@@ -3536,8 +3535,8 @@
                 if (mobileContainer) {
                     mobileContainer.innerHTML = `
                         <div style="display: flex; flex-direction: column; gap: 15px; width: 80%; margin: 0 auto;">
-                            <button onclick="openModal('loginModal'); document.getElementById('mobileMenu').classList.remove('active');" class="btn btn-secondary" style="width: 100%; color: var(--text-light); border-color: var(--accent-gold);">Login</button>
-                            <button onclick="openModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+                            <button onclick="openModal('loginModal'); document.getElementById('mobileMenu').classList.remove('active'); document.getElementById('navToggle').classList.remove('active');" class="btn btn-secondary" style="width: 100%; color: var(--text-light); border-color: var(--accent-gold);">Login</button>
+                            <button onclick="openModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active'); document.getElementById('navToggle').classList.remove('active');" class="btn btn-primary" style="width: 100%;">Sign Up</button>
                         </div>`;
                 }
             } else {
