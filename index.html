@@ -422,6 +422,11 @@
             -webkit-mask-image: -webkit-radial-gradient(white, black);
             transform: translateZ(0); 
         }
+        /* Favorite Button Hover Effect */
+        .favorite-btn:hover { 
+            color: var(--accent-gold) !important; 
+            transform: scale(1.1); 
+        }
         .btn span {
             position: relative;
             z-index: 2;
@@ -573,9 +578,13 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(201, 162, 39, 0.4);
-            box-shadow: var(--shadow-gold);
+            transform: translateY(-5px) scale(1.01);
+            border-color: var(--accent-gold);
+            /* This creates a rich, premium glow behind the glass */
+            box-shadow: 
+                0 20px 40px -5px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(201, 162, 39, 0.2), /* Inner Gold Glow */
+                inset 0 0 20px rgba(201, 162, 39, 0.05);
         }
 
         .feature-icon {
@@ -725,9 +734,13 @@
         }
 
         .service-card:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-5px) scale(1.01);
             border-color: var(--accent-gold);
-            box-shadow: 0 30px 60px rgba(201, 162, 39, 0.2);
+            /* This creates a rich, premium glow behind the glass */
+            box-shadow: 
+                0 20px 40px -5px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(201, 162, 39, 0.2), /* Inner Gold Glow */
+                inset 0 0 20px rgba(201, 162, 39, 0.05);
         }
 
         .service-card-inner {
@@ -906,8 +919,13 @@
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-gold);
+            transform: translateY(-5px) scale(1.01);
+            border-color: var(--accent-gold);
+            /* This creates a rich, premium glow behind the glass */
+            box-shadow: 
+                0 20px 40px -5px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(201, 162, 39, 0.2), /* Inner Gold Glow */
+                inset 0 0 20px rgba(201, 162, 39, 0.05);
         }
 
         .pricing-card.featured:hover {
@@ -1253,12 +1271,14 @@
             color: #f8f9fa;
         }
 
-        .form-group input:focus,
+       .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--accent-gold);
-            box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+            background: rgba(13, 25, 41, 0.9); /* Darkens slightly for focus */
+            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.1); /* Soft gold ring */
+            transform: translateY(-1px);
         }
 
         .form-group textarea {
@@ -2340,7 +2360,9 @@
                         </div>
                     </div>
                     <div class="driver-footer">
-                        <div style="font-size: 1.2rem;">❤️</div>
+                        <div class="favorite-btn" style="cursor: pointer; color: var(--text-muted); transition: 0.3s;">
+    <i class="fa-regular fa-heart"></i>
+</div>
                         <div class="driver-price">
                             <small>STARTING AT</small> $0.65/mile
                         </div>
@@ -2363,7 +2385,9 @@
                         </div>
                     </div>
                     <div class="driver-footer">
-                        <div style="font-size: 1.2rem;">❤️</div>
+                       <div class="favorite-btn" style="cursor: pointer; color: var(--text-muted); transition: 0.3s;">
+    <i class="fa-regular fa-heart"></i>
+</div>
                         <div class="driver-price">
                             <small>STARTING AT</small> $0.80/mile
                         </div>
@@ -2386,7 +2410,9 @@
                         </div>
                     </div>
                     <div class="driver-footer">
-                        <div style="font-size: 1.2rem;">❤️</div>
+                        <div class="favorite-btn" style="cursor: pointer; color: var(--text-muted); transition: 0.3s;">
+    <i class="fa-regular fa-heart"></i>
+</div>
                         <div class="driver-price">
                             <small>STARTING AT</small> $0.70/mile
                         </div>
@@ -2408,7 +2434,9 @@
                         </div>
                     </div>
                     <div class="driver-footer">
-                        <div style="font-size: 1.2rem;">❤️</div>
+                        <div class="favorite-btn" style="cursor: pointer; color: var(--text-muted); transition: 0.3s;">
+    <i class="fa-regular fa-heart"></i>
+</div>
                         <div class="driver-price">
                             <small>STARTING AT</small> $0.75/mile
                         </div>
@@ -3795,6 +3823,15 @@
             },
             y: 200,
             opacity: 0
+        });
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const navToggle = document.getElementById('navToggle');
+                if (mobileMenu) mobileMenu.classList.remove('active');
+                if (navToggle) navToggle.classList.remove('active');
+            });
         });
     </script>
 </body>
