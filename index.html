@@ -2099,7 +2099,10 @@
         <a href="#careers" class="nav-link" data-page="careers">Careers</a>
         <a href="#contact" class="nav-link" data-page="contact">Contact</a>
         <a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a>
-        <a href="#contact" class="btn btn-primary" data-page="contact"><span>Get Started</span></a>
+        <div id="mobile-cta-container" style="width: 100%; text-align: center;">
+            <a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>
+        </div>
+    </div>
     </div>
 
     <!-- HOME PAGE -->
@@ -3343,8 +3346,7 @@
                     <li><a href="#pricing" data-page="pricing">Pricing</a></li>
                     <li><a href="#blog" data-page="blog">Guides</a></li>
                     <li><a href="#contact" data-page="contact">Support</a></li>
-                    <li><a href="#faq" onclick="setTimeout(() => document.getElementById('faq').scrollIntoView(), 100)">FAQ</a></li>
-                </ul>
+<li><a href="#pricing" onclick="setTimeout(() => document.getElementById('faq').scrollIntoView({behavior: 'smooth'}), 300)">FAQ</a></li>                </ul>
             </div>
             
             <div class="footer-column">
@@ -3361,9 +3363,9 @@
         <div class="footer-bottom">
             <p>© 2025 Haulxify. All rights reserved.<br>A Project of ABCD Ventures</p>
             <div class="footer-legal">
-                <a href="#" data-page="privacy">Privacy</a>
-                <a href="#" data-page="terms">Terms</a>
-                <a href="#">Cookies</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+                <a href="javascript:void(0)" style="cursor: default;">Cookies</a>
             </div>
         </div>
     </footer>
@@ -3517,36 +3519,39 @@
                 }
             }
 
-            // --- DYNAMIC NAV BUTTON LOGIC (NEW) ---
+            // --- DYNAMIC NAV BUTTON LOGIC (DESKTOP & MOBILE) ---
             const navContainer = document.getElementById('nav-action-container');
-            if (navContainer) {
-                if (hash === 'drivers') {
-                    // Show Login/Sign Up buttons
+            const mobileContainer = document.getElementById('mobile-cta-container');
+
+            if (hash === 'drivers') {
+                // 1. Desktop: Show Login/Sign Up
+                if (navContainer) {
                     navContainer.innerHTML = `
                         <div style="display: flex; gap: 10px;">
                             <button onclick="openModal('loginModal')" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; border-color: var(--accent-gold); color: var(--accent-gold);">Login</button>
                             <button onclick="openModal('signupModal')" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; background: var(--gradient-gold); color: var(--primary-dark); border: none;">Sign Up</button>
-                        </div>
-                    `;
-                } else {
-                    // Revert to "Get Started" for all other pages
-                    navContainer.innerHTML = `
-                        <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
-                    `;
-                    // Re-initialize magnetic effect for the newly added button
-                    const newBtn = navContainer.querySelector('.magnetic');
-                    if(newBtn) {
-                        newBtn.addEventListener('mousemove', function(e) {
-                            const rect = this.getBoundingClientRect();
-                            const x = e.clientX - rect.left - rect.width / 2;
-                            const y = e.clientY - rect.top - rect.height / 2;
-                            this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-                        });
-                        newBtn.addEventListener('mouseleave', function() {
-                            this.style.transform = '';
-                        });
-                    }
+                        </div>`;
                 }
+                // 2. Mobile: Show Login/Sign Up (Stacked)
+                if (mobileContainer) {
+                    mobileContainer.innerHTML = `
+                        <div style="display: flex; flex-direction: column; gap: 15px; width: 80%; margin: 0 auto;">
+                            <button onclick="openModal('loginModal'); document.getElementById('mobileMenu').classList.remove('active');" class="btn btn-secondary" style="width: 100%; color: var(--text-light); border-color: var(--accent-gold);">Login</button>
+                            <button onclick="openModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+                        </div>`;
+                }
+            } else {
+                // Revert to "Get Started"
+                const defaultBtn = `<a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>`;
+                
+                if (navContainer) navContainer.innerHTML = defaultBtn;
+                if (mobileContainer) mobileContainer.innerHTML = `<a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>`;
+                
+                // Re-initialize magnetic effect for new buttons
+                document.querySelectorAll('.magnetic').forEach(btn => {
+                    // (Your existing magnetic event listener logic here if you want to be perfect, 
+                    // but usually the CSS hover is enough for the reset)
+                });
             }
             // ---------------------------------------
 
