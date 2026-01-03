@@ -2071,6 +2071,405 @@
 
         .modal-footer { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
         .modal-footer a { color: var(--accent-gold); text-decoration: none; font-weight: 600; }
+
+<style>
+    /* --- RIGFOLIO SPECIFIC STYLES --- */
+    :root {
+        --rig-dark: #050505;
+        --rig-card: #121212;
+        --rig-accent: #3b82f6; /* Premium Blue for Trust */
+        --rig-text: #ffffff;
+        --wire-bg: #000000;
+        --wire-card: #161616;
+        --wire-accent: #ff4500; /* Reddit-ish Orange but Neon */
+    }
+
+    /* RIGFOLIO HERO */
+    .rig-hero {
+        height: 80vh;
+        background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, #050505 70%), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    .rig-switch-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        padding: 5px;
+        border-radius: 50px;
+        display: flex;
+        gap: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .rig-switch-btn {
+        padding: 1rem 3rem;
+        border-radius: 40px;
+        border: none;
+        background: transparent;
+        color: white;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .rig-switch-btn.active {
+        background: white;
+        color: black;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .rig-search-bar {
+        background: white;
+        padding: 1rem;
+        border-radius: 15px;
+        display: flex;
+        gap: 1rem;
+        width: 90%;
+        max-width: 900px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .rig-input-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #eee;
+        padding: 0 1rem;
+    }
+    
+    .rig-input-group:last-child { border: none; }
+    
+    .rig-input-label { font-size: 0.7rem; color: #888; font-weight: 700; uppercase; letter-spacing: 1px; margin-bottom: 5px;}
+    .rig-input { border: none; font-size: 1rem; font-weight: 600; outline: none; width: 100%; color: #333; }
+
+    /* RIG FILTER BAR */
+    .rig-filter-bar {
+        position: sticky;
+        top: 80px;
+        z-index: 90;
+        background: rgba(5, 5, 5, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .rig-chip {
+        padding: 0.5rem 1.5rem;
+        background: #121212;
+        border: 1px solid #333;
+        border-radius: 50px;
+        color: #888;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .rig-chip:hover, .rig-chip.active {
+        border-color: var(--rig-accent);
+        color: white;
+        background: rgba(59, 130, 246, 0.1);
+    }
+
+    /* RIG LISTINGS */
+    .rig-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        padding: 2rem 5%;
+        background: var(--rig-dark);
+    }
+
+    .rig-card {
+        background: var(--rig-card);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid #222;
+        transition: 0.4s ease;
+        position: relative;
+    }
+
+    .rig-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--rig-accent);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .rig-img-box {
+        height: 250px;
+        background: #222;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .rig-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .rig-card:hover .rig-img-box img { transform: scale(1.1); }
+
+    .rig-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-left: 3px solid var(--rig-accent);
+    }
+
+    .rig-details { padding: 1.5rem; }
+    .rig-price { font-size: 1.5rem; font-weight: 700; color: white; display: block; margin-bottom: 0.5rem; }
+    .rig-price span { font-size: 0.9rem; color: #888; font-weight: 400; }
+    .rig-title { font-size: 1.2rem; color: #eee; margin-bottom: 1rem; font-family: 'Outfit', sans-serif; }
+    
+    .rig-specs { display: flex; gap: 1rem; color: #888; font-size: 0.9rem; margin-bottom: 1.5rem; border-top: 1px solid #222; padding-top: 1rem; }
+    .rig-spec { display: flex; align-items: center; gap: 5px; }
+
+    /* --- WIRE SOCIAL STYLES --- */
+    .wire-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr 350px;
+        gap: 2rem;
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 100px 2rem 2rem;
+        background: var(--wire-bg);
+        min-height: 100vh;
+    }
+
+    /* Wire Sidebar */
+    .wire-sidebar { position: sticky; top: 100px; height: fit-content; }
+    .wire-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 20px;
+        color: #888;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .wire-menu-item:hover, .wire-menu-item.active { background: #1a1a1a; color: white; }
+    .wire-menu-item i { font-size: 1.4rem; width: 30px; }
+
+    /* Wire Feed */
+    .wire-feed { max-width: 700px; margin: 0 auto; width: 100%; }
+    
+    .wire-create-post {
+        background: var(--wire-card);
+        padding: 1.5rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        border: 1px solid #222;
+    }
+    
+    .wire-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #ff4500, #ff8700);
+        flex-shrink: 0;
+    }
+
+    .wire-post {
+        background: var(--wire-card);
+        border-radius: 16px;
+        border: 1px solid #222;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    .wire-post-header { padding: 1rem; display: flex; align-items: center; gap: 10px; }
+    .wire-author { font-weight: 600; color: white; }
+    .wire-time { color: #666; font-size: 0.8rem; }
+    
+    .wire-content { padding: 0 1rem 1rem; color: #ddd; line-height: 1.6; }
+    .wire-media { width: 100%; height: 400px; background: #222; object-fit: cover; }
+    
+    .wire-actions {
+        padding: 0.8rem 1rem;
+        background: #1a1a1a;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .wire-action-btn {
+        background: transparent;
+        border: none;
+        color: #888;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+    .wire-action-btn:hover { color: white; }
+
+    /* Wire Trending */
+    .wire-trending { background: var(--wire-card); border-radius: 16px; padding: 1.5rem; border: 1px solid #222; position: sticky; top: 100px;}
+    .trend-item { margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem; }
+    .trend-tag { color: #666; font-size: 0.8rem; margin-bottom: 5px; display: block; }
+    .trend-title { color: white; font-weight: 600; font-size: 0.95rem; }
+
+    /* COMING SOON PAGE */
+    .coming-soon-wrapper {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cs-content h1 { font-family: 'Playfair Display'; font-size: 5rem; color: white; margin-bottom: 1rem; }
+    .cs-content p { color: #888; max-width: 500px; margin: 0 auto 2rem; }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 1100px) {
+        .wire-layout { grid-template-columns: 80px 1fr 300px; }
+        .wire-menu-item span { display: none; }
+    }
+    @media (max-width: 900px) {
+        .wire-layout { grid-template-columns: 1fr; padding-top: 80px; }
+        .wire-sidebar, .wire-trending { display: none; } /* Mobile View: Feed only */
+        .rig-switch-container { flex-wrap: wrap; justify-content: center; }
+        .rig-search-bar { flex-direction: column; }
+        .rig-input-group { border-right: none; border-bottom: 1px solid #eee; padding: 10px 0; }
+    }
+</style>
+    <style>
+    /* --- MAIN NAV NEW BUTTONS --- */
+    .nav-btn-special {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-rigfolio {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        margin-left: 10px;
+    }
+    .btn-rigfolio:hover {
+        background: #3b82f6;
+        color: white;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-wire {
+        background: rgba(255, 69, 0, 0.1);
+        color: #ff4500;
+        border: 1px solid rgba(255, 69, 0, 0.3);
+        margin-left: 10px;
+    }
+    .btn-wire:hover {
+        background: #ff4500;
+        color: white;
+        box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+    }
+
+    /* --- APP CONTAINERS --- */
+    #rigfolio-app, #wire-app {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 99999; /* Sit on top of everything */
+        background: #050505;
+    }
+    
+    /* Show app when active */
+    #rigfolio-app.active, #wire-app.active { display: block; }
+
+    /* --- RIGFOLIO SPECIFIC STYLES --- */
+    .rig-nav {
+        position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+        background: rgba(5,5,5,0.9); backdrop-filter: blur(10px);
+        border-bottom: 1px solid #222; z-index: 1000;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .rig-hero-section {
+        height: 70vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 60px;
+        overflow: hidden;
+    }
+    .rig-hero-bg {
+        position: absolute; top:0; left:0; width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        filter: brightness(0.4); z-index: -1;
+        transition: opacity 1s ease;
+    }
+    
+    .rig-section-title { font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem; color: white; display: flex; align-items: center; gap: 1rem; }
+    .rig-section-title::after { content: ''; flex: 1; height: 1px; background: #333; }
+
+    /* --- WIRE SPECIFIC STYLES --- */
+    .wire-nav {
+        position: fixed; top: 0; width: 100%; padding: 0.8rem 2rem;
+        background: #000; border-bottom: 1px solid #222; z-index: 1000;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .wire-search {
+        background: #1a1a1a; border: 1px solid #333; padding: 0.5rem 1rem;
+        border-radius: 50px; color: white; width: 400px;
+    }
+    .wire-profile-icon {
+        width: 40px; height: 40px; border-radius: 50%; background: #333;
+        display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    
+    /* Footer for Sub-Apps */
+    .sub-footer {
+        padding: 4rem 5%;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        margin-top: 4rem;
+        color: #888;
+        font-size: 0.9rem;
+    }
+    .sub-footer-links { display: flex; gap: 2rem; margin-bottom: 1rem; }
+    .sub-footer-links a { color: #888; text-decoration: none; transition: 0.3s; }
+    .sub-footer-links a:hover { color: white; }
+</style>
     </style>
 </head>
 <body>
@@ -2090,15 +2489,17 @@
     <nav class="nav" id="nav">
         <a href="#home" class="nav-logo" data-page="home">Haulxify</a>
         <ul class="nav-links">
-            <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
-            <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
-            <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
-            <li><a href="#about" class="nav-link" data-page="about">About</a></li>
-            <li><a href="#blog" class="nav-link" data-page="blog">Blog</a></li>
-            <li><a href="#careers" class="nav-link" data-page="careers">Careers</a></li>
-            <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-            <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
-        </ul>
+    <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+    <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+    <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
+    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+    
+    <li><a href="?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a></li>
+    <li><a href="?app=wire" target="_blank" class="nav-btn-special btn-wire">WIRE</a></li>
+    
+    <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
+</ul>
         
 <div id="nav-action-container">
             <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
@@ -3329,6 +3730,231 @@
             </div>
         </section>
     </div>
+    <div class="page" id="page-rigfolio">
+        <div class="rig-hero">
+            <h1 class="reveal" style="font-family: 'Playfair Display'; font-size: 4rem; margin-bottom: 2rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <span style="color:white">RIG</span><span style="color:var(--rig-accent)">FOLIO</span>
+            </h1>
+            
+            <div class="rig-switch-container reveal stagger-1">
+                <button class="rig-switch-btn active" onclick="switchRigTab('rent')">Rent Now</button>
+                <button class="rig-switch-btn" onclick="switchRigTab('buy')">Buy Now</button>
+                <button class="rig-switch-btn" onclick="location.hash='financing-coming-soon'">Get Financing</button>
+            </div>
+
+            <div class="rig-search-bar reveal stagger-2">
+                <div class="rig-input-group">
+                    <label class="rig-input-label">TYPE</label>
+                    <select class="rig-input"><option>Dry Van</option><option>Reefer</option><option>Flatbed</option></select>
+                </div>
+                <div class="rig-input-group">
+                    <label class="rig-input-label">LOCATION</label>
+                    <input type="text" class="rig-input" placeholder="Zip Code or City">
+                </div>
+                <div class="rig-input-group">
+                    <label class="rig-input-label">DATES</label>
+                    <input type="text" class="rig-input" placeholder="Add dates">
+                </div>
+                <button style="background: var(--rig-accent); color: white; border: none; width: 60px; border-radius: 10px; cursor: pointer; font-size: 1.2rem;">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="rig-filter-bar">
+            <div class="rig-chip active">All Assets</div>
+            <div class="rig-chip">Semi-Trucks</div>
+            <div class="rig-chip">Trailers</div>
+            <div class="rig-chip">Box Trucks</div>
+            <div class="rig-chip">Dump Trucks</div>
+            <div class="rig-chip">Heavy Haul</div>
+            <div class="rig-chip">Sleepers</div>
+        </div>
+
+        <div class="rig-grid" id="rig-listings">
+            <div class="rig-card reveal">
+                <div class="rig-img-box">
+                    <span class="rig-badge">AVAILABLE NOW</span>
+                    <img src="https://images.unsplash.com/photo-1591768793355-74d04bb6608f?auto=format&fit=crop&q=80&w=800" alt="Truck">
+                </div>
+                <div class="rig-details">
+                    <span class="rig-price">$850<span>/week</span></span>
+                    <h3 class="rig-title">2022 Freightliner Cascadia</h3>
+                    <div class="rig-specs">
+                        <span class="rig-spec"><i class="fas fa-tachometer-alt"></i> 120k mi</span>
+                        <span class="rig-spec"><i class="fas fa-gas-pump"></i> Diesel</span>
+                        <span class="rig-spec"><i class="fas fa-cog"></i> Auto</span>
+                    </div>
+                    <button class="btn btn-primary" style="width:100%; background: var(--rig-accent); border:none;">Rent This Rig</button>
+                </div>
+            </div>
+
+            <div class="rig-card reveal stagger-1">
+                <div class="rig-img-box">
+                    <span class="rig-badge" style="background: #22c55e; border-color: #22c55e;">LEASE TO BUY</span>
+                    <img src="https://images.unsplash.com/photo-1605218427360-3a618991206f?auto=format&fit=crop&q=80&w=800" alt="Truck">
+                </div>
+                <div class="rig-details">
+                    <span class="rig-price">$1,200<span>/month</span></span>
+                    <h3 class="rig-title">2023 Kenworth T680 Next Gen</h3>
+                    <div class="rig-specs">
+                        <span class="rig-spec"><i class="fas fa-tachometer-alt"></i> 45k mi</span>
+                        <span class="rig-spec"><i class="fas fa-bed"></i> 76" Sleeper</span>
+                    </div>
+                    <button class="btn btn-primary" style="width:100%; background: white; color: black; border:none;">Start Application</button>
+                </div>
+            </div>
+
+            <div class="rig-card reveal stagger-2">
+                <div class="rig-img-box">
+                    <span class="rig-badge">FOR SALE</span>
+                    <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&q=80&w=800" alt="Trailer">
+                </div>
+                <div class="rig-details">
+                    <span class="rig-price">$45,000<span> total</span></span>
+                    <h3 class="rig-title">2024 Great Dane Reefer</h3>
+                    <div class="rig-specs">
+                        <span class="rig-spec"><i class="fas fa-snowflake"></i> Thermo King</span>
+                        <span class="rig-spec"><i class="fas fa-ruler"></i> 53 ft</span>
+                    </div>
+                    <button class="btn btn-secondary" style="width:100%;">Contact Seller</button>
+                </div>
+            </div>
+             <div class="rig-card reveal stagger-3">
+                <div class="rig-img-box">
+                    <span class="rig-badge">RENTAL</span>
+                    <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800" alt="Truck">
+                </div>
+                <div class="rig-details">
+                    <span class="rig-price">$900<span>/week</span></span>
+                    <h3 class="rig-title">2021 Volvo VNL 860</h3>
+                    <div class="rig-specs">
+                        <span class="rig-spec"><i class="fas fa-tachometer-alt"></i> 180k mi</span>
+                        <span class="rig-spec"><i class="fas fa-chair"></i> Ergonomic</span>
+                    </div>
+                    <button class="btn btn-primary" style="width:100%; background: var(--rig-accent); border:none;">Rent This Rig</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-financing-coming-soon">
+        <div class="coming-soon-wrapper">
+            <div style="position:absolute; width:100%; height:100%; background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 60%);"></div>
+            <div class="cs-content reveal">
+                <h1>Financing <span class="text-shimmer" style="--accent-gold: #3b82f6; --accent-gold-light: #60a5fa;">Redefined.</span></h1>
+                <p>We are building a revolutionary financing engine for the modern trucker. Instant approvals, fair rates, and lease-to-own programs.</p>
+                <form onsubmit="event.preventDefault(); alert('You are on the list!');" style="display: flex; gap: 10px; justify-content: center; max-width: 400px; margin: 0 auto;">
+                    <input type="email" placeholder="Notify me when live" style="background: rgba(255,255,255,0.1); border: 1px solid #333; padding: 1rem; color: white; border-radius: 50px; flex: 1;">
+                    <button class="btn btn-primary" style="background: #3b82f6; border: none;">Join List</button>
+                </form>
+                <div style="margin-top: 3rem;">
+                    <a href="#rigfolio" style="color: #666; text-decoration: none;">← Back to Rigfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-wire">
+        <div class="wire-layout">
+            <div class="wire-sidebar">
+                <div style="margin-bottom: 2rem; padding-left: 20px;">
+                    <h2 style="font-family: 'Playfair Display'; font-size: 2rem; color:white;">WIRE</h2>
+                </div>
+                <div class="wire-menu-item active">
+                    <i class="fas fa-home"></i> <span>Home Feed</span>
+                </div>
+                <div class="wire-menu-item">
+                    <i class="fas fa-fire"></i> <span>Trending</span>
+                </div>
+                <div class="wire-menu-item">
+                    <i class="fas fa-hashtag"></i> <span>Topics</span>
+                </div>
+                <div class="wire-menu-item">
+                    <i class="fas fa-user-friends"></i> <span>Communities</span>
+                </div>
+                <div class="wire-menu-item">
+                    <i class="far fa-bookmark"></i> <span>Saved</span>
+                </div>
+                <div style="margin-top: 3rem; border-top: 1px solid #222; padding-top: 1rem;">
+                    <div class="wire-menu-item">
+                        <i class="fas fa-cog"></i> <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wire-feed">
+                <div class="wire-create-post">
+                    <div class="wire-avatar"></div>
+                    <input type="text" placeholder="What's happening on the road?" style="background: transparent; border: none; outline: none; color: white; font-size: 1.1rem; width: 100%;">
+                    <button style="background: var(--wire-accent); color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: bold; cursor: pointer;">Post</button>
+                </div>
+
+                <div class="wire-post reveal">
+                    <div class="wire-post-header">
+                        <div class="wire-avatar" style="background: url('https://randomuser.me/api/portraits/men/32.jpg'); background-size: cover;"></div>
+                        <div>
+                            <div class="wire-author">BigRig_Rob</div>
+                            <div class="wire-time">2 hours ago • I-80 Update</div>
+                        </div>
+                    </div>
+                    <div class="wire-content">
+                        <p>Just passed through Wyoming on I-80. Winds are brutal near Elk Mountain, seeing 60mph gusts. Stay safe out there brothers and sisters, lots of blowovers. 🌪️🚛</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&q=80&w=800" class="wire-media">
+                    <div class="wire-actions">
+                        <button class="wire-action-btn"><i class="fas fa-arrow-up"></i> 1.2k</button>
+                        <button class="wire-action-btn"><i class="far fa-comment-alt"></i> 234 Comments</button>
+                        <button class="wire-action-btn"><i class="fas fa-share"></i> Share</button>
+                    </div>
+                </div>
+
+                <div class="wire-post reveal">
+                    <div class="wire-post-header">
+                        <div class="wire-avatar" style="background: url('https://randomuser.me/api/portraits/women/44.jpg'); background-size: cover;"></div>
+                        <div>
+                            <div class="wire-author">DispatchQueen</div>
+                            <div class="wire-time">5 hours ago • Market Insight</div>
+                        </div>
+                    </div>
+                    <div class="wire-content">
+                        <p>Rates are finally ticking up in the Midwest for Reefers. Seeing $2.80/mile average out of Chicago. Don't take cheap freight! Hold the line! 📈</p>
+                    </div>
+                    <div class="wire-actions">
+                        <button class="wire-action-btn"><i class="fas fa-arrow-up"></i> 856</button>
+                        <button class="wire-action-btn"><i class="far fa-comment-alt"></i> 112 Comments</button>
+                        <button class="wire-action-btn"><i class="fas fa-share"></i> Share</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wire-trending">
+                <h3 style="color:white; font-family:'Playfair Display'; margin-bottom: 1.5rem;">Trending in Logistics</h3>
+                
+                <div class="trend-item">
+                    <span class="trend-tag">Politics • Trending</span>
+                    <div class="trend-title">New DOT regulations proposed for 2026</div>
+                    <span style="color:#444; font-size: 0.8rem;">15k posts</span>
+                </div>
+                
+                <div class="trend-item">
+                    <span class="trend-tag">Fuel • Live</span>
+                    <div class="trend-title">Diesel prices drop below $3.50 in Texas</div>
+                    <span style="color:#444; font-size: 0.8rem;">5k posts</span>
+                </div>
+
+                <div class="trend-item">
+                    <span class="trend-tag">Technology</span>
+                    <div class="trend-title">Tesla Semi vs Freightliner eCascadia reviews</div>
+                    <span style="color:#444; font-size: 0.8rem;">8.2k posts</span>
+                </div>
+                
+                <div style="border-top: 1px solid #222; padding-top: 1rem; color: #666; font-size: 0.8rem;">
+                    © 2026 Wire Inc. <br> A Haulxify Community.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -3475,6 +4101,238 @@
             </form>
         </div>
     </div>
+
+    <div id="rigfolio-app">
+    <nav class="rig-nav">
+        <div style="font-family: 'Playfair Display'; font-size: 1.8rem; font-weight: 700; color: white;">
+            RIG<span style="color:#3b82f6">FOLIO</span>
+        </div>
+        <div style="display: flex; gap: 2rem;">
+            <a href="#featured" class="nav-link" style="color:#ddd">Featured</a>
+            <a href="#rent" class="nav-link" style="color:#ddd">Rent</a>
+            <a href="#buy" class="nav-link" style="color:#ddd">Buy</a>
+            <a href="#finance" class="nav-link" style="color:#ddd">Financing</a>
+        </div>
+        <button onclick="openModal('signupModal')" style="padding: 0.5rem 1.5rem; background: #3b82f6; color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">List Your Rig</button>
+    </nav>
+
+    <div class="rig-hero-section">
+        <div class="rig-hero-bg" id="rigHeroBg" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070');"></div>
+        <h1 style="font-family: 'Playfair Display'; font-size: 4rem; color: white; margin-bottom: 1rem; text-shadow: 0 10px 30px black;">
+            The Capital of <span style="color:#3b82f6">Chrome</span>
+        </h1>
+        <p style="color: #ccc; font-size: 1.2rem; margin-bottom: 2rem;">Rent, Buy, and Finance Premium Commercial Assets</p>
+        
+        <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); display: flex; gap: 10px;">
+            <input type="text" placeholder="Search Freightliner, Reefer, Flatbed..." style="background: transparent; border: none; color: white; font-size: 1rem; padding: 0 1rem; width: 300px; outline: none;">
+            <button style="background: #3b82f6; width: 40px; height: 40px; border-radius: 50%; border: none; color: white; cursor: pointer;"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <div style="padding: 4rem 5%; background: #050505;">
+        
+        <div id="featured">
+            <h2 class="rig-section-title">🔥 Trending Now</h2>
+            <div class="rig-grid">
+                <div class="rig-card">
+                    <div class="rig-img-box"><img src="https://images.unsplash.com/photo-1591768793355-74d04bb6608f?auto=format&fit=crop&q=80&w=800"></div>
+                    <div class="rig-details">
+                        <span class="rig-price">$95,000</span>
+                        <h3 class="rig-title">2023 Peterbilt 579 UltraLoft</h3>
+                        <button class="btn btn-primary" style="width:100%; background: #3b82f6; border:none;">View Details</button>
+                    </div>
+                </div>
+                <div class="rig-card">
+                    <div class="rig-img-box"><img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800"></div>
+                    <div class="rig-details">
+                        <span class="rig-price">$1,100<span>/week</span></span>
+                        <h3 class="rig-title">Volvo VNL 860 (Rental)</h3>
+                        <button class="btn btn-primary" style="width:100%; background: #3b82f6; border:none;">Rent Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="rent" style="margin-top: 5rem;">
+            <h2 class="rig-section-title">Rentals <span style="font-size: 1rem; color: #666; margin-left: auto;">View All →</span></h2>
+            <div class="rig-grid">
+                <div class="rig-card">
+                    <div class="rig-img-box">
+                        <span class="rig-badge">AVAILABLE</span>
+                        <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&q=80&w=800">
+                    </div>
+                    <div class="rig-details">
+                        <span class="rig-price">$450<span>/week</span></span>
+                        <h3 class="rig-title">53' Dry Van Trailer</h3>
+                        <div class="rig-specs"><span class="rig-spec">Wabash</span><span class="rig-spec">2021 Model</span></div>
+                    </div>
+                </div>
+                <div class="rig-card">
+                    <div class="rig-img-box">
+                        <span class="rig-badge">HOT</span>
+                        <img src="https://images.unsplash.com/photo-1626322969989-183021481e28?auto=format&fit=crop&q=80&w=800">
+                    </div>
+                    <div class="rig-details">
+                        <span class="rig-price">$1,400<span>/week</span></span>
+                        <h3 class="rig-title">Kenworth W900L</h3>
+                        <div class="rig-specs"><span class="rig-spec">18 Speed</span><span class="rig-spec">Studio Sleeper</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="buy" style="margin-top: 5rem;">
+            <h2 class="rig-section-title">For Sale <span style="font-size: 1rem; color: #666; margin-left: auto;">View All →</span></h2>
+            <div class="rig-grid">
+                <div class="rig-card">
+                    <div class="rig-img-box">
+                        <span class="rig-badge" style="background:#22c55e; border-color:#22c55e">VERIFIED</span>
+                        <img src="https://plus.unsplash.com/premium_photo-1661963007373-c1b723528829?auto=format&fit=crop&q=80&w=800">
+                    </div>
+                    <div class="rig-details">
+                        <span class="rig-price">$125,000</span>
+                        <h3 class="rig-title">2024 Freightliner Cascadia</h3>
+                        <div class="rig-specs"><span class="rig-spec">DD15</span><span class="rig-spec">0 Miles</span></div>
+                    </div>
+                </div>
+                <div class="rig-card">
+                    <div class="rig-img-box">
+                        <span class="rig-badge">DEAL</span>
+                        <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&q=80&w=800">
+                    </div>
+                    <div class="rig-details">
+                        <span class="rig-price">$38,000</span>
+                        <h3 class="rig-title">2018 Utility Reefer 3000R</h3>
+                        <div class="rig-specs"><span class="rig-spec">Carrier 7300</span><span class="rig-spec">Air Ride</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lease" style="margin-top: 5rem;">
+            <h2 class="rig-section-title">Lease to Own Programs</h2>
+            <div style="background: #111; border-radius: 20px; padding: 3rem; text-align: center; border: 1px solid #222;">
+                <h3 style="color: white; font-family: 'Playfair Display'; font-size: 2rem;">No Credit? No Problem.</h3>
+                <p style="color: #888; margin: 1rem 0 2rem;">Our RigFolio Verified Lease program helps you become an owner operator.</p>
+                <div class="rig-grid">
+                     <div class="rig-card" style="text-align: left;">
+                        <div class="rig-img-box"><img src="https://images.unsplash.com/photo-1605218427360-3a618991206f?auto=format&fit=crop&q=80&w=800"></div>
+                        <div class="rig-details">
+                            <span class="rig-price">$800<span>/week</span></span>
+                            <h3 class="rig-title">2020 International LT</h3>
+                            <button class="btn btn-primary" style="width:100%; background: white; color: black; border:none;">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="sub-footer">
+        <div class="footer-brand" style="margin-bottom: 2rem;">
+            <span style="font-family: 'Playfair Display'; font-size: 1.5rem; color: white;">RIG<span style="color:#3b82f6">FOLIO</span></span>
+        </div>
+        <div class="sub-footer-links">
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Dispute Resolution</a>
+        </div>
+        <p>© 2026 RigFolio Inc. An Independent Subsidiary of Haulxify.</p>
+    </footer>
+</div>
+
+<div id="wire-app">
+    <nav class="wire-nav">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -1px;">
+            WIRE<span style="color:#ff4500; font-size: 2rem;">.</span>
+        </div>
+        <input type="text" class="wire-search" placeholder="Search communities, users, or topics...">
+        <div style="display: flex; gap: 1rem; align-items: center;">
+             <button onclick="openModal('loginModal')" style="background: transparent; color: white; border: 1px solid #333; padding: 0.4rem 1rem; border-radius: 20px; cursor:pointer;">Log In</button>
+             <div class="wire-profile-icon" onclick="openModal('signupModal')"><i class="fas fa-user"></i></div>
+        </div>
+    </nav>
+
+    <div class="wire-layout">
+        <div class="wire-sidebar">
+            <div class="wire-menu-item active"><i class="fas fa-home"></i> <span>Home</span></div>
+            <div class="wire-menu-item"><i class="fas fa-fire"></i> <span>Popular</span></div>
+            <div class="wire-menu-item"><i class="fas fa-video"></i> <span>Live</span></div>
+            <div style="margin: 2rem 0; height: 1px; background: #222;"></div>
+            <div style="color: #666; font-size: 0.8rem; padding-left: 20px; margin-bottom: 1rem;">COMMUNITIES</div>
+            <div class="wire-menu-item"><i class="fas fa-truck"></i> <span>r/Truckers</span></div>
+            <div class="wire-menu-item"><i class="fas fa-tools"></i> <span>r/Mechanics</span></div>
+            <div class="wire-menu-item"><i class="fas fa-map-marked"></i> <span>r/RoadTrips</span></div>
+        </div>
+
+        <div class="wire-feed">
+             <div class="wire-create-post" onclick="openModal('loginModal')">
+                <div class="wire-avatar"></div>
+                <input type="text" placeholder="Create Post" style="background: #1a1a1a; border: 1px solid #333; padding: 0.8rem; border-radius: 8px; color: white; flex: 1;">
+                <i class="fas fa-image" style="color: #666; font-size: 1.2rem; margin-top: 10px;"></i>
+            </div>
+
+            <div class="wire-post">
+                <div class="wire-post-header">
+                    <div class="wire-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/45.jpg'); background-size: cover;"></div>
+                    <div>
+                        <div class="wire-author">IceRoad_Mike</div>
+                        <div class="wire-time">Posted in r/Truckers • 4h ago</div>
+                    </div>
+                </div>
+                <div class="wire-content">
+                    <h3 style="color: white; margin-bottom: 0.5rem;">View from the office this morning 🏔️</h3>
+                    <img src="https://images.unsplash.com/photo-1542317854-f9596aa56fd9?auto=format&fit=crop&q=80&w=800" class="wire-media" style="border-radius: 8px;">
+                </div>
+                <div class="wire-actions">
+                    <button class="wire-action-btn"><i class="fas fa-arrow-up" style="color:#ff4500"></i> 2.4k</button>
+                    <button class="wire-action-btn"><i class="fas fa-comment"></i> 156 Comments</button>
+                    <button class="wire-action-btn"><i class="fas fa-share"></i> Share</button>
+                </div>
+            </div>
+             <div class="wire-post">
+                <div class="wire-post-header">
+                    <div class="wire-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/22.jpg'); background-size: cover;"></div>
+                    <div>
+                        <div class="wire-author">LogisticsLisa</div>
+                        <div class="wire-time">Posted in r/FreightBroker • 6h ago</div>
+                    </div>
+                </div>
+                <div class="wire-content">
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Market Analysis: Rates stabilizing in Q3?</h3>
+                    <p>Based on the DAT load-to-truck ratios, we are seeing a slight uptick in spot rates originating from the Southeast...</p>
+                </div>
+                <div class="wire-actions">
+                    <button class="wire-action-btn"><i class="fas fa-arrow-up"></i> 890</button>
+                    <button class="wire-action-btn"><i class="fas fa-comment"></i> 45 Comments</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="wire-trending">
+            <h3>Trending Communities</h3>
+            <div class="trend-item">
+                <div class="trend-title">r/OwnerOperators</div>
+                <span class="trend-tag">156k Members</span>
+            </div>
+            <div class="trend-item">
+                <div class="trend-title">r/DieselTech</div>
+                <span class="trend-tag">42k Members</span>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="sub-footer" style="padding-top: 2rem; border-top: 1px solid #222; margin-top: 0; background: #000;">
+        <div class="sub-footer-links" style="justify-content: center;">
+            <a href="#">Wire Rules</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">User Agreement</a>
+        </div>
+        <p style="text-align: center;">© 2026 Wire Social. Connected by Haulxify.</p>
+    </footer>
+</div>
     <script>
         // Preloader
         window.addEventListener('load', () => {
@@ -3529,81 +4387,116 @@
             navToggle.classList.toggle('active');
         });
 
-        // NEW ROUTER LOGIC
-        function handleRoute() {
-            // 1. Get the hash (e.g., "pricing") or default to "home"
-            let hash = window.location.hash.substring(1) || 'home';
-            
-            // 2. Check if the page actually exists, if not, force "home"
-            let targetPage = document.getElementById('page-' + hash);
-            if (!targetPage) {
-                // Special check: If user clicks "drivers" but the page ID is "page-drivers"
-                if (document.getElementById('page-' + hash)) {
-                     // This is fine
-                } else {
-                    hash = 'home';
-                    targetPage = document.getElementById('page-home');
-                }
-            }
+        // --- UPGRADED ROUTER & NAVIGATION LOGIC ---
+function handleRoute() {
+    let hash = window.location.hash.substring(1) || 'home';
+    
+    // Fallback if page doesn't exist
+    if (!document.getElementById('page-' + hash)) {
+        hash = 'home';
+    }
 
-            // --- DYNAMIC NAV BUTTON LOGIC (DESKTOP & MOBILE) ---
-            const navContainer = document.getElementById('nav-action-container');
-            const mobileContainer = document.getElementById('mobile-cta-container');
+    const nav = document.getElementById('nav');
+    const navLinks = document.querySelector('.nav-links');
+    const navAction = document.getElementById('nav-action-container');
+    const logo = document.querySelector('.nav-logo');
 
-            if (hash === 'drivers') {
-                // 1. Desktop: Show Login/Sign Up
-                if (navContainer) {
-                    navContainer.innerHTML = `
-                        <div style="display: flex; gap: 10px;">
-                            <button onclick="openModal('loginModal')" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; border-color: var(--accent-gold); color: var(--accent-gold);">Login</button>
-                            <button onclick="openModal('signupModal')" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; background: var(--gradient-gold); color: var(--primary-dark); border: none;">Sign Up</button>
-                        </div>`;
-                }
-                // 2. Mobile: Show Login/Sign Up (Stacked)
-                if (mobileContainer) {
-                    mobileContainer.innerHTML = `
-                        <div style="display: flex; flex-direction: column; gap: 15px; width: 80%; margin: 0 auto;">
-                            <button onclick="openModal('loginModal'); document.getElementById('mobileMenu').classList.remove('active'); document.getElementById('navToggle').classList.remove('active');" class="btn btn-secondary" style="width: 100%; color: var(--text-light); border-color: var(--accent-gold);">Login</button>
-                            <button onclick="openModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active'); document.getElementById('navToggle').classList.remove('active');" class="btn btn-primary" style="width: 100%;">Sign Up</button>
-                        </div>`;
-                }
-            } else {
-                // Revert to "Get Started"
-                const defaultBtn = `<a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>`;
-                
-                if (navContainer) navContainer.innerHTML = defaultBtn;
-                if (mobileContainer) mobileContainer.innerHTML = `<a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>`;
-                
-                // Re-initialize magnetic effect for new buttons
-                document.querySelectorAll('.magnetic').forEach(btn => {
-                    // (Your existing magnetic event listener logic here if you want to be perfect, 
-                    // but usually the CSS hover is enough for the reset)
-                });
-            }
-            // ---------------------------------------
+    // 1. DYNAMIC NAVIGATION BAR CONTENT
+    if (hash === 'rigfolio' || hash === 'financing-coming-soon') {
+        // --- RIGFOLIO NAV ---
+        logo.innerHTML = 'RIG<span style="color:var(--rig-accent)">FOLIO</span>';
+        nav.style.background = 'rgba(5,5,5,0.95)';
+        nav.style.borderBottom = '1px solid #222';
+        
+        navLinks.innerHTML = `
+            <li><a href="#rigfolio" class="nav-link" onclick="switchRigTab('rent')">Rent</a></li>
+            <li><a href="#rigfolio" class="nav-link" onclick="switchRigTab('buy')">Buy</a></li>
+            <li><a href="#rigfolio" class="nav-link" onclick="switchRigTab('lease')">Lease to Buy</a></li>
+            <li><a href="#financing-coming-soon" class="nav-link" style="color: var(--rig-accent);">Truck Financing</a></li>
+            <li><a href="#home" class="nav-link" style="opacity:0.5; font-size:0.8rem;">Exit</a></li>
+        `;
+        
+        navAction.innerHTML = `<a href="#financing-coming-soon" class="nav-cta" style="background: var(--rig-accent); color: white; box-shadow: none;">List Your Rig</a>`;
+        
+    } else if (hash === 'wire') {
+        // --- WIRE NAV ---
+        logo.innerHTML = 'WIRE';
+        nav.style.background = 'black';
+        nav.style.borderBottom = '1px solid #222';
+        
+        // Only Login/Signup as requested
+        navLinks.innerHTML = `
+             <li><a href="#home" class="nav-link" style="opacity:0.5; font-size:0.8rem;">Exit to Haulxify</a></li>
+        `;
+        
+        navAction.innerHTML = `
+            <div style="display:flex; gap:10px;">
+                <button onclick="openModal('loginModal')" style="background:transparent; color:white; border:none; cursor:pointer; font-weight:600;">Log In</button>
+                <button onclick="openModal('signupModal')" style="background:var(--wire-accent); color:white; padding: 0.5rem 1.5rem; border-radius:20px; border:none; font-weight:600; cursor:pointer;">Sign Up</button>
+            </div>
+        `;
+        
+    } else {
+        // --- STANDARD HAULXIFY NAV ---
+        logo.innerHTML = 'Haulxify';
+        nav.style.background = ''; // Revert to CSS default
+        nav.style.borderBottom = '';
+        
+        // Standard Links + The two new features
+        navLinks.innerHTML = `
+            <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+            <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+            <li><a href="#rigfolio" class="nav-link" style="font-weight:700; letter-spacing:1px;">RIGFOLIO</a></li>
+            <li><a href="#wire" class="nav-link" style="font-weight:700; letter-spacing:1px;">WIRE</a></li>
+            <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
+            <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+            <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
+        `;
 
-            // 3. Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-
-            // 4. Show target page
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Close mobile menu if open
-                if (typeof mobileMenu !== 'undefined' && mobileMenu) mobileMenu.classList.remove('active');
-                if (typeof navToggle !== 'undefined' && navToggle) navToggle.classList.remove('active');
-
-                // Trigger animations
-                setTimeout(() => {
-                    if (typeof revealOnScroll === 'function') revealOnScroll();
-                    // Re-run counters if on home
-                    if (hash === 'home' && typeof animateCounters === 'function') animateCounters();
-                }, 100);
-            }
+        // Handle the specific "Drivers" page button logic you had before
+        if (hash === 'drivers') {
+             navAction.innerHTML = `
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="openModal('loginModal')" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; border-color: var(--accent-gold); color: var(--accent-gold);">Login</button>
+                    <button onclick="openModal('signupModal')" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; background: var(--gradient-gold); color: var(--primary-dark); border: none;">Sign Up</button>
+                </div>`;
+        } else {
+             navAction.innerHTML = `<a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>`;
         }
+    }
+
+    // 2. PAGE SWITCHING
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    const targetPage = document.getElementById('page-' + hash);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Close Mobile Menu if open
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('navToggle').classList.remove('active');
+
+    // Re-trigger animations
+    setTimeout(() => {
+        if (typeof revealOnScroll === 'function') revealOnScroll();
+    }, 100);
+}
+
+// Helper for Rigfolio Tabs
+function switchRigTab(tab) {
+    // Visual toggle for buttons
+    document.querySelectorAll('.rig-switch-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // In a real app, this would filter the listings below
+    // For now, we just console log
+    console.log("Switched to " + tab);
+}
+
         // --- MODAL LOGIC ---
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
@@ -3640,7 +4533,7 @@
         window.addEventListener('hashchange', handleRoute);
 
         // Handle initial load
-        window.addEventListener('load', handleRoute);
+    
 
         // Create Particles
         const particlesContainer = document.getElementById('particles');
@@ -3690,11 +4583,6 @@
             });
         };
 
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', () => {
-            revealOnScroll();
-            animateCounters();
-        });
 
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
@@ -3833,6 +4721,49 @@
                 if (navToggle) navToggle.classList.remove('active');
             });
         });
+
+// --- NEW APP LOGIC (Traffic Controller) ---
+        function initApp() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const appMode = urlParams.get('app'); 
+
+            if (appMode === 'rigfolio') {
+                // --- LOAD RIGFOLIO ---
+                document.body.style.overflow = 'hidden'; 
+                document.getElementById('rigfolio-app').classList.add('active');
+                document.title = "RIGFOLIO | The Asset Marketplace";
+                
+                // Random Hero Image
+                const images = [
+                    'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070',
+                    'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?q=80&w=2070',
+                    'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?q=80&w=2070'
+                ];
+                const randomImg = images[Math.floor(Math.random() * images.length)];
+                const heroBg = document.getElementById('rigHeroBg');
+                if(heroBg) heroBg.style.backgroundImage = `url('${randomImg}')`;
+
+            } else if (appMode === 'wire') {
+                // --- LOAD WIRE ---
+                document.body.style.overflow = 'hidden';
+                document.getElementById('wire-app').classList.add('active');
+                document.title = "WIRE | The Logistics Network";
+
+            } else {
+                // --- LOAD NORMAL HAULXIFY WEBSITE ---
+                
+                // 1. Activate the Router logic for single-page nav
+                window.addEventListener('hashchange', handleRoute);
+                handleRoute(); 
+                
+                // 2. Trigger Animations
+                if(typeof revealOnScroll === 'function') revealOnScroll();
+                if(typeof animateCounters === 'function') animateCounters();
+            }
+        }
+
+        // The ONLY load listener you need
+        window.addEventListener('load', initApp);
     </script>
 </body>
 </html>
