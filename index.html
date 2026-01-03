@@ -4454,7 +4454,92 @@
                     </div>
                 </div>
             </div>
+<div id="view-popular" class="wire-view" style="display: none;">
+    <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Trending Today 🔥</h2>
+    <div class="wire-post">
+        <div class="wire-content"><h3 style="color: white;">Why Electric Trucks are failing in cold climates</h3></div>
+    </div>
+    <div class="wire-post">
+        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=800" class="wire-media" style="height: 200px;">
+        <div class="wire-content"><h3 style="color: white; margin-top: 10px;">Best looking rig at the Iowa 80 show?</h3></div>
+    </div>
+</div>
 
+<div id="view-live" class="wire-view" style="display: none;">
+    <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Live on Wire 🔴</h2>
+    <div class="live-grid">
+        <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1588622636846-5c5897858716?q=80&w=800">
+            <div class="live-count">👀 1.2k • TruckerTom</div>
+        </div>
+        <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1621929747188-0b4dc28498d2?q=80&w=800">
+            <div class="live-count">👀 856 • NightOwl</div>
+        </div>
+        <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1596706037376-78711463994e?q=80&w=800">
+            <div class="live-count">👀 3.5k • IceRoads</div>
+        </div>
+        <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1542317854-f9596aa56fd9?q=80&w=800">
+            <div class="live-count">👀 200 • GarageTalk</div>
+        </div>
+         <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=800">
+            <div class="live-count">👀 1.5k • DieselDave</div>
+        </div>
+         <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800">
+            <div class="live-count">👀 420 • RollingCoal</div>
+        </div>
+         <div class="live-card">
+            <span class="live-badge">LIVE</span>
+            <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?q=80&w=800">
+            <div class="live-count">👀 900 • HighwayStar</div>
+        </div>
+    </div>
+</div>
+
+<div id="view-community-truckers" class="wire-view" style="display: none;">
+    <div class="community-header" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1000');">
+        <div class="community-icon"><i class="fas fa-truck"></i></div>
+        <button class="btn btn-primary" style="position: absolute; bottom: 20px; right: 20px;">Join</button>
+    </div>
+    <h1 style="color:white; margin-top: 40px; margin-bottom: 20px;">r/Truckers</h1>
+    <div class="wire-post"><div class="wire-post-header"><div class="wire-author">BigWheelz</div></div><div class="wire-content"><p>Anyone parked at the Pilot in Tuscon? Coffee is on me.</p></div></div>
+    <div class="wire-post"><div class="wire-post-header"><div class="wire-author">DieselDoctor</div></div><div class="wire-content"><p>Need a mechanic recommendation near Dallas ASAP. Air leak.</p></div></div>
+</div>
+
+<div id="view-rules" class="wire-view" style="display: none;">
+    <div class="wire-doc">
+        <h1>Wire Community Rules</h1>
+        <p>Welcome to Wire. To maintain a professional environment for logistics professionals, please adhere to the following:</p>
+        <h3>1. Professional Conduct</h3>
+        <p>While we encourage open discussion, personal attacks, hate speech, and harassment are strictly prohibited.</p>
+        <h3>2. No Illegal Activity</h3>
+        <p>Do not use Wire to solicit illegal goods, discuss bypassing DOT regulations, or share illicit substances.</p>
+        <h3>3. Verify Information</h3>
+        <p>When posting regarding road conditions, fuel prices, or regulations, please ensure your information is accurate.</p>
+    </div>
+</div>
+
+<div id="view-privacy" class="wire-view" style="display: none;">
+    <div class="wire-doc">
+        <h1>Wire Privacy Policy</h1>
+        <p><strong>Last Updated: January 2026</strong></p>
+        <p>Wire is a social platform dedicated to the trucking industry. This policy outlines how your social data is handled differently from your business data on Haulxify.</p>
+        <h3>1. Public vs Private Data</h3>
+        <p>Content you post on public feeds (Wire Home, Communities) is visible to all registered users. Direct messages are encrypted.</p>
+        <h3>2. Location Data</h3>
+        <p>We do not track your real-time location unless you explicitly use the "Check-In" feature on a post.</p>
+    </div>
+</div>
             <div id="wire-profile-view" style="display: none;">
                 <div class="wire-profile-header">
                     <div class="wire-cover-photo"></div>
@@ -4913,6 +4998,37 @@
 
     // Trigger fuel fetch when Wire loads
     window.addEventListener('load', fetchFuelPrices);
+        // --- MENU TOGGLE LOGIC ---
+function toggleMenu(btn) {
+    // Close all other open menus first
+    document.querySelectorAll('.wire-dropdown').forEach(d => d.classList.remove('show'));
+    // Toggle the specific menu
+    const dropdown = btn.nextElementSibling;
+    if(dropdown) dropdown.classList.toggle('show');
+    // Stop the click from closing it immediately
+    event.stopPropagation();
+}
+
+// Close menus when clicking anywhere on the page
+window.addEventListener('click', () => {
+    document.querySelectorAll('.wire-dropdown').forEach(d => d.classList.remove('show'));
+});
+
+// Update WireNav to include new pages
+function wireNav(viewName) {
+    document.querySelectorAll('.wire-view').forEach(el => el.style.display = 'none');
+    
+    // Support for the new view names
+    const target = document.getElementById('view-' + viewName);
+    if(target) target.style.display = 'block';
+    
+    // Special handling for the profile (if named differently in your code)
+    if(viewName === 'profile' && document.getElementById('wire-profile-view')) {
+         document.getElementById('wire-profile-view').style.display = 'block';
+    }
+    
+    window.scrollTo(0,0);
+}
     </script>
 </body>
 </html>
