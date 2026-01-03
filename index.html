@@ -2470,6 +2470,93 @@
     .sub-footer-links a { color: #888; text-decoration: none; transition: 0.3s; }
     .sub-footer-links a:hover { color: white; }
 </style>
+    /* --- WIRE PROFILE STYLES --- */
+    .wire-profile-header {
+        background: linear-gradient(to bottom, #1a1a1a 0%, #050505 100%);
+        border: 1px solid #222;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+    .wire-cover-photo {
+        height: 200px;
+        background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+    .wire-profile-info {
+        padding: 1rem 2rem 2rem;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .wire-profile-avatar-large {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #000;
+        border: 4px solid #050505;
+        position: absolute;
+        top: -60px;
+        left: 20px;
+        background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2000');
+        background-size: cover;
+    }
+    .wire-profile-names { margin-left: 140px; margin-top: 10px; }
+    .wire-profile-name { font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 5px; }
+    .wire-profile-tag { color: #666; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+    
+    .wire-stats-grid {
+        display: flex;
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+    .wire-stat { text-align: center; }
+    .wire-stat-val { font-size: 1.2rem; font-weight: 700; color: white; display: block; }
+    .wire-stat-label { font-size: 0.8rem; color: #666; text-transform: uppercase; }
+
+    /* --- FUEL WIDGET --- */
+    .fuel-widget {
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .fuel-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #222;
+        font-size: 0.9rem;
+    }
+    .fuel-row:last-child { border-bottom: none; }
+    .fuel-name { color: #888; }
+    .fuel-price { color: #22c55e; font-weight: 700; }
+    .fuel-price.up { color: #ef4444; }
+
+    /* --- PREMIUM MODALS --- */
+    .modal-content.premium {
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid #333;
+        box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        backdrop-filter: blur(20px);
+    }
+    .auth-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #222; }
+    .auth-tab {
+        padding-bottom: 1rem;
+        color: #666;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+        border-bottom: 2px solid transparent;
+    }
+    .auth-tab.active { color: white; border-color: var(--accent-gold); }
     </style>
 </head>
 <body>
@@ -4027,28 +4114,59 @@
         </div>
     </footer>
 <div class="modal-overlay" id="loginModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('loginModal')">×</span>
+    <div class="modal-content premium">
+        <span class="modal-close" onclick="closeModal('loginModal')">×</span>
+        
+        <div class="auth-tabs">
+            <div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Log In</div>
+            <div class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</div>
+        </div>
+
+        <div id="form-login">
             <div class="modal-header">
                 <h3>Welcome Back</h3>
-                <p>Login to manage your loads</p>
+                <p>Access your dashboard and load board</p>
             </div>
-            <form>
+            <form onsubmit="event.preventDefault(); window.location.href='?app=wire';">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" placeholder="name@example.com">
+                    <input type="email" placeholder="name@example.com" style="background: rgba(255,255,255,0.05); color: white;">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" placeholder="••••••••">
+                    <input type="password" placeholder="••••••••" style="background: rgba(255,255,255,0.05); color: white;">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;"><span>Login</span></button>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;"><span>Login</span></button>
             </form>
-            <div class="modal-footer">
-                <p>Don't have an account? <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign up</a></p>
+        </div>
+
+        <div id="form-signup" style="display: none;">
+            <div class="modal-header">
+                <h3>Join the Network</h3>
+                <p>Create your Haulxify ID</p>
             </div>
+            <form onsubmit="event.preventDefault(); window.location.href='?app=wire';">
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <select style="background: #1a1a1a; color: white;">
+                        <option>Owner Operator</option>
+                        <option>Fleet Manager</option>
+                        <option>Driver</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" style="background: rgba(255,255,255,0.05); color: white;">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="name@example.com" style="background: rgba(255,255,255,0.05); color: white;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;"><span>Create Account</span></button>
+            </form>
         </div>
     </div>
+</div>
 
     <div class="modal-overlay" id="signupModal">
         <div class="modal-content">
@@ -4249,22 +4367,25 @@
 
 <div id="wire-app">
     <nav class="wire-nav">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -1px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -1px; cursor: pointer;" onclick="showWireHome()">
             WIRE<span style="color:#ff4500; font-size: 2rem;">.</span>
         </div>
         <input type="text" class="wire-search" placeholder="Search communities, users, or topics...">
         <div style="display: flex; gap: 1rem; align-items: center;">
              <button onclick="openModal('loginModal')" style="background: transparent; color: white; border: 1px solid #333; padding: 0.4rem 1rem; border-radius: 20px; cursor:pointer;">Log In</button>
-             <div class="wire-profile-icon" onclick="openModal('signupModal')"><i class="fas fa-user"></i></div>
+             <div class="wire-profile-icon" onclick="showWireProfile()"><i class="fas fa-user"></i></div>
         </div>
     </nav>
 
     <div class="wire-layout">
         <div class="wire-sidebar">
-            <div class="wire-menu-item active"><i class="fas fa-home"></i> <span>Home</span></div>
+            <div class="wire-menu-item active" onclick="showWireHome()"><i class="fas fa-home"></i> <span>Home Feed</span></div>
+            <div class="wire-menu-item" onclick="showWireProfile()"><i class="fas fa-user"></i> <span>My Profile</span></div>
             <div class="wire-menu-item"><i class="fas fa-fire"></i> <span>Popular</span></div>
             <div class="wire-menu-item"><i class="fas fa-video"></i> <span>Live</span></div>
+            
             <div style="margin: 2rem 0; height: 1px; background: #222;"></div>
+            
             <div style="color: #666; font-size: 0.8rem; padding-left: 20px; margin-bottom: 1rem;">COMMUNITIES</div>
             <div class="wire-menu-item"><i class="fas fa-truck"></i> <span>r/Truckers</span></div>
             <div class="wire-menu-item"><i class="fas fa-tools"></i> <span>r/Mechanics</span></div>
@@ -4272,70 +4393,117 @@
         </div>
 
         <div class="wire-feed">
-             <div class="wire-create-post" onclick="openModal('loginModal')">
-                <div class="wire-avatar"></div>
-                <input type="text" placeholder="Create Post" style="background: #1a1a1a; border: 1px solid #333; padding: 0.8rem; border-radius: 8px; color: white; flex: 1;">
-                <i class="fas fa-image" style="color: #666; font-size: 1.2rem; margin-top: 10px;"></i>
+            
+            <div id="wire-home-view">
+                <div class="wire-create-post" onclick="openModal('loginModal')">
+                    <div class="wire-avatar"></div>
+                    <input type="text" placeholder="What's happening on the road?" style="background: transparent; border: none; outline: none; color: white; font-size: 1.1rem; width: 100%;">
+                    <button style="background: var(--wire-accent); color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: bold; cursor: pointer;">Post</button>
+                </div>
+
+                <div class="wire-post reveal">
+                    <div class="wire-post-header">
+                        <div class="wire-avatar" style="background: url('https://randomuser.me/api/portraits/men/32.jpg'); background-size: cover;"></div>
+                        <div>
+                            <div class="wire-author">BigRig_Rob</div>
+                            <div class="wire-time">2 hours ago • I-80 Update</div>
+                        </div>
+                    </div>
+                    <div class="wire-content">
+                        <p>Just passed through Wyoming on I-80. Winds are brutal near Elk Mountain, seeing 60mph gusts. Stay safe out there brothers and sisters, lots of blowovers. 🌪️🚛</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&q=80&w=800" class="wire-media">
+                    <div class="wire-actions">
+                        <button class="wire-action-btn"><i class="fas fa-arrow-up"></i> 1.2k</button>
+                        <button class="wire-action-btn"><i class="far fa-comment-alt"></i> 234 Comments</button>
+                        <button class="wire-action-btn"><i class="fas fa-share"></i> Share</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="wire-post">
-                <div class="wire-post-header">
-                    <div class="wire-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/45.jpg'); background-size: cover;"></div>
-                    <div>
-                        <div class="wire-author">IceRoad_Mike</div>
-                        <div class="wire-time">Posted in r/Truckers • 4h ago</div>
+            <div id="wire-profile-view" style="display: none;">
+                <div class="wire-profile-header">
+                    <div class="wire-cover-photo">
+                        <div class="wire-profile-avatar-large"></div>
+                    </div>
+                    <div class="wire-profile-info">
+                        <div class="wire-profile-names">
+                            <h1 class="wire-profile-name">Maverick Diesel</h1>
+                            <div class="wire-profile-tag">@maverick_hauls • <span style="background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem;">OWNER OPERATOR</span></div>
+                        </div>
+                        <div class="wire-stats-grid">
+                            <div class="wire-stat"><span class="wire-stat-val">12.5k</span><span class="wire-stat-label">Followers</span></div>
+                            <div class="wire-stat"><span class="wire-stat-val">842</span><span class="wire-stat-label">Loads</span></div>
+                            <div class="wire-stat"><span class="wire-stat-val">4.9</span><span class="wire-stat-label">Rating</span></div>
+                        </div>
+                        <button class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Edit Profile</button>
                     </div>
                 </div>
-                <div class="wire-content">
-                    <h3 style="color: white; margin-bottom: 0.5rem;">View from the office this morning 🏔️</h3>
-                    <img src="https://images.unsplash.com/photo-1542317854-f9596aa56fd9?auto=format&fit=crop&q=80&w=800" class="wire-media" style="border-radius: 8px;">
-                </div>
-                <div class="wire-actions">
-                    <button class="wire-action-btn"><i class="fas fa-arrow-up" style="color:#ff4500"></i> 2.4k</button>
-                    <button class="wire-action-btn"><i class="fas fa-comment"></i> 156 Comments</button>
-                    <button class="wire-action-btn"><i class="fas fa-share"></i> Share</button>
-                </div>
-            </div>
-             <div class="wire-post">
-                <div class="wire-post-header">
-                    <div class="wire-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/22.jpg'); background-size: cover;"></div>
-                    <div>
-                        <div class="wire-author">LogisticsLisa</div>
-                        <div class="wire-time">Posted in r/FreightBroker • 6h ago</div>
+
+                <h3 style="color: white; margin-bottom: 1rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">Recent Activity</h3>
+                
+                <div class="wire-post">
+                    <div class="wire-post-header">
+                        <div class="wire-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2000'); background-size: cover;"></div>
+                        <div>
+                            <div class="wire-author">Maverick Diesel</div>
+                            <div class="wire-time">Pinned Post</div>
+                        </div>
                     </div>
-                </div>
-                <div class="wire-content">
-                    <h3 style="color: white; margin-bottom: 0.5rem;">Market Analysis: Rates stabilizing in Q3?</h3>
-                    <p>Based on the DAT load-to-truck ratios, we are seeing a slight uptick in spot rates originating from the Southeast...</p>
-                </div>
-                <div class="wire-actions">
-                    <button class="wire-action-btn"><i class="fas fa-arrow-up"></i> 890</button>
-                    <button class="wire-action-btn"><i class="fas fa-comment"></i> 45 Comments</button>
+                    <div class="wire-content">
+                        <p>Finally upgraded the rig! Check out the new chrome on this beauty. Ready for the long haul to Miami. #TruckLife #OwnerOperator</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1605218427360-3a618991206f?auto=format&fit=crop&q=80&w=800" class="wire-media">
                 </div>
             </div>
+
         </div>
 
         <div class="wire-trending">
-            <h3>Trending Communities</h3>
+            <div class="fuel-widget">
+                <h3 style="color: white; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-gas-pump" style="color: var(--wire-accent);"></i> National Diesel Avg
+                </h3>
+                <div class="fuel-row">
+                    <span class="fuel-name">National Avg</span>
+                    <span class="fuel-price">$3.84 <i class="fas fa-arrow-down" style="font-size:0.7rem"></i></span>
+                </div>
+                <div class="fuel-row">
+                    <span class="fuel-name">East Coast</span>
+                    <span class="fuel-price">$3.92 <i class="fas fa-arrow-down" style="font-size:0.7rem"></i></span>
+                </div>
+                <div class="fuel-row">
+                    <span class="fuel-name">Midwest</span>
+                    <span class="fuel-price">$3.75 <i class="fas fa-arrow-down" style="font-size:0.7rem"></i></span>
+                </div>
+                <div class="fuel-row">
+                    <span class="fuel-name">Gulf Coast</span>
+                    <span class="fuel-price">$3.52 <i class="fas fa-arrow-down" style="font-size:0.7rem"></i></span>
+                </div>
+                <div class="fuel-row">
+                    <span class="fuel-name">California</span>
+                    <span class="fuel-price up">$5.12 <i class="fas fa-arrow-up" style="font-size:0.7rem"></i></span>
+                </div>
+                <div style="text-align: center; margin-top: 10px; font-size: 0.7rem; color: #555;">Updated: 1 hour ago</div>
+            </div>
+
+            <h3 style="color:white; font-family:'Playfair Display'; margin-bottom: 1.5rem;">Trending</h3>
             <div class="trend-item">
-                <div class="trend-title">r/OwnerOperators</div>
-                <span class="trend-tag">156k Members</span>
+                <span class="trend-tag">Politics</span>
+                <div class="trend-title">New DOT HOS regulations proposed</div>
+                <span style="color:#444; font-size: 0.8rem;">15k posts</span>
             </div>
             <div class="trend-item">
-                <div class="trend-title">r/DieselTech</div>
-                <span class="trend-tag">42k Members</span>
+                <span class="trend-tag">Technology</span>
+                <div class="trend-title">Tesla Semi reviews flooding in</div>
+                <span style="color:#444; font-size: 0.8rem;">8.2k posts</span>
             </div>
+            
+            <footer style="margin-top: 2rem; border-top: 1px solid #222; padding-top: 1rem; font-size: 0.8rem; color: #444;">
+                © 2026 Wire Inc. <br> Powered by Haulxify.
+            </footer>
         </div>
     </div>
-    
-    <footer class="sub-footer" style="padding-top: 2rem; border-top: 1px solid #222; margin-top: 0; background: #000;">
-        <div class="sub-footer-links" style="justify-content: center;">
-            <a href="#">Wire Rules</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">User Agreement</a>
-        </div>
-        <p style="text-align: center;">© 2026 Wire Social. Connected by Haulxify.</p>
-    </footer>
 </div>
     <script>
         // Preloader
@@ -4649,6 +4817,47 @@
 
     // INITIALIZE EVERYTHING
     window.addEventListener('load', initApp);
+   // --- WIRE APP LOGIC ---
+    function showWireProfile() {
+        document.getElementById('wire-home-view').style.display = 'none';
+        document.getElementById('wire-profile-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function showWireHome() {
+        document.getElementById('wire-home-view').style.display = 'block';
+        document.getElementById('wire-profile-view').style.display = 'none';
+    }
+
+    // --- AUTH TAB LOGIC ---
+    function switchAuthTab(tab) {
+        // Reset tabs
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('form-login').style.display = 'none';
+        document.getElementById('form-signup').style.display = 'none';
+
+        // Activate selected
+        if(tab === 'login') {
+            document.getElementById('tab-login').classList.add('active');
+            document.getElementById('form-login').style.display = 'block';
+        } else {
+            document.getElementById('tab-signup').classList.add('active');
+            document.getElementById('form-signup').style.display = 'block';
+        }
+    }
+    
+    // Update the existing openModal to handle the unified modal
+    // Note: You can delete the separate 'signupModal' HTML block since we merged them
+    const originalOpenModal = openModal;
+    openModal = function(modalId) {
+        if(modalId === 'signupModal') {
+            originalOpenModal('loginModal');
+            switchAuthTab('signup');
+        } else {
+            originalOpenModal(modalId);
+            if(modalId === 'loginModal') switchAuthTab('login');
+        }
+    }
     </script>
 </body>
 </html>
