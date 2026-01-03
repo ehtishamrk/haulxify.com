@@ -2537,14 +2537,14 @@
     .fuel-row:last-child { border-bottom: none; }
     .fuel-name { color: #888; }
     .fuel-price { color: #22c55e; font-weight: 700; }
-    .fuel-price.up { color: #ef4444; }
-
-    /* --- PREMIUM MODALS --- */
+    
+    /* --- PREMIUM AUTH MODALS --- */
     .modal-content.premium {
         background: rgba(10, 10, 10, 0.95);
         border: 1px solid #333;
         box-shadow: 0 0 50px rgba(0,0,0,0.8);
         backdrop-filter: blur(20px);
+        max-width: 400px;
     }
     .auth-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #222; }
     .auth-tab {
@@ -2554,6 +2554,7 @@
         font-weight: 600;
         transition: 0.3s;
         border-bottom: 2px solid transparent;
+        flex: 1; text-align: center;
     }
     .auth-tab.active { color: white; border-color: var(--accent-gold); }
 </style>
@@ -4126,7 +4127,7 @@
         <div id="form-login">
             <div class="modal-header">
                 <h3>Welcome Back</h3>
-                <p>Access your dashboard and load board</p>
+                <p>Access your dashboard</p>
             </div>
             <form onsubmit="event.preventDefault(); window.location.href='?app=wire';">
                 <div class="form-group">
@@ -4147,14 +4148,6 @@
                 <p>Create your Haulxify ID</p>
             </div>
             <form onsubmit="event.preventDefault(); window.location.href='?app=wire';">
-                <div class="form-group">
-                    <label>Account Type</label>
-                    <select style="background: #1a1a1a; color: white;">
-                        <option>Owner Operator</option>
-                        <option>Fleet Manager</option>
-                        <option>Driver</option>
-                    </select>
-                </div>
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" placeholder="John Doe" style="background: rgba(255,255,255,0.05); color: white;">
@@ -4371,7 +4364,7 @@
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -1px; cursor: pointer;" onclick="showWireHome()">
             WIRE<span style="color:#ff4500; font-size: 2rem;">.</span>
         </div>
-        <input type="text" class="wire-search" placeholder="Search communities, users, or topics...">
+        <input type="text" class="wire-search" placeholder="Search...">
         <div style="display: flex; gap: 1rem; align-items: center;">
              <button onclick="openModal('loginModal')" style="background: transparent; color: white; border: 1px solid #333; padding: 0.4rem 1rem; border-radius: 20px; cursor:pointer;">Log In</button>
              <div class="wire-profile-icon" onclick="showWireProfile()"><i class="fas fa-user"></i></div>
@@ -4383,14 +4376,10 @@
             <div class="wire-menu-item active" onclick="showWireHome()"><i class="fas fa-home"></i> <span>Home Feed</span></div>
             <div class="wire-menu-item" onclick="showWireProfile()"><i class="fas fa-user"></i> <span>My Profile</span></div>
             <div class="wire-menu-item"><i class="fas fa-fire"></i> <span>Popular</span></div>
-            <div class="wire-menu-item"><i class="fas fa-video"></i> <span>Live</span></div>
-            
             <div style="margin: 2rem 0; height: 1px; background: #222;"></div>
-            
             <div style="color: #666; font-size: 0.8rem; padding-left: 20px; margin-bottom: 1rem;">COMMUNITIES</div>
             <div class="wire-menu-item"><i class="fas fa-truck"></i> <span>r/Truckers</span></div>
             <div class="wire-menu-item"><i class="fas fa-tools"></i> <span>r/Mechanics</span></div>
-            <div class="wire-menu-item"><i class="fas fa-map-marked"></i> <span>r/RoadTrips</span></div>
         </div>
 
         <div class="wire-feed">
@@ -4411,7 +4400,7 @@
                         </div>
                     </div>
                     <div class="wire-content">
-                        <p>Just passed through Wyoming on I-80. Winds are brutal near Elk Mountain, seeing 60mph gusts. Stay safe out there brothers and sisters, lots of blowovers. 🌪️🚛</p>
+                        <p>Just passed through Wyoming on I-80. Winds are brutal near Elk Mountain, seeing 60mph gusts. Stay safe out there brothers and sisters. 🌪️🚛</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&q=80&w=800" class="wire-media">
                     <div class="wire-actions">
@@ -4424,13 +4413,12 @@
 
             <div id="wire-profile-view" style="display: none;">
                 <div class="wire-profile-header">
-                    <div class="wire-cover-photo">
-                        <div class="wire-profile-avatar-large"></div>
-                    </div>
+                    <div class="wire-cover-photo"></div>
                     <div class="wire-profile-info">
+                        <div class="wire-profile-avatar-large"></div>
                         <div class="wire-profile-names">
                             <h1 class="wire-profile-name">Maverick Diesel</h1>
-                            <div class="wire-profile-tag">@maverick_hauls • <span style="background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem;">OWNER OPERATOR</span></div>
+                            <div class="wire-profile-tag">@maverick_hauls • <span style="background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px;">OWNER OPERATOR</span></div>
                         </div>
                         <div class="wire-stats-grid">
                             <div class="wire-stat"><span class="wire-stat-val">12.5k</span><span class="wire-stat-label">Followers</span></div>
@@ -4440,9 +4428,7 @@
                         <button class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Edit Profile</button>
                     </div>
                 </div>
-
                 <h3 style="color: white; margin-bottom: 1rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">Recent Activity</h3>
-                
                 <div class="wire-post">
                     <div class="wire-post-header">
                         <div class="wire-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2000'); background-size: cover;"></div>
@@ -4452,12 +4438,11 @@
                         </div>
                     </div>
                     <div class="wire-content">
-                        <p>Finally upgraded the rig! Check out the new chrome on this beauty. Ready for the long haul to Miami. #TruckLife #OwnerOperator</p>
+                        <p>Finally upgraded the rig! Check out the new chrome on this beauty. Ready for the long haul to Miami. #TruckLife</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1605218427360-3a618991206f?auto=format&fit=crop&q=80&w=800" class="wire-media">
                 </div>
             </div>
-
         </div>
 
         <div class="wire-trending">
@@ -4465,17 +4450,14 @@
                 <h3 style="color: white; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
                     <i class="fas fa-gas-pump" style="color: var(--wire-accent);"></i> Diesel Prices (Live)
                 </h3>
-                
                 <div class="fuel-row">
                     <span class="fuel-name">National Avg</span>
                     <span class="fuel-price" id="price-national">Loading...</span>
                 </div>
-
                 <div class="fuel-row" style="background: rgba(59, 130, 246, 0.1); margin: 0 -1.5rem; padding: 0.8rem 1.5rem; border-left: 3px solid #3b82f6;">
                     <span class="fuel-name" style="color: white; font-weight: 600;">East Coast Avg</span>
                     <span class="fuel-price" id="price-east">Loading...</span>
                 </div>
-
                 <div class="fuel-row">
                     <span class="fuel-name">Midwest</span>
                     <span class="fuel-price" id="price-midwest">Loading...</span>
@@ -4488,29 +4470,21 @@
                     <span class="fuel-name">California</span>
                     <span class="fuel-price" id="price-cali">Loading...</span>
                 </div>
-                
-                <div style="text-align: center; margin-top: 10px; font-size: 0.7rem; color: #555;">
-                    Source: EIA.gov • Updated Weekly
-                </div>
+                <div style="text-align: center; margin-top: 10px; font-size: 0.7rem; color: #555;">Source: EIA.gov</div>
             </div>
 
             <h3 style="color:white; font-family:'Playfair Display'; margin-bottom: 1.5rem;">Trending</h3>
-            <div class="trend-item">
-                <span class="trend-tag">Politics</span>
-                <div class="trend-title">New DOT HOS regulations proposed</div>
-                <span style="color:#444; font-size: 0.8rem;">15k posts</span>
-            </div>
-            <div class="trend-item">
-                <span class="trend-tag">Technology</span>
-                <div class="trend-title">Tesla Semi reviews flooding in</div>
-                <span style="color:#444; font-size: 0.8rem;">8.2k posts</span>
-            </div>
-            
-            <footer style="margin-top: 2rem; border-top: 1px solid #222; padding-top: 1rem; font-size: 0.8rem; color: #444;">
-                © 2026 Wire Inc. <br> Powered by Haulxify.
-            </footer>
+            <div class="trend-item"><span class="trend-tag">Politics</span><div class="trend-title">New DOT regulations proposed</div></div>
+            <div class="trend-item"><span class="trend-tag">Technology</span><div class="trend-title">Tesla Semi reviews flooding in</div></div>
         </div>
     </div>
+    
+    <footer class="sub-footer" style="padding-top: 2rem; border-top: 1px solid #222; margin-top: 0; background: #000;">
+        <div class="sub-footer-links" style="justify-content: center;">
+            <a href="#">Wire Rules</a><a href="#">Privacy Policy</a>
+        </div>
+        <p style="text-align: center;">© 2026 Wire Social. <br>Powered by Haulxify.</p>
+    </footer>
 </div>
     <script>
         // Preloader
@@ -4828,9 +4802,7 @@
     function showWireProfile() {
         document.getElementById('wire-home-view').style.display = 'none';
         document.getElementById('wire-profile-view').style.display = 'block';
-        window.scrollTo(0,0);
     }
-
     function showWireHome() {
         document.getElementById('wire-home-view').style.display = 'block';
         document.getElementById('wire-profile-view').style.display = 'none';
@@ -4838,12 +4810,10 @@
 
     // --- AUTH TAB LOGIC ---
     function switchAuthTab(tab) {
-        // Reset tabs
         document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
         document.getElementById('form-login').style.display = 'none';
         document.getElementById('form-signup').style.display = 'none';
 
-        // Activate selected
         if(tab === 'login') {
             document.getElementById('tab-login').classList.add('active');
             document.getElementById('form-login').style.display = 'block';
@@ -4852,84 +4822,52 @@
             document.getElementById('form-signup').style.display = 'block';
         }
     }
-    
-    // Update the existing openModal to handle the unified modal
-    // Note: You can delete the separate 'signupModal' HTML block since we merged them
-    const originalOpenModal = openModal;
-    openModal = function(modalId) {
-        if(modalId === 'signupModal') {
-            originalOpenModal('loginModal');
-            switchAuthTab('signup');
-        } else {
-            originalOpenModal(modalId);
-            if(modalId === 'loginModal') switchAuthTab('login');
-        }
-    }
 
-// --- AUTOMATIC FUEL PRICE FETCHER ---
+    // --- FIXED FUEL PRICE FETCHER ---
     async function fetchFuelPrices() {
+        // Only run if we are in Wire app mode
+        if(!document.getElementById('wire-app').classList.contains('active')) return;
+
         try {
-            // We use a CORS proxy to read the government website (EIA.gov)
+            // Fetch from EIA.gov via proxy
             const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.eia.gov/petroleum/gasdiesel/'));
             const data = await response.json();
-            
-            // Parse the HTML text
             const parser = new DOMParser();
             const doc = parser.parseFromString(data.contents, 'text/html');
             
-            // Helper function to extract price by row name
+            // Debugging: Check if we got the table
+            console.log("Fuel Data Fetched via Proxy");
+
             const getPrice = (regionName) => {
-                // Find all table rows
                 const rows = Array.from(doc.querySelectorAll('tr'));
-                // Find the row that contains our region name
+                // Use a flexible search to fix the "Loading..." issue
                 const row = rows.find(tr => tr.textContent.includes(regionName));
                 if (row) {
-                    // The price is usually in the first data cell after the name
                     const priceCell = row.querySelector('td:nth-child(2)'); 
                     return priceCell ? priceCell.textContent.trim() : 'N/A';
                 }
                 return 'N/A';
             };
 
-            // 1. National Average
-            const national = getPrice('U.S.');
-            updatePriceUI('price-national', national);
+            // Updates
+            document.getElementById('price-national').innerHTML = `$${getPrice('U.S.')}`;
+            
+            // Fixed: "East Coast" match is broader now to ensure it catches "East Coast (PADD 1)"
+            let eastPrice = getPrice('East Coast (PADD 1)');
+            if(eastPrice === 'N/A') eastPrice = getPrice('East Coast'); // Fallback
+            document.getElementById('price-east').innerHTML = `$${eastPrice}`;
 
-            // 2. East Coast (This covers: ME, NH, VT, MA, RI, CT, NY, NJ, PA, DE, MD, VA, WV, NC, SC, GA, FL)
-            const eastCoast = getPrice('East Coast (PADD 1)');
-            updatePriceUI('price-east', eastCoast);
-
-            // 3. Midwest
-            const midwest = getPrice('Midwest');
-            updatePriceUI('price-midwest', midwest);
-
-            // 4. Gulf Coast
-            const gulf = getPrice('Gulf Coast');
-            updatePriceUI('price-gulf', gulf);
-
-            // 5. California
-            const cali = getPrice('California');
-            updatePriceUI('price-cali', cali);
+            document.getElementById('price-midwest').innerHTML = `$${getPrice('Midwest')}`;
+            document.getElementById('price-gulf').innerHTML = `$${getPrice('Gulf Coast')}`;
+            document.getElementById('price-cali').innerHTML = `$${getPrice('California')}`;
 
         } catch (error) {
-            console.error("Failed to fetch fuel prices:", error);
-            // Fallback values if the fetch fails
+            console.error("Fuel fetch failed:", error);
             document.getElementById('price-east').textContent = "Unavailable";
         }
     }
 
-    function updatePriceUI(elementId, price) {
-        const el = document.getElementById(elementId);
-        if(el && price !== 'N/A') {
-            el.innerHTML = `$${price}`;
-            
-            // Optional: Add arrow (Assuming previous week was roughly similar, logic can be improved)
-            // Just for visual flair
-            el.innerHTML += ` <i class="fas fa-check-circle" style="font-size:0.7rem; color: #444; margin-left:5px;" title="Verified Live"></i>`;
-        }
-    }
-
-    // Call this when the app loads
+    // Trigger fuel fetch when Wire loads
     window.addEventListener('load', fetchFuelPrices);
     </script>
 </body>
