@@ -2496,10 +2496,10 @@
     <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
     
     <li>
-    <a href="#" onclick="window.open(window.location.pathname + '?app=rigfolio', '_blank'); return false;" class="nav-btn-special btn-rigfolio">RIGFOLIO</a>
+    <a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a>
 </li>
 <li>
-    <a href="#" onclick="window.open(window.location.pathname + '?app=wire', '_blank'); return false;" class="nav-btn-special btn-wire">WIRE</a>
+    <a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">WIRE</a>
 </li>
     
     <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
@@ -2520,9 +2520,9 @@
     <a href="#services" class="nav-link" data-page="services">Services</a>
     <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
 
-    <a href="#" onclick="window.open(window.location.pathname + '?app=rigfolio', '_blank'); return false;" class="nav-link" style="color: #3b82f6; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid #3b82f6; border-radius: 8px; margin: 10px 20px; text-align: center;">RIGFOLIO</a>
-    
-    <a href="#" onclick="window.open(window.location.pathname + '?app=wire', '_blank'); return false;" class="nav-link" style="color: #ff4500; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid #ff4500; border-radius: 8px; margin: 10px 20px; text-align: center;">WIRE</a>
+    <a href="index.html?app=rigfolio" target="_blank" class="nav-link" style="color: #3b82f6; font-family: 'JetBrains Mono'; font-weight: 700; border: 1px solid #3b82f6; border-radius: 8px; margin: 10px 20px; text-align: center;">RIGFOLIO</a>
+
+<a href="index.html?app=wire" target="_blank" class="nav-link" style="color: #ff4500; font-family: 'JetBrains Mono'; font-weight: 700; border: 1px solid #ff4500; border-radius: 8px; margin: 10px 20px; text-align: center;">WIRE</a>
 
     <a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a>
     <a href="#contact" class="nav-link" data-page="contact">Contact</a>
@@ -4730,47 +4730,78 @@ function switchRigTab(tab) {
         });
 
 // --- NEW APP LOGIC (Traffic Controller) ---
-        function initApp() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const appMode = urlParams.get('app'); 
+        // ... (Keep your GSAP animations up here) ...
 
-            if (appMode === 'rigfolio') {
-                // --- LOAD RIGFOLIO ---
-                document.body.style.overflow = 'hidden'; 
-                document.getElementById('rigfolio-app').classList.add('active');
-                document.title = "RIGFOLIO | The Asset Marketplace";
+    // --- REPLACEMENT TRAFFIC CONTROLLER ---
+    function initApp() {
+        console.log("InitApp Starting..."); // Debug log
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const appMode = urlParams.get('app'); 
+        
+        // DEBUG: Uncomment the line below if you suspect the code isn't running at all
+        // alert("App Mode Detected: " + appMode); 
+
+        if (appMode === 'rigfolio') {
+            // --- RIGFOLIO MODE ---
+            console.log("Switching to Rigfolio");
+            
+            // 1. Hide Main Site
+            document.querySelector('.nav').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+            
+            // 2. Show App
+            const app = document.getElementById('rigfolio-app');
+            if (app) {
+                app.style.display = 'block'; // Force visible
+                app.classList.add('active');
+                document.body.style.overflow = 'auto';
+                document.title = "RIGFOLIO | Asset Marketplace";
                 
-                // Random Hero Image
-                const images = [
-                    'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070',
-                    'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?q=80&w=2070',
-                    'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?q=80&w=2070'
-                ];
-                const randomImg = images[Math.floor(Math.random() * images.length)];
+                // Set Hero Image
                 const heroBg = document.getElementById('rigHeroBg');
-                if(heroBg) heroBg.style.backgroundImage = `url('${randomImg}')`;
-
-            } else if (appMode === 'wire') {
-                // --- LOAD WIRE ---
-                document.body.style.overflow = 'hidden';
-                document.getElementById('wire-app').classList.add('active');
-                document.title = "WIRE | The Logistics Network";
-
+                if(heroBg) heroBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070')";
             } else {
-                // --- LOAD NORMAL HAULXIFY WEBSITE ---
-                
-                // 1. Activate the Router logic for single-page nav
+                alert("ERROR: #rigfolio-app HTML is missing!");
+            }
+
+        } else if (appMode === 'wire') {
+            // --- WIRE MODE ---
+            console.log("Switching to Wire");
+
+            // 1. Hide Main Site
+            document.querySelector('.nav').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+
+            // 2. Show App
+            const app = document.getElementById('wire-app');
+            if (app) {
+                app.style.display = 'block'; // Force visible
+                app.classList.add('active');
+                document.body.style.overflow = 'auto';
+                document.title = "WIRE | Logistics Social";
+            } else {
+                alert("ERROR: #wire-app HTML is missing!");
+            }
+
+        } else {
+            // --- NORMAL MODE ---
+            console.log("Normal Website Mode");
+            
+            // Only run normal router here
+            if (typeof handleRoute === 'function') {
                 window.addEventListener('hashchange', handleRoute);
                 handleRoute(); 
-                
-                // 2. Trigger Animations
-                if(typeof revealOnScroll === 'function') revealOnScroll();
-                if(typeof animateCounters === 'function') animateCounters();
             }
+            if (typeof revealOnScroll === 'function') revealOnScroll();
+            if (typeof animateCounters === 'function') animateCounters();
         }
+    }
 
-        // The ONLY load listener you need
-        window.addEventListener('load', initApp);
+    // Force run on load
+    window.onload = initApp;
     </script>
 </body>
 </html>
