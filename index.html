@@ -2489,23 +2489,19 @@
     <nav class="nav" id="nav">
         <a href="#home" class="nav-logo" data-page="home">Haulxify</a>
         <ul class="nav-links">
-    <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
-    <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
-    <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
-    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
-    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-    
-    <li>
-    <a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a>
-</li>
-<li>
-    <a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">WIRE</a>
-</li>
-    
-    <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
-</ul>
+            <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+            <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+            <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
+            <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+            <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+            
+            <li><a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a></li>
+            <li><a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">WIRE</a></li>
+            
+            <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
+        </ul>
         
-<div id="nav-action-container">
+        <div id="nav-action-container">
             <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
         </div>        
         <div class="nav-toggle" id="navToggle">
@@ -2515,22 +2511,20 @@
         </div>
     </nav>
 
-   <div class="mobile-menu" id="mobileMenu">
-    <a href="#home" class="nav-link" data-page="home">Home</a>
-    <a href="#services" class="nav-link" data-page="services">Services</a>
-    <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
-
-    <a href="index.html?app=rigfolio" target="_blank" class="nav-link" style="color: #3b82f6; font-family: 'JetBrains Mono'; font-weight: 700; border: 1px solid #3b82f6; border-radius: 8px; margin: 10px 20px; text-align: center;">RIGFOLIO</a>
-
-<a href="index.html?app=wire" target="_blank" class="nav-link" style="color: #ff4500; font-family: 'JetBrains Mono'; font-weight: 700; border: 1px solid #ff4500; border-radius: 8px; margin: 10px 20px; text-align: center;">WIRE</a>
-
-    <a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a>
-    <a href="#contact" class="nav-link" data-page="contact">Contact</a>
-    
-    <div id="mobile-cta-container" style="width: 100%; text-align: center; margin-top: 20px;">
-        <a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="nav-link" data-page="home">Home</a>
+        <a href="#services" class="nav-link" data-page="services">Services</a>
+        <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
+        
+        <a href="index.html?app=rigfolio" target="_blank" class="nav-link" style="color: #3b82f6; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px 20px; border-radius: 8px;">RIGFOLIO</a>
+        <a href="index.html?app=wire" target="_blank" class="nav-link" style="color: #ff4500; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid rgba(255, 69, 0, 0.3); padding: 10px 20px; border-radius: 8px;">WIRE</a>
+        
+        <a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a>
+        <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+        <div id="mobile-cta-container" style="width: 100%; text-align: center;">
+            <a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>
+        </div>
     </div>
-</div>
 
     <!-- HOME PAGE -->
     <div class="page active" id="page-home">
@@ -4733,75 +4727,64 @@ function switchRigTab(tab) {
         // ... (Keep your GSAP animations up here) ...
 
     // --- REPLACEMENT TRAFFIC CONTROLLER ---
-    function initApp() {
-        console.log("InitApp Starting..."); // Debug log
+    // --- FINAL TRAFFIC CONTROLLER ---
+        function initApp() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const appMode = urlParams.get('app'); 
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const appMode = urlParams.get('app'); 
-        
-        // DEBUG: Uncomment the line below if you suspect the code isn't running at all
-        // alert("App Mode Detected: " + appMode); 
-
-        if (appMode === 'rigfolio') {
-            // --- RIGFOLIO MODE ---
-            console.log("Switching to Rigfolio");
-            
-            // 1. Hide Main Site
-            document.querySelector('.nav').style.display = 'none';
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.footer').style.display = 'none';
-            
-            // 2. Show App
-            const app = document.getElementById('rigfolio-app');
-            if (app) {
-                app.style.display = 'block'; // Force visible
-                app.classList.add('active');
-                document.body.style.overflow = 'auto';
-                document.title = "RIGFOLIO | Asset Marketplace";
+            if (appMode === 'rigfolio' || appMode === 'wire') {
+                // 1. FORCE HIDE MAIN SITE
+                document.getElementById('nav').style.display = 'none';
+                document.getElementById('mobileMenu').style.display = 'none';
+                document.querySelector('.footer').style.display = 'none';
                 
-                // Set Hero Image
-                const heroBg = document.getElementById('rigHeroBg');
-                if(heroBg) heroBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070')";
+                // Hide all standard pages
+                document.querySelectorAll('.page').forEach(el => el.style.display = 'none');
+                
+                // Kill Preloader Immediately
+                const preloader = document.getElementById('preloader');
+                if(preloader) preloader.style.display = 'none';
+
+                // 2. SHOW SELECTED APP
+                if (appMode === 'rigfolio') {
+                    document.body.style.overflow = 'auto'; // Allow scroll
+                    const app = document.getElementById('rigfolio-app');
+                    app.style.display = 'block';
+                    app.classList.add('active');
+                    document.title = "RIGFOLIO | The Asset Marketplace";
+                    
+                    // Random Hero Image
+                    const images = [
+                        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070',
+                        'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?q=80&w=2070'
+                    ];
+                    const randomImg = images[Math.floor(Math.random() * images.length)];
+                    if(document.getElementById('rigHeroBg')) {
+                        document.getElementById('rigHeroBg').style.backgroundImage = `url('${randomImg}')`;
+                    }
+                } 
+                else if (appMode === 'wire') {
+                    document.body.style.overflow = 'auto';
+                    const app = document.getElementById('wire-app');
+                    app.style.display = 'block';
+                    app.classList.add('active');
+                    document.title = "WIRE | The Logistics Network";
+                }
+
             } else {
-                alert("ERROR: #rigfolio-app HTML is missing!");
-            }
-
-        } else if (appMode === 'wire') {
-            // --- WIRE MODE ---
-            console.log("Switching to Wire");
-
-            // 1. Hide Main Site
-            document.querySelector('.nav').style.display = 'none';
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.footer').style.display = 'none';
-
-            // 2. Show App
-            const app = document.getElementById('wire-app');
-            if (app) {
-                app.style.display = 'block'; // Force visible
-                app.classList.add('active');
-                document.body.style.overflow = 'auto';
-                document.title = "WIRE | Logistics Social";
-            } else {
-                alert("ERROR: #wire-app HTML is missing!");
-            }
-
-        } else {
-            // --- NORMAL MODE ---
-            console.log("Normal Website Mode");
-            
-            // Only run normal router here
-            if (typeof handleRoute === 'function') {
+                // --- NORMAL WEBSITE LOAD ---
+                // Only run standard router if NOT in an app
                 window.addEventListener('hashchange', handleRoute);
                 handleRoute(); 
+                
+                // Trigger Animations
+                if(typeof revealOnScroll === 'function') revealOnScroll();
+                if(typeof animateCounters === 'function') animateCounters();
             }
-            if (typeof revealOnScroll === 'function') revealOnScroll();
-            if (typeof animateCounters === 'function') animateCounters();
         }
-    }
 
-    // Force run on load
-    window.onload = initApp;
+        // Run immediately on load
+        window.addEventListener('load', initApp);
     </script>
 </body>
 </html>
