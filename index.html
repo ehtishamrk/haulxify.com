@@ -2487,44 +2487,47 @@
     <div class="noise-overlay"></div>
 
     <nav class="nav" id="nav">
-        <a href="#home" class="nav-logo" data-page="home">Haulxify</a>
-        <ul class="nav-links">
-            <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
-            <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
-            <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
-            <li><a href="#about" class="nav-link" data-page="about">About</a></li>
-            <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-            
-            <li><a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a></li>
-            <li><a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">WIRE</a></li>
-            
-            <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
-        </ul>
+    <a href="#home" class="nav-logo" data-page="home">Haulxify</a>
+    <ul class="nav-links">
+        <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+        <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+        <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
+        <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+        <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
         
-        <div id="nav-action-container">
-            <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
-        </div>        
-        <div class="nav-toggle" id="navToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+        <li><a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a></li>
+        <li><a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">WIRE</a></li>
+        
+        <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
+    </ul>
+    
+    <div id="nav-action-container">
+        <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
+    </div>        
+    <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" class="nav-link" data-page="home">Home</a>
-        <a href="#services" class="nav-link" data-page="services">Services</a>
-        <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
-        
-        <a href="index.html?app=rigfolio" target="_blank" class="nav-link" style="color: #3b82f6; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px 20px; border-radius: 8px;">RIGFOLIO</a>
-        <a href="index.html?app=wire" target="_blank" class="nav-link" style="color: #ff4500; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid rgba(255, 69, 0, 0.3); padding: 10px 20px; border-radius: 8px;">WIRE</a>
-        
-        <a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a>
-        <a href="#contact" class="nav-link" data-page="contact">Contact</a>
-        <div id="mobile-cta-container" style="width: 100%; text-align: center;">
-            <a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>
-        </div>
+    <a href="#home" class="nav-link" data-page="home">Home</a>
+    <a href="#services" class="nav-link" data-page="services">Services</a>
+    <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
+    
+    <a href="index.html?app=rigfolio" target="_blank" class="nav-link" style="color: #3b82f6; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px 20px; border-radius: 8px; margin: 10px 0;">RIGFOLIO</a>
+    <a href="index.html?app=wire" target="_blank" class="nav-link" style="color: #ff4500; font-family: 'JetBrains Mono', monospace; font-weight: 700; border: 1px solid rgba(255, 69, 0, 0.3); padding: 10px 20px; border-radius: 8px; margin: 10px 0;">WIRE</a>
+
+    <a href="#about" class="nav-link" data-page="about">About</a>
+    <a href="#blog" class="nav-link" data-page="blog">Blog</a>
+    <a href="#careers" class="nav-link" data-page="careers">Careers</a>
+    <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+    <a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a>
+    <div id="mobile-cta-container" style="width: 100%; text-align: center;">
+        <a href="#contact" class="btn btn-primary" data-page="contact" style="width: 80%; display: inline-block;"><span>Get Started</span></a>
     </div>
+</div>
 
     <!-- HOME PAGE -->
     <div class="page active" id="page-home">
@@ -4336,208 +4339,96 @@
 </div>
     <script>
         // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            if(preloader) {
                 preloader.style.opacity = '0';
                 preloader.style.pointerEvents = 'none';
                 setTimeout(() => preloader.style.display = 'none', 500);
-            }, 2000);
-        });
-
-        // Magnetic Effect
-        document.querySelectorAll('.magnetic').forEach(btn => {
-            btn.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-            });
-        });
-
-        // Feature Card Mouse Follow
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                this.style.setProperty('--mouse-x', x + '%');
-                this.style.setProperty('--mouse-y', y + '%');
-            });
-        });
-
-        // Navigation Scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
             }
+        }, 2000);
+    });
+
+    // Magnetic Effect
+    document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
         });
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
 
-        // Mobile Menu
-        const navToggle = document.getElementById('navToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
+    // Feature Card Mouse Follow
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            this.style.setProperty('--mouse-x', x + '%');
+            this.style.setProperty('--mouse-y', y + '%');
+        });
+    });
 
+    // Navigation Scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('nav');
+        if (window.scrollY > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile Menu
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if(navToggle) {
         navToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
         });
-
-        // --- UPGRADED ROUTER & NAVIGATION LOGIC ---
-function handleRoute() {
-    let hash = window.location.hash.substring(1) || 'home';
-    
-    // Fallback if page doesn't exist
-    if (!document.getElementById('page-' + hash)) {
-        hash = 'home';
     }
 
-    const nav = document.getElementById('nav');
-    const navLinks = document.querySelector('.nav-links');
-    const navAction = document.getElementById('nav-action-container');
-    const logo = document.querySelector('.nav-logo');
-
-    // 1. DYNAMIC NAVIGATION BAR CONTENT
-    if (hash === 'rigfolio' || hash === 'financing-coming-soon') {
-        // --- RIGFOLIO NAV ---
-        logo.innerHTML = 'RIG<span style="color:var(--rig-accent)">FOLIO</span>';
-        nav.style.background = 'rgba(5,5,5,0.95)';
-        nav.style.borderBottom = '1px solid #222';
-        
-        navLinks.innerHTML = `
-            <li><a href="#rigfolio" class="nav-link" onclick="switchRigTab('rent')">Rent</a></li>
-            <li><a href="#rigfolio" class="nav-link" onclick="switchRigTab('buy')">Buy</a></li>
-            <li><a href="#rigfolio" class="nav-link" onclick="switchRigTab('lease')">Lease to Buy</a></li>
-            <li><a href="#financing-coming-soon" class="nav-link" style="color: var(--rig-accent);">Truck Financing</a></li>
-            <li><a href="#home" class="nav-link" style="opacity:0.5; font-size:0.8rem;">Exit</a></li>
-        `;
-        
-        navAction.innerHTML = `<a href="#financing-coming-soon" class="nav-cta" style="background: var(--rig-accent); color: white; box-shadow: none;">List Your Rig</a>`;
-        
-    } else if (hash === 'wire') {
-        // --- WIRE NAV ---
-        logo.innerHTML = 'WIRE';
-        nav.style.background = 'black';
-        nav.style.borderBottom = '1px solid #222';
-        
-        // Only Login/Signup as requested
-        navLinks.innerHTML = `
-             <li><a href="#home" class="nav-link" style="opacity:0.5; font-size:0.8rem;">Exit to Haulxify</a></li>
-        `;
-        
-        navAction.innerHTML = `
-            <div style="display:flex; gap:10px;">
-                <button onclick="openModal('loginModal')" style="background:transparent; color:white; border:none; cursor:pointer; font-weight:600;">Log In</button>
-                <button onclick="openModal('signupModal')" style="background:var(--wire-accent); color:white; padding: 0.5rem 1.5rem; border-radius:20px; border:none; font-weight:600; cursor:pointer;">Sign Up</button>
-            </div>
-        `;
-        
-    } else {
-        // --- STANDARD HAULXIFY NAV ---
-        logo.innerHTML = 'Haulxify';
-        nav.style.background = ''; // Revert to CSS default
-        nav.style.borderBottom = '';
-        
-        // Standard Links + The two new features
-        navLinks.innerHTML = `
-            <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
-            <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
-            <li><a href="#rigfolio" class="nav-link" style="font-weight:700; letter-spacing:1px;">RIGFOLIO</a></li>
-            <li><a href="#wire" class="nav-link" style="font-weight:700; letter-spacing:1px;">WIRE</a></li>
-            <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
-            <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-            <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
-        `;
-
-        // Handle the specific "Drivers" page button logic you had before
-        if (hash === 'drivers') {
-             navAction.innerHTML = `
-                <div style="display: flex; gap: 10px;">
-                    <button onclick="openModal('loginModal')" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; border-color: var(--accent-gold); color: var(--accent-gold);">Login</button>
-                    <button onclick="openModal('signupModal')" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; background: var(--gradient-gold); color: var(--primary-dark); border: none;">Sign Up</button>
-                </div>`;
-        } else {
-             navAction.innerHTML = `<a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>`;
+    // --- MODAL LOGIC ---
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
         }
     }
 
-    // 2. PAGE SWITCHING
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-
-    const targetPage = document.getElementById('page-' + hash);
-    if (targetPage) {
-        targetPage.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; 
+        }
     }
-    
-    // Close Mobile Menu if open
-    document.getElementById('mobileMenu').classList.remove('active');
-    document.getElementById('navToggle').classList.remove('active');
 
-    // Re-trigger animations
-    setTimeout(() => {
-        if (typeof revealOnScroll === 'function') revealOnScroll();
-    }, 100);
-}
+    function switchModal(closeId, openId) {
+        closeModal(closeId);
+        setTimeout(() => {
+            openModal(openId);
+        }, 300); 
+    }
 
-// Helper for Rigfolio Tabs
-function switchRigTab(tab) {
-    // Visual toggle for buttons
-    document.querySelectorAll('.rig-switch-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    // In a real app, this would filter the listings below
-    // For now, we just console log
-    console.log("Switched to " + tab);
-}
-
-        // --- MODAL LOGIC ---
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            }
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.classList.remove('active');
+            document.body.style.overflow = '';
         }
+    }
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
-            }
-        }
-
-        function switchModal(closeId, openId) {
-            closeModal(closeId);
-            setTimeout(() => {
-                openModal(openId);
-            }, 300); // Small delay for smooth transition
-        }
-
-        // Close modal if clicking outside the content box
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // Listen for URL changes (Back/Forward button)
-        window.addEventListener('hashchange', handleRoute);
-
-        // Handle initial load
-    
-
-        // Create Particles
-        const particlesContainer = document.getElementById('particles');
+    // Create Particles
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
@@ -4546,245 +4437,218 @@ function switchRigTab(tab) {
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
+    }
 
-        // Counter Animation
-        const animateCounters = () => {
-            document.querySelectorAll('.stat-value[data-count]').forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += step;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current) + '+';
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target + '+';
-                    }
-                };
-                
-                updateCounter();
-            });
-        };
-
-        // Reveal on Scroll
-        const revealOnScroll = () => {
-            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    // Counter Animation
+    const animateCounters = () => {
+        document.querySelectorAll('.stat-value[data-count]').forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
             
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 150;
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target + '+';
+                }
+            };
+            updateCounter();
+        });
+    };
+
+    // Reveal on Scroll
+    const revealOnScroll = () => {
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            const elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+            }
+        });
+    };
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // Pricing Toggle
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const billing = btn.getAttribute('data-billing');
+            
+            document.querySelectorAll('.pricing-amount').forEach(price => {
+                const weekly = price.getAttribute('data-weekly');
+                const monthly = price.getAttribute('data-monthly');
+                const quarterly = price.getAttribute('data-quarterly');
                 
-                if (elementTop < windowHeight - elementVisible) {
-                    el.classList.add('active');
+                if (weekly) {
+                    let newPrice;
+                    const originalPrice = document.querySelector('.pricing-original');
+                    switch(billing) {
+                        case 'weekly':
+                            newPrice = weekly;
+                            if (originalPrice) originalPrice.style.visibility = 'hidden';
+                            break;
+                        case 'monthly':
+                            newPrice = monthly;
+                            if (originalPrice) originalPrice.style.visibility = 'visible';
+                            break;
+                        case 'quarterly':
+                            newPrice = quarterly;
+                            if (originalPrice) originalPrice.style.visibility = 'visible';
+                            break;
+                    }
+                    price.textContent = '$' + newPrice;
                 }
             });
-        };
-
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('active');
-            });
         });
+    });
 
-        // Pricing Toggle
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active button
-                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const billing = btn.getAttribute('data-billing');
-                
-                // Update prices
-                document.querySelectorAll('.pricing-amount').forEach(price => {
-                    const weekly = price.getAttribute('data-weekly');
-                    const monthly = price.getAttribute('data-monthly');
-                    const quarterly = price.getAttribute('data-quarterly');
-                    
-                    if (weekly) {
-                        let newPrice, originalText;
-                        const originalPrice = document.querySelector('.pricing-original');
-                        
-                        switch(billing) {
-                            case 'weekly':
-                                newPrice = weekly;
-                                if (originalPrice) originalPrice.style.visibility = 'hidden';
-                                break;
-                            case 'monthly':
-                                newPrice = monthly;
-                                if (originalPrice) {
-                                    originalPrice.textContent = 'Originally $' + weekly + '/hour';
-                                    originalPrice.style.visibility = 'visible';
-                                }
-                                break;
-                            case 'quarterly':
-                                newPrice = quarterly;
-                                if (originalPrice) {
-                                    originalPrice.textContent = 'Originally $' + weekly + '/hour';
-                                    originalPrice.style.visibility = 'visible';
-                                }
-                                break;
-                        }
-                        
-                        price.textContent = '$' + newPrice;
-                    }
-                });
-            });
-        });
-
-        // Contact Form
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm){
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             document.getElementById('successMessage').classList.add('show');
             e.target.reset();
-            
             setTimeout(() => {
                 document.getElementById('successMessage').classList.remove('show');
             }, 5000);
         });
+    }
 
-        // GSAP Animations
+    // GSAP Animations
+    if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
-
-        // Hero animation
-        gsap.from('.hero-content', {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            delay: 2.2,
-            ease: 'power3.out'
-        });
-
-        gsap.from('.hero-badge', {
-            opacity: 0,
-            y: 20,
-            duration: 0.8,
-            delay: 2.4,
-            ease: 'power3.out'
-        });
-
-        gsap.from('.hero-title', {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            delay: 2.6,
-            ease: 'power3.out'
-        });
-
-        gsap.from('.hero-subtitle', {
-            opacity: 0,
-            y: 20,
-            duration: 0.8,
-            delay: 2.8,
-            ease: 'power3.out'
-        });
-
-        gsap.from('.hero-stats', {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            delay: 3,
-            ease: 'power3.out'
-        });
-
-        gsap.from('.hero-cta', {
-            opacity: 0,
-            y: 20,
-            duration: 0.8,
-            delay: 3.2,
-            ease: 'power3.out'
-        });
-
-        // Parallax effect on scroll
+        gsap.from('.hero-content', { opacity: 0, y: 50, duration: 1, delay: 2.2, ease: 'power3.out' });
+        gsap.from('.hero-badge', { opacity: 0, y: 20, duration: 0.8, delay: 2.4, ease: 'power3.out' });
+        gsap.from('.hero-title', { opacity: 0, y: 30, duration: 1, delay: 2.6, ease: 'power3.out' });
+        gsap.from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8, delay: 2.8, ease: 'power3.out' });
+        gsap.from('.hero-stats', { opacity: 0, y: 30, duration: 0.8, delay: 3, ease: 'power3.out' });
+        gsap.from('.hero-cta', { opacity: 0, y: 20, duration: 0.8, delay: 3.2, ease: 'power3.out' });
         gsap.to('.hero-grid', {
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1
-            },
-            y: 200,
-            opacity: 0
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+            y: 200, opacity: 0
         });
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const navToggle = document.getElementById('navToggle');
-                if (mobileMenu) mobileMenu.classList.remove('active');
-                if (navToggle) navToggle.classList.remove('active');
-            });
+    }
+    
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navToggle = document.getElementById('navToggle');
+            if (mobileMenu) mobileMenu.classList.remove('active');
+            if (navToggle) navToggle.classList.remove('active');
         });
+    });
 
-// --- NEW APP LOGIC (Traffic Controller) ---
-        // ... (Keep your GSAP animations up here) ...
+    // ----------------------------------------------------
+    // MASTER ROUTING LOGIC (The Traffic Controller)
+    // ----------------------------------------------------
+    
+    // 1. Standard Router for Main Website Pages
+    function handleRoute() {
+        // If we are in "App Mode", DO NOT RUN THIS
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('app')) return;
 
-    // --- REPLACEMENT TRAFFIC CONTROLLER ---
-    // --- FINAL TRAFFIC CONTROLLER ---
-        function initApp() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const appMode = urlParams.get('app'); 
+        let hash = window.location.hash.substring(1) || 'home';
+        let targetPage = document.getElementById('page-' + hash);
+        
+        if (!targetPage) {
+            // Check for Drivers exception
+            if (hash === 'drivers' && document.getElementById('page-drivers')) {
+                // allow
+            } else {
+                hash = 'home';
+                targetPage = document.getElementById('page-home');
+            }
+        }
 
-            if (appMode === 'rigfolio' || appMode === 'wire') {
-                // 1. FORCE HIDE MAIN SITE
-                document.getElementById('nav').style.display = 'none';
-                document.getElementById('mobileMenu').style.display = 'none';
-                document.querySelector('.footer').style.display = 'none';
-                
-                // Hide all standard pages
-                document.querySelectorAll('.page').forEach(el => el.style.display = 'none');
-                
-                // Kill Preloader Immediately
-                const preloader = document.getElementById('preloader');
-                if(preloader) preloader.style.display = 'none';
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        
+        // Show target page
+        if (targetPage) {
+            targetPage.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                revealOnScroll();
+                if (hash === 'home') animateCounters();
+            }, 100);
+        }
+    }
 
-                // 2. SHOW SELECTED APP
-                if (appMode === 'rigfolio') {
-                    document.body.style.overflow = 'auto'; // Allow scroll
-                    const app = document.getElementById('rigfolio-app');
+    // 2. App Initializer (Rigfolio / Wire)
+    function initApp() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const appMode = urlParams.get('app'); 
+
+        if (appMode === 'rigfolio' || appMode === 'wire') {
+            // --- APP MODE: HIDE MAIN SITE ---
+            document.getElementById('nav').style.display = 'none';
+            document.getElementById('mobileMenu').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
+            
+            // Force Preloader Off immediately
+            const preloader = document.getElementById('preloader');
+            if(preloader) preloader.style.display = 'none';
+
+            if (appMode === 'rigfolio') {
+                const app = document.getElementById('rigfolio-app');
+                if(app) {
                     app.style.display = 'block';
                     app.classList.add('active');
                     document.title = "RIGFOLIO | The Asset Marketplace";
+                    document.body.style.overflow = 'auto';
                     
-                    // Random Hero Image
                     const images = [
                         'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070',
                         'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?q=80&w=2070'
                     ];
-                    const randomImg = images[Math.floor(Math.random() * images.length)];
-                    if(document.getElementById('rigHeroBg')) {
-                        document.getElementById('rigHeroBg').style.backgroundImage = `url('${randomImg}')`;
-                    }
-                } 
-                else if (appMode === 'wire') {
-                    document.body.style.overflow = 'auto';
-                    const app = document.getElementById('wire-app');
+                    const bg = document.getElementById('rigHeroBg');
+                    if(bg) bg.style.backgroundImage = `url('${images[Math.floor(Math.random() * images.length)]}')`;
+                }
+            } 
+            else if (appMode === 'wire') {
+                const app = document.getElementById('wire-app');
+                if(app) {
                     app.style.display = 'block';
                     app.classList.add('active');
                     document.title = "WIRE | The Logistics Network";
+                    document.body.style.overflow = 'auto';
                 }
-
-            } else {
-                // --- NORMAL WEBSITE LOAD ---
-                // Only run standard router if NOT in an app
-                window.addEventListener('hashchange', handleRoute);
-                handleRoute(); 
-                
-                // Trigger Animations
-                if(typeof revealOnScroll === 'function') revealOnScroll();
-                if(typeof animateCounters === 'function') animateCounters();
             }
+        } else {
+            // --- NORMAL MODE ---
+            // Only attach the hash listener here to avoid conflicts
+            window.addEventListener('hashchange', handleRoute);
+            
+            // Run standard route logic
+            handleRoute();
+            
+            // Run Animations
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+            animateCounters();
         }
+    }
 
-        // Run immediately on load
-        window.addEventListener('load', initApp);
+    // INITIALIZE EVERYTHING
+    window.addEventListener('load', initApp);
     </script>
 </body>
 </html>
