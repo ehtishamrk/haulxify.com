@@ -2610,6 +2610,121 @@
     .news-tag { color: #3b82f6; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
     .news-title { color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
     .news-excerpt { color: #888; font-size: 0.9rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+   /* --- SERVICES DROPDOWN STYLES --- */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--primary-navy);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 0;
+    min-width: 250px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+}
+.nav-item-dropdown:hover .dropdown-menu { display: flex; }
+.dropdown-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dropdown-link:hover {
+    background: rgba(201, 162, 39, 0.1);
+    color: var(--accent-gold);
+    padding-left: 2rem; /* Slide effect */
+}
+.dropdown-link:last-child { border-bottom: none; }
+
+/* --- TAXI PAGE SPECIFIC STYLES --- */
+.taxi-hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Negative space split */
+    align-items: center;
+    gap: 4rem;
+    padding: 120px 5% 4rem;
+}
+.taxi-hero-img {
+    width: 100%;
+    height: 600px;
+    background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2070&auto=format&fit=crop'); /* Taxi/Call Center Image */
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    position: relative;
+    /* Negative space: No border, no container shadow here */
+}
+.taxi-accordion-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 6rem 5%;
+}
+.taxi-accordion-item {
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 1rem;
+}
+.taxi-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    cursor: pointer;
+    color: var(--text-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+}
+.taxi-accordion-header:hover { color: var(--accent-gold); }
+.taxi-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+.taxi-accordion-content.open { max-height: 500px; padding-bottom: 1rem; }
+
+/* Taxi Features List from Section 5 */
+.taxi-feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.taxi-feature-box {
+    background: transparent; /* Text only focus */
+    padding: 1rem;
+}
+
+/* Section 8 Split Layout */
+.taxi-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: start;
+}
+
+/* Taxi Form */
+.taxi-form-container {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 3rem auto;
+}
+
+@media (max-width: 992px) {
+    .taxi-hero, .taxi-accordion-section, .taxi-split-layout { grid-template-columns: 1fr; gap: 2rem; }
+}
     </style>
     
     </style>
@@ -2631,17 +2746,31 @@
     <nav class="nav" id="nav">
     <a href="#home" class="nav-logo" data-page="home">Haulxify</a>
     <ul class="nav-links">
-        <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
-        <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
-        <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
-        <li><a href="#about" class="nav-link" data-page="about">About</a></li>
-        <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-        
-        <li><a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a></li>
-        <li><a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">TRUCTAK</a></li>
-        
-        <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
-    </ul>
+    <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+    
+    <li class="nav-item-dropdown">
+        <a href="#services" class="nav-link" data-page="services">Services <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+        <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Truck Dispatch</a>
+            <a href="#" class="dropdown-link">Tow Truck Dispatch</a>
+            <a href="#" class="dropdown-link">Car Hauler Dispatch</a>
+            <a href="#" class="dropdown-link">Animal Hauler Dispatch</a>
+            <a href="#" class="dropdown-link">Dump Truck Dispatch</a>
+            <a href="#" class="dropdown-link">Non-Emergency Medical Transportation Dispatch</a>
+            <a href="#taxi-dispatch" class="dropdown-link" data-page="taxi-dispatch">Taxi Dispatch</a>
+            <a href="#" class="dropdown-link">Limousine Dispatch</a>
+        </div>
+    </li>
+
+    <li><a href="#pricing" class="nav-link" data-page="pricing">Pricing</a></li>
+    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+    
+    <li><a href="index.html?app=rigfolio" target="_blank" class="nav-btn-special btn-rigfolio">RIGFOLIO</a></li>
+    <li><a href="index.html?app=wire" target="_blank" class="nav-btn-special btn-wire">TRUCTAK</a></li>
+    
+    <li><a href="#drivers" class="nav-link" style="color: #1dbf73;" data-page="drivers">Hire Driver</a></li>
+</ul>
     
     <div id="nav-action-container">
         <a href="#contact" class="nav-cta magnetic" data-page="contact"><span>Get Started</span></a>
@@ -3367,7 +3496,466 @@
             </div>
         </section>
     </div>
+<div class="page" id="page-taxi-dispatch">
+    
+    <section class="taxi-hero">
+        <div class="taxi-hero-img"></div>
+        
+        <div class="taxi-hero-content reveal-right">
+            <h4 class="highlight" style="font-weight: 600; margin-bottom: 1rem;">Reliable Support for Every Booking</h4>
+            <h1 style="font-family: 'Playfair Display'; font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem;">24/7 Taxi Call Answering Service and Dispatch Service</h1>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Transform your taxi business operations with HAULXIFY’s specialized  taxi call answering service . Our professional dispatchers handle customer bookings, manage your fleet, and ensure exceptional service delivery, all while you focus on growing your business. Experience seamless operations and satisfied customers with our cost-effective dispatch solutions.</p>
+            
+            <ul style="list-style: none; margin-bottom: 2rem; color: var(--text-light);">
+                <li style="margin-bottom: 0.8rem;"><strong class="highlight">24/7/365 Availability</strong> – Never miss a booking with round-the-clock professional taxi dispatch services</li>
+                <li style="margin-bottom: 0.8rem;"><strong class="highlight">Expertly Trained Dispatchers</strong> – Skilled professionals proficient with all major taxi dispatch software platforms</li>
+                <li style="margin-bottom: 0.8rem;"><strong class="highlight">70% Cost Reduction</strong> – Significant savings compared to in-house dispatch operations with no compromise on quality</li>
+            </ul>
 
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#pricing" class="btn btn-primary magnetic" data-page="pricing">VIEW PRICING</a>
+                <a href="#contact" class="btn btn-secondary magnetic" data-page="contact">BOOK A CALL</a>
+            </div>
+        </div>
+    </section>
+
+    <section style="text-align: center; max-width: 1000px; margin: 0 auto;">
+        <h2 class="section-title reveal">Unlock Seamless Rides with 24/7 Call Answering – Keep Your Taxis Moving, Keep Customers Smiling!</h2>
+        <div class="reveal" style="color: var(--text-muted); line-height: 1.8;">
+            <p>In today’s fast-paced transportation industry, efficient taxi dispatch management is the backbone of successful taxi operations. Every missed call represents lost revenue and potentially a lost customer. HAULXIFY specialized taxi call answering service ensures your business captures every opportunity while delivering superior customer experiences.</p>
+            <p>Our professional dispatchers are fully trained to handle small and large fleets, expertly utilizing various taxi dispatch software systems to coordinate your operations seamlessly.</p>
+            <p>We understand the unique challenges taxi companies face, managing fluctuating call volumes, coordinating drivers efficiently, handling real-time schedule changes, and maintaining consistent customer communication.</p>
+            <p>By partnering with HAULXIFY, you gain access to a team of dispatch professionals who become an extension of your business, representing your brand with the same care and attention to detail as your in-house team would, at a fraction of the cost.</p>
+        </div>
+    </section>
+
+    <section class="taxi-accordion-section">
+        <div class="reveal-left">
+            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 1.5rem;">Our Reliable Taxi Phone Answering and Call Center Services</h2>
+            <p>Experience comprehensive support that transforms how your taxi business operates.</p>
+            <p>Our integrated suite of dispatch solutions works seamlessly together to eliminate communication gaps, optimize fleet utilization, and enhance customer satisfaction at every touchpoint.</p>
+            <p>Whether you need full-service dispatch management or supplemental support during peak hours, our flexible service model adapts to your specific business requirements while maintaining consistent quality and responsiveness.</p>
+            <p>With HAULXIFY handling your customer communications, you'll notice immediate improvements in operational efficiency and customer retention.</p>
+        </div>
+
+        <div class="reveal-right">
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + 24/7 Call Handling
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Round-the-clock professional management of customer inquiries and bookings
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + Reservation Management
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Efficient booking, scheduling, and confirmation of taxi services
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + Real-Time Dispatch
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Seamless coordination between customers and drivers using preferred software
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + Fleet Management Support
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Comprehensive assistance with vehicle allocation and driver coordination
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + Call Overflow Handling
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Additional support during peak periods to ensure no call goes unanswered
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + Virtual Receptionist Services
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Our virtual receptionists serve as professional front-end communication for your taxi business.
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    + Customer Feedback Collection
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    Gathering insights to help improve service quality
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="weekend-banner" style="background: var(--gradient-gold);">
+        <div style="text-align: center; color: var(--primary-dark);">
+            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; font-weight: 700;">We Provide Around-The-Clock Taxi Dispatch Service For Maximum Uptime</h2>
+            <p style="font-size: 1.2rem; margin-top: 1rem; color: var(--primary-dark);">Did we just mention 365 days a year? You read that right.</p>
+            <p style="font-size: 1.1rem; color: var(--primary-dark);">Our dispatchers work full-time and are available whenever you need them.</p>
+            <p style="font-size: 1.1rem; color: var(--primary-dark);">Nights, weekends, and holidays, they can provide the finest concierge services even after hours.</p>
+            <p style="font-size: 1.1rem; color: var(--primary-dark);">With HAULXIFY top-notch dispatch service comes amazing customer experiences and endless business opportunities.</p>
+            <p style="font-size: 1.2rem; font-weight: 700; margin-top: 1rem; color: var(--primary-dark);">Avoid losing potential fares as our dedicated call center will serve as an extension of you business. 24/7</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Why Should You Outsource Taxi Call Answering Service?</h2>
+            <div style="max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+                <p>The advantages of a dedicated taxi call answering service extend far beyond simple call handling.</p>
+                <p>By utilizing our specialized services, taxi companies can significantly enhance their operational efficiency, allowing them to focus on core business strategies while we manage customer interactions.</p>
+                <p>This includes responding to inquiries swiftly, handling bookings with precision, and proactively following up on customer needs.</p>
+                <p>Additionally, a well-trained call center can provide valuable insights into customer preferences and behavior, which can inform service improvements and help tailor marketing efforts.</p>
+                <p>Embracing this level of support not only leads to greater customer satisfaction but also cultivates long-term loyalty, positioning your operation as a trusted leader in the competitive transportation landscape.</p>
+            </div>
+        </div>
+
+        <div class="taxi-feature-list">
+            <div class="feature-card reveal stagger-1">
+                <h3 class="highlight">Enhanced Customer Experience</h3>
+                <p>First impressions matter in the taxi business.</p>
+                <p>Our professional representatives ensure each customer interaction is handled promptly and courteously.</p>
+                <p>By providing quick response times, accurate information, and friendly service, we help you build a reputation for reliability that keeps customers coming back and choosing your service over competitors.</p>
+            </div>
+
+            <div class="feature-card reveal stagger-2">
+                <h3 class="highlight">Never Miss a Booking Opportunity</h3>
+                <p>Every missed call is a missed revenue opportunity.</p>
+                <p>Our 24/7 taxi dispatch call center ensures you never lose a customer due to busy lines or unanswered calls.</p>
+                <p>During peak hours, holidays, or unexpected demand surges, our team scales to handle increased call volumes, capturing every potential booking and maximizing your business potential.</p>
+            </div>
+
+            <div class="feature-card reveal stagger-3">
+                <h3 class="highlight">Optimized Fleet Management</h3>
+                <p>Our dispatchers are experts at efficient resource allocation, ensuring your vehicles are utilized effectively throughout the day.</p>
+                <p>Through strategic booking management and real-time coordination, we help reduce idle time and maximize earning potential for each vehicle in your fleet.</p>
+                <p>Our team works with your preferred dispatch software to maintain visibility across operations.</p>
+            </div>
+
+            <div class="feature-card reveal stagger-4">
+                <h3 class="highlight">Reduced Operational Costs</h3>
+                <p>Maintaining an in-house dispatch team is expensive.</p>
+                <p>Our taxi dispatch services provide significant cost savings by eliminating expenses related to hiring, training, benefits, equipment, and management oversight.</p>
+                <p>By outsourcing to HAULXIFY, you gain access to professional dispatch services at a fraction of the cost of running an internal call center.</p>
+            </div>
+
+            <div class="feature-card reveal stagger-5">
+                <h3 class="highlight">Scalability for Growing Businesses</h3>
+                <p>As your taxi business grows, your call handling needs will evolve.</p>
+                <p>Our taxi call answering service scales seamlessly with your business, whether you’re adding new vehicles, expanding to new locations, or experiencing seasonal fluctuations.</p>
+                <p>We adjust our support levels to match your current needs without requiring you to make additional investments in infrastructure or staffing.</p>
+            </div>
+
+            <div class="feature-card reveal stagger-6">
+                <h3 class="highlight">Focus on Core Business Growth</h3>
+                <p>By entrusting your call handling and dispatch operations to our expert team, you free up valuable time and resources to focus on strategic business development.</p>
+                <p>Whether that means expanding your fleet, improving vehicle maintenance, developing driver training programs, or creating marketing initiatives, you can concentrate on growth while we handle day-to-day customer communications.</p>
+            </div>
+
+            <div class="feature-card reveal stagger-1">
+                <h3 class="highlight">Consistent Brand Representation</h3>
+                <p>Our dispatchers become ambassadors for your brand, trained to represent your company according to your specific standards and values.</p>
+                <p>We maintain consistent messaging, service promises, and customer interaction protocols that align perfectly with your brand identity, ensuring a seamless extension of your business.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" style="padding-bottom: 2rem;">
+        <div class="cta-content">
+            <h2 class="cta-title">Hire a Professional Call Center Representative at a Fraction of the Cost</h2>
+            <p class="cta-subtitle">Why invest in expensive in-house dispatch infrastructure when you can access professional taxi call center services at a significantly lower cost?</p>
+            <p class="cta-subtitle">HAULXIFY offers dedicated taxi dispatchers who function as an extension of your team without the overhead expenses associated with full-time employees.</p>
+            <p class="cta-subtitle">By outsourcing to our Philippines-based team, you can achieve cost savings of up to 70% while maintaining high-quality service standards.</p>
+            <p class="cta-subtitle">Our flexible pricing models allow you to scale services according to your needs, whether you're a small local operation or a large fleet with complex requirements.</p>
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact">REQUEST A QUOTE</a>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Professional Taxi Answering Services for Any Industry</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+                <p>While our core focus is supporting traditional taxi companies, our taxi call answering service extends to various transportation and mobility sectors.</p>
+                <p>Our dispatchers are trained to handle the unique requirements of different service models and customer expectations.</p>
+                <p>HAULXIFY provides specialized taxi dispatch call center support for:</p>
+            </div>
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 1000px; margin: 2rem auto;">
+            <span class="section-tag">Traditional Taxi Companies</span>
+            <span class="section-tag">Airport Shuttle Services</span>
+            <span class="section-tag">Rideshare Operations</span>
+            <span class="section-tag">Corporate Transportation Providers</span>
+            <span class="section-tag">Medical Transportation Services</span>
+            <span class="section-tag">Luxury Car Services</span>
+            <span class="section-tag">Tour And Sightseeing Transportation</span>
+            <span class="section-tag">School Transportation Services</span>
+            <span class="section-tag">On-Demand Delivery Services</span>
+            <span class="section-tag">Specialized Transport (Wheelchair Accessible Vehicles, Etc.)</span>
+        </div>
+        <div style="text-align: center; color: var(--text-muted); margin-top: 2rem;">
+            <p>Along with catering to the specific needs of a wide range of industries, we serve clients across the globe.</p>
+            <p>Our support service is available to businesses in the United States, Canada, Australia, the UK, Asia and the rest of the world.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Why Choose HAULXIFY for Taxi Call Answering Services</h2>
+            <p class="section-subtitle">Choosing us as your partner in client support solutions will help you stand out as a business owner.</p>
+            <p class="section-subtitle">In the highly competitive and changing taxi services industry, providing exceptional support to your customers is paramount.</p>
+            <p class="section-subtitle">With HAULXIFY as your partner, you can enjoy the benefits of using call center solutions to better serve your customers.</p>
+            <p class="section-subtitle">Our solutions are designed to enhance your operational efficiency, maintain high-quality customer interactions, and ultimately drive your business growth.</p>
+            <p class="section-subtitle">With HAULXIFY, you're not just hiring a service; you're partnering with a team that's invested in your success.</p>
+            <p class="section-subtitle">Explore some of the reasons why we are the preferred BPO provider for  outsourcing taxi answering services :</p>
+        </div>
+
+        <div class="taxi-split-layout">
+            <div class="reveal-left">
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">Taxi Industry Expertise</h3>
+                    <p>Our team understands the unique challenges and requirements of taxi operations.</p>
+                    <p>Our dispatchers are specifically trained in transportation logistics, local geography, and the customer service expectations within the taxi industry.</p>
+                    <p>This specialized knowledge ensures we can represent your business with authority and precision.</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">End to End Call Center Outsourcing</h3>
+                    <p>We offer end-to-end outsourcing of call center services. Our team is equipped to handle everything from bookings and reservations to dispatching.</p>
+                    <p>By choosing our end-to-end outsourcing services, you will benefit from improved efficiency, reduced overheads, and enhanced customer satisfaction.</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">Data Security & Confidentiality</h3>
+                    <p>We comply with all data privacy regulations, to keep your data protected at all times.</p>
+                    <p>You can feel safe knowing that your data is being processed in a secure, protected environment.</p>
+                    <p>All our employees undergo a thorough background check and are legally required to sign confidentiality agreements.</p>
+                    <p>These agreements ensure that the company’s intellectual property is protected, and sensitive information is kept safe.</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">Dedicated Team of Outsourced Call Center Agents</h3>
+                    <p>At HAULXIFY, we understand that different clients require different levels of attention and care.</p>
+                    <p>That’s why we have a dedicated team for each project, ensuring that your tasks are handled with the utmost care and precision.</p>
+                    <p>With our years of experience in the industry, you can be confident that your project will be in good hands.</p>
+                </div>
+            </div>
+
+            <div class="reveal-right">
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">Fully Equipped Facilities</h3>
+                    <p>We provide our staff with a relaxing environment to complete their tasks.</p>
+                    <p>Instead of working from home, your outsourced team works in a state-of-the-art facility for maximum efficiency, resulting in better morale and job performance.</p>
+                    <p>We take pride in our top-of-the-line equipment and the systems we have in place to ensure a quality experience for our clients.</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">Affordable & Flexible Pricing</h3>
+                    <p>We keep our rates and services streamlined to ensure you get maximum value for your money.</p>
+                    <p>We also offer flexible pricing plans based on your requirements.</p>
+                    <p>No matter what your budget is, we can provide services tailored to meet your needs.</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">Proven Track Record</h3>
+                    <p>We work with several Fortune 500 companies and have extensive experience in outsourced call center services for every industry.</p>
+                    <p>We adhere to a high level of quality control and quality assurance, with a focus on quality.</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="highlight">24/7 Availability</h3>
+                    <p>Our facilities are open 24/7, providing clients with around-the-clock access.</p>
+                    <p>Our team of experts is always on call and can help you with any task no matter what time of day it is.</p>
+                    <p>We make sure to always be on point, and we will never let you down.</p>
+                </div>
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact">REQUEST A QUOTE</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">What Our Clients Say About Our Taxi Answering Services</h2>
+            <div class="testimonial-card" style="max-width: 600px; margin: 2rem auto;">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Haulxify has completely transformed our dispatch operations. We've seen a 30% increase in completed rides since partnering with them."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">T</div>
+                    <div>
+                        <h5>Fake Testimonial</h5>
+                        <span>Taxi Owner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Elevate Your Taxi Business with Professional Dispatch Support</h2>
+            <p class="cta-subtitle">Ready to transform your taxi operations with professional call answering and dispatch services?</p>
+            <p class="cta-subtitle">Partner with HAULXIFY to enhance customer satisfaction, optimize fleet efficiency, and reduce operational costs.</p>
+            <p class="cta-subtitle">Contact us today for a free consultation and custom quote tailored to your taxi business needs.</p>
+            <p class="cta-subtitle">Our team will analyze your current operations and recommend the perfect solution to take your service to the next level.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="taxi-form-container">
+            <h2 style="font-family: 'Playfair Display'; text-align: center; margin-bottom: 1rem;">Outsource to HAULXIFY and save up to 75% compared to hiring locally.</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Find out how much our  outsourced taxi answering services  cost.</p>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">It usually takes only 1-2 days to receive your proposal.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Request sent!');">
+                <div class="form-grid">
+                    <div class="form-group"><label>First Name</label><input type="text"></div>
+                    <div class="form-group"><label>Last Name</label><input type="text"></div>
+                    <div class="form-group"><label>Phone</label><input type="text"></div>
+                    <div class="form-group"><label>Email</label><input type="email"></div>
+                    <div class="form-group full"><label>Company</label><input type="text"></div>
+                    <div class="form-group full"><label>How Did You Find Us?</label><input type="text"></div>
+                    <div class="form-group full"><label>Describe your outsourcing requirements...</label><textarea></textarea></div>
+                    <div class="form-group full" style="color: var(--text-muted); font-size: 0.8rem;">
+                        Privacy Note:  We respect your privacy. We will never sell, trade, or give your contact information to anyone else.
+                    </div>
+                    <div class="form-submit" style="text-align: center;">
+                        <button type="submit" class="btn btn-primary magnetic">GET A QUOTE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions About Taxi Call Answering Service</h2>
+            <p class="section-subtitle">We understand that you might have questions about outsourcing taxi answering services.</p>
+            <p class="section-subtitle">Here are some frequently asked questions and their answers to provide you with a clearer understanding:</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    How quickly can you implement taxi dispatch services for my business?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>We can typically implement our taxi call answering service within 2-3 weeks from contract signing.</p>
+                    <p>The implementation process includes understanding your business requirements, configuring systems, training our team on your specific protocols, and testing the integration.</p>
+                    <p>For more straightforward setups, we can expedite the process to as little as one week.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    Will your taxi dispatch center work with my existing booking software?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>Yes, HAULXIFY works with all major taxi dispatch software systems including Autocab, iCabbi, Taxi Butler, Cabmaster, TaxiCaller, and many others.</p>
+                    <p>Our technical team handles the integration process, ensuring smooth data flow between our call center and your dispatch system.</p>
+                    <p>If you use custom or proprietary software, we’ll work with your IT team to establish appropriate integration points.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    How do you ensure the security of my customer information?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>HAULXIFY maintains strict data security protocols that comply with international standards.</p>
+                    <p>All our systems incorporate encryption, secure access controls, and regular security audits.</p>
+                    <p>Our staff undergoes thorough background checks and receives training on data protection and privacy regulations.</p>
+                    <p>We implement comprehensive data handling policies to protect sensitive customer information and comply with relevant regulations.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    What hours does your taxi call answering service operate?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>Our taxi dispatch call center operates 24 hours a day, 7 days a week, 365 days a year.</p>
+                    <p>This ensures your customers can book taxis at any time, including nights, weekends, and holidays.</p>
+                    <p>Our round-the-clock service is particularly valuable for airport transfers, late-night transportation, and emergency travel needs when in-house staff would typically be unavailable.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    How are your taxi dispatch services priced?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>Our pricing is transparent and based on an hourly rate for our full-time or dedicated employees.</p>
+                    <p>This structure allows us to accommodate various business sizes and needs efficiently.</p>
+                    <p>With our dedicated agents, you benefit from consistent service quality without the overhead of managing in-house staff.</p>
+                    <p>Contact us for a personalized quote tailored to your specific business requirements and anticipated call volume.</p>
+                    <p>We are here to help you optimize your operations and enhance customer satisfaction.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    What exactly does a taxi call answering service do?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>A taxi call answering service manages all incoming calls for your taxi business.</p>
+                    <p>This includes dispatch services, scheduling rides, providing fare estimates, handling customer inquiries, and ensuring seamless communication between drivers and customers.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    How does a taxi answering service benefit my small business?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>A taxi answering service can provide numerous benefits to both large and small businesses.</p>
+                    <p>It ensures that your taxi company is always available to answer the calls, after-hours included.</p>
+                    <p>Furthermore, professional call center representatives fluent in English can provide excellent customer service and avoid potential losses from poor customer service.</p>
+                </div>
+            </div>
+
+            <div class="taxi-accordion-item">
+                <div class="taxi-accordion-header" onclick="toggleTaxiAccordion(this)">
+                    What if I need help after normal business hours?
+                    <i class="fas fa-plus highlight"></i>
+                </div>
+                <div class="taxi-accordion-content">
+                    <p>Our taxi answering services are available 24 hours a day, 365 days a year.</p>
+                    <p>That means we can answer your calls after normal business hours and even on holidays.</p>
+                    <p>We’re always ready to assist your taxi company with all calls and inquiries.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact">REQUEST A QUOTE</a>
+        </div>
+    </section>
+</div>
     <!-- ABOUT PAGE -->
     <div class="page" id="page-about">
         <section class="services-hero">
@@ -5243,6 +5831,29 @@ function wireNav(viewName) {
             if(btn) btn.innerHTML = "My Account";
         }
     });
+       // TAXI ACCORDION LOGIC
+function toggleTaxiAccordion(header) {
+    const content = header.nextElementSibling;
+    const allContents = document.querySelectorAll('.taxi-accordion-content');
+    
+    // Check if the clicked one is already open
+    const isOpen = content.classList.contains('open');
+    
+    // Close ALL accordions first
+    allContents.forEach(c => {
+        c.classList.remove('open');
+        // Reset the plus icon rotation (optional visual flair)
+        const icon = c.previousElementSibling.querySelector('.fa-plus');
+        if(icon) icon.style.transform = 'rotate(0deg)';
+    });
+
+    // If it wasn't open before, open it now
+    if (!isOpen) {
+        content.classList.add('open');
+        const icon = header.querySelector('.fa-plus');
+        if(icon) icon.style.transform = 'rotate(45deg)';
+    }
+} 
     </script>
 </body>
 </html>
