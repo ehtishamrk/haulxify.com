@@ -48,15 +48,6 @@
     --wire-bg: #000000;
     --wire-card: #161616;
     --wire-accent: #ff4500;
-           --primary-dark: #020617;  /* Very dark navy for footer/contrast */
-    --text-light: #ffffff;    /* Pure white for text on dark backgrounds */
-    
-    /* Fix Glass Borders for Light Theme */
-    --glass-border: rgba(0, 0, 0, 0.08); 
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    
-    /* Fix Shadows */
-    --shadow-gold: 0 10px 30px -10px rgba(201, 162, 39, 0.3);
 }
 
         * {
@@ -217,21 +208,20 @@
 
         /* Mobile Menu */
         .mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: #ffffff; /* CHANGE THIS TO WHITE */
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    transition: right 0.5s ease;
-    border-left: 1px solid var(--border-light); /* Add border for definition */
-}
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--primary-dark);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transition: right 0.5s ease;
+        }
 
         .mobile-menu.active {
             right: 0;
@@ -276,6 +266,16 @@
             color: var(--primary-navy);
             margin-bottom: 2rem;
             letter-spacing: -2px; 
+        }
+
+        /* Elegant Gold Underline Highlight */
+        .hero-title .highlight {
+            background: linear-gradient(to right, var(--accent-gold), var(--accent-gold));
+            background-size: 100% 6px; 
+            background-position: 0 90%;
+            background-repeat: no-repeat;
+            -webkit-text-fill-color: initial;
+            color: var(--primary-navy);
         }
 
         .hero-subtitle {
@@ -365,6 +365,33 @@
     color: white;
 }
 
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent-gold), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.5; }
+        }
+
         /* Sections Common */
         section {
             padding: 8rem 5%;
@@ -396,16 +423,18 @@
             margin-bottom: 1rem;
         }
 
-       .section-subtitle {
-    color: var(--text-body); /* Ensures subtitles are dark grey, not white */
-}
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
 
         /* Features Section */
         .features {
-    background: var(--bg-section); /* Light Gray (Professional) */
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-}
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
+        }
 
         .features-grid {
             display: grid;
@@ -1439,11 +1468,10 @@
 
         /* Footer */
         .footer {
-    background: var(--primary-navy); /* Deep Navy */
-    color: white;
-    padding-top: 6rem;
-    border-top: none;
-}
+            background: var(--primary-dark);
+            padding: 5rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
 
         .footer-grid {
             display: grid;
@@ -1510,10 +1538,11 @@
         }
 
         .footer-column h4 {
-    color: #ffffff; /* White headings */
-    font-weight: 600;
-    letter-spacing: 1px;
-}
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
 
         .footer-column ul {
             list-style: none;
@@ -1524,21 +1553,35 @@
         }
 
         .footer-column a {
-    color: #94a3b8; /* Muted Grey links */
-}
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .footer-column a:hover {
-    color: var(--accent-gold);
-    transform: translateX(5px);
-}
+            color: var(--accent-gold);
+            transform: translateX(5px);
+        }
 
         .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 4rem;
-}
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-.footer-bottom p {
-    color: #64748b;
-}
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
 
         .footer-legal {
             display: flex;
@@ -2194,58 +2237,7 @@
         .rig-search-bar { flex-direction: column; }
         .rig-input-group { border-right: none; border-bottom: 1px solid #eee; padding: 10px 0; }
     }
-/* --- PROFESSIONAL POLISH --- */
-
-/* 1. Better Section Spacing */
-section {
-    padding: 10rem 5%; /* More breathing room = Luxury */
-}
-
-/* 2. Refined Selection Color (Gold Highlight) */
-::selection {
-    background: var(--accent-gold);
-    color: white;
-}
-
-/* 3. Smooth Cards */
-.feature-card, .service-card, .pricing-card {
-    background: #ffffff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); /* Ultra subtle shadow */
-    border: 1px solid rgba(0,0,0,0.05); /* Very faint border */
-}
-
-.feature-card:hover, .service-card:hover, .pricing-card:hover {
-    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.08); /* Smooth lift */
-    transform: translateY(-5px);
-}
-
-/* 4. Fix Weekend Banner Text */
-.weekend-banner {
-    background: #0f172a; /* Dark Navy Background */
-}
-.weekend-title {
-    color: #ffffff !important; /* Force White Text */
-}
-.weekend-subtitle {
-    color: #cbd5e1 !important; /* Light Grey Text */
-}
-.weekend-badge {
-    background: var(--accent-gold);
-    color: #000;
-}
-       /* FIX FOR TAXI PAGE & APPLE SECTIONS */
-.apple-hero, .apple-section {
-    background-color: #ffffff; /* Changed to white for consistency */
-    position: relative;
-}
-
-
-/* Ensure the glass cards on these dark sections look correct */
-.apple-glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-} 
-    </style>
+</style>
     <style>
     /* --- MAIN NAV NEW BUTTONS --- */
     .nav-btn-special {
@@ -2496,6 +2488,38 @@ section {
     .news-tag { color: #3b82f6; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
     .news-title { color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
     .news-excerpt { color: #888; font-size: 0.9rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+   /* --- SERVICES DROPDOWN STYLES --- */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--primary-navy);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 0;
+    min-width: 250px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+}
+.nav-item-dropdown:hover .dropdown-menu { display: flex; }
+.dropdown-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dropdown-link:hover {
+    background: rgba(201, 162, 39, 0.1);
+    color: var(--accent-gold);
+    padding-left: 2rem; /* Slide effect */
+}
+.dropdown-link:last-child { border-bottom: none; }
+
 /* --- TAXI PAGE SPECIFIC STYLES --- */
 .taxi-hero {
     min-height: 100vh;
@@ -2531,11 +2555,10 @@ section {
     align-items: center;
     padding: 1rem 0;
     cursor: pointer;
-    color: var(--text-main);
+    color: var(--text-light);
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
 }
-
 .taxi-accordion-header:hover { color: var(--accent-gold); }
 .taxi-accordion-content {
     max-height: 0;
@@ -2594,19 +2617,20 @@ section {
     position: absolute;
     top: 100%;
     left: -20px;
-    background: #ffffff;
-    border: 1px solid var(--border-light);
+    background: rgba(10, 15, 26, 0.95);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 16px;
     padding: 0.5rem;
     min-width: 260px;
     display: none;
     flex-direction: column;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     backdrop-filter: blur(20px);
     z-index: 2000;
 }
+.nav-item-dropdown:hover .dropdown-menu { display: flex; animation: fadeUp 0.3s ease; }
 .dropdown-link {
-    color: var(--text-main);
+    color: #a0aec0;
     text-decoration: none;
     padding: 1rem 1.5rem;
     font-size: 0.9rem;
@@ -2614,11 +2638,10 @@ section {
     transition: all 0.2s ease;
 }
 .dropdown-link:hover {
-    background: var(--primary-navy);
+    background: rgba(255, 255, 255, 0.05);
     color: white;
     transform: translateX(5px);
 }
-
 
 /* Hero: Negative Space Concept */
 .apple-hero {
@@ -2825,6 +2848,11 @@ section {
     <a href="#pricing" class="btn btn-primary magnetic" data-page="pricing"><span>View Pricing</span></a>
     <a href="#services" class="btn btn-secondary magnetic" data-page="services"><span>Our Services</span></a>
 </div>
+            </div>
+
+            <div class="hero-scroll">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
             </div>
         </section>
 
@@ -5080,19 +5108,6 @@ section {
         <div class="wire-content"><h3 style="color: white; margin-top: 10px;">Best looking rig at the Iowa 80 show?</h3></div>
     </div>
 </div>
-         <div id="view-news" class="wire-view" style="display: none;">
-    <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Industry News 📰</h2>
-    <div id="news-container"></div>
-</div>
-   <div id="view-saved" class="wire-view" style="display: none;">
-    <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Saved Posts 🔖</h2>
-    <div class="wire-post">
-        <div class="wire-content">
-            <p style="color: #666; text-align: center; padding: 3rem;">You haven't saved any posts yet.</p>
-        </div>
-    </div>
-</div>
-
 
 <div id="view-live" class="wire-view" style="display: none;">
     <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Live on Wire 🔴</h2>
@@ -5376,35 +5391,39 @@ section {
     });
 
     // Pricing Toggle
-   document.querySelectorAll('.pricing-amount').forEach((price, index) => {
-    const weekly = price.getAttribute('data-weekly');
-    const monthly = price.getAttribute('data-monthly');
-    const quarterly = price.getAttribute('data-quarterly');
-    
-    if (weekly) {
-        let newPrice;
-        // Find the pricing-original in the same pricing card
-        const pricingCard = price.closest('.pricing-card');
-        const originalPrice = pricingCard ? pricingCard.querySelector('.pricing-original') : null;
-        
-        switch(billing) {
-            case 'weekly':
-                newPrice = weekly;
-                if (originalPrice) originalPrice.style.visibility = 'hidden';
-                break;
-            case 'monthly':
-                newPrice = monthly;
-                if (originalPrice) originalPrice.style.visibility = 'visible';
-                break;
-            case 'quarterly':
-                newPrice = quarterly;
-                if (originalPrice) originalPrice.style.visibility = 'visible';
-                break;
-        }
-        price.textContent = '$' + newPrice;
-    }
-});
-
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const billing = btn.getAttribute('data-billing');
+            
+            document.querySelectorAll('.pricing-amount').forEach(price => {
+                const weekly = price.getAttribute('data-weekly');
+                const monthly = price.getAttribute('data-monthly');
+                const quarterly = price.getAttribute('data-quarterly');
+                
+                if (weekly) {
+                    let newPrice;
+                    const originalPrice = document.querySelector('.pricing-original');
+                    switch(billing) {
+                        case 'weekly':
+                            newPrice = weekly;
+                            if (originalPrice) originalPrice.style.visibility = 'hidden';
+                            break;
+                        case 'monthly':
+                            newPrice = monthly;
+                            if (originalPrice) originalPrice.style.visibility = 'visible';
+                            break;
+                        case 'quarterly':
+                            newPrice = quarterly;
+                            if (originalPrice) originalPrice.style.visibility = 'visible';
+                            break;
+                    }
+                    price.textContent = '$' + newPrice;
+                }
+            });
+        });
+    });
 
     // Contact Form
     const contactForm = document.getElementById('contactForm');
@@ -5520,8 +5539,6 @@ section {
                     app.classList.add('active');
                     document.title = "WIRE | The Logistics Network";
                     document.body.style.overflow = 'auto';
-                            fetchFuelPrices(); // ADD THIS LINE
-
                 }
             }
         } else {
@@ -5610,9 +5627,8 @@ section {
         }
     }
 
-    // Trigger fuel fetch when Wire loads (called within initApp instead)
-// window.addEventListener('load', fetchFuelPrices);
-
+    // Trigger fuel fetch when Wire loads
+    window.addEventListener('load', fetchFuelPrices);
         // --- MENU TOGGLE LOGIC ---
 function toggleMenu(btn) {
     // Close all other open menus first
@@ -5661,6 +5677,61 @@ function wireNav(viewName) {
         if(viewName === 'news') fetchNews();
 
         window.scrollTo(0,0);
+    }
+
+    // --- FREIGHTWAVES NEWS SCRAPER (RSS via Proxy) ---
+    async function fetchNews() {
+        const container = document.getElementById('news-container');
+        if(container.innerHTML.includes('news-card')) return; // Already loaded
+        
+        container.innerHTML = '<div style="color:#666; text-align:center;">Fetching latest headlines...</div>';
+
+        try {
+            // We use the RSS feed because it's cleaner than scraping HTML
+            const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.freightwaves.com/feed'));
+            const data = await response.json();
+            
+            // Parse XML
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+            const items = xmlDoc.querySelectorAll("item");
+            
+            let html = '';
+            
+            // Get first 10 items
+            items.forEach((item, index) => {
+                if(index > 10) return;
+                
+                const title = item.querySelector("title").textContent;
+                const link = item.querySelector("link").textContent;
+                const description = item.querySelector("description").textContent.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+                
+                // Try to find an image in content:encoded or use a default
+                let img = 'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?q=80&w=800'; 
+                const content = item.getElementsByTagNameNS("*", "encoded")[0];
+                if(content) {
+                    const imgMatch = content.textContent.match(/src="([^"]+)"/);
+                    if(imgMatch) img = imgMatch[1];
+                }
+
+                html += `
+                    <a href="${link}" target="_blank" class="news-card">
+                        <img src="${img}" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">Logistics News</span>
+                            <div class="news-title">${title}</div>
+                            <div class="news-excerpt">${description}</div>
+                        </div>
+                    </a>
+                `;
+            });
+            
+            container.innerHTML = html;
+
+        } catch (error) {
+            console.error("News fetch error:", error);
+            container.innerHTML = '<div style="color:#ef4444; text-align:center;">Failed to load news. Please try again later.</div>';
+        }
     }
 
     // --- LOGIN SIMULATION FIX ---
