@@ -48,6 +48,15 @@
     --wire-bg: #000000;
     --wire-card: #161616;
     --wire-accent: #ff4500;
+           --primary-dark: #020617;  /* Very dark navy for footer/contrast */
+    --text-light: #ffffff;    /* Pure white for text on dark backgrounds */
+    
+    /* Fix Glass Borders for Light Theme */
+    --glass-border: rgba(0, 0, 0, 0.08); 
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    
+    /* Fix Shadows */
+    --shadow-gold: 0 10px 30px -10px rgba(201, 162, 39, 0.3);
 }
 
         * {
@@ -364,7 +373,10 @@
     background: var(--primary-navy);
     color: white;
 }
-
+/* REMOVE HERO SCROLL LINE */
+.hero-scroll {
+    display: none !important;
+}
         .hero-scroll {
             position: absolute;
             bottom: 3rem;
@@ -423,18 +435,16 @@
             margin-bottom: 1rem;
         }
 
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
+       .section-subtitle {
+    color: var(--text-body); /* Ensures subtitles are dark grey, not white */
+}
 
         /* Features Section */
         .features {
-            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
-        }
+    background: var(--bg-section); /* Light Gray (Professional) */
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
 
         .features-grid {
             display: grid;
@@ -1468,10 +1478,11 @@
 
         /* Footer */
         .footer {
-            background: var(--primary-dark);
-            padding: 5rem 5% 2rem;
-            border-top: 1px solid var(--glass-border);
-        }
+    background: var(--primary-navy); /* Deep Navy */
+    color: white;
+    padding-top: 6rem;
+    border-top: none;
+}
 
         .footer-grid {
             display: grid;
@@ -1538,11 +1549,10 @@
         }
 
         .footer-column h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-        }
+    color: #ffffff; /* White headings */
+    font-weight: 600;
+    letter-spacing: 1px;
+}
 
         .footer-column ul {
             list-style: none;
@@ -1553,35 +1563,21 @@
         }
 
         .footer-column a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
+    color: #94a3b8; /* Muted Grey links */
+}
         .footer-column a:hover {
-            color: var(--accent-gold);
-            transform: translateX(5px);
-        }
+    color: var(--accent-gold);
+    transform: translateX(5px);
+}
 
         .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 4rem;
+}
 
-        .footer-bottom p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+.footer-bottom p {
+    color: #64748b;
+}
 
         .footer-legal {
             display: flex;
@@ -2237,7 +2233,46 @@
         .rig-search-bar { flex-direction: column; }
         .rig-input-group { border-right: none; border-bottom: 1px solid #eee; padding: 10px 0; }
     }
-</style>
+/* --- PROFESSIONAL POLISH --- */
+
+/* 1. Better Section Spacing */
+section {
+    padding: 10rem 5%; /* More breathing room = Luxury */
+}
+
+/* 2. Refined Selection Color (Gold Highlight) */
+::selection {
+    background: var(--accent-gold);
+    color: white;
+}
+
+/* 3. Smooth Cards */
+.feature-card, .service-card, .pricing-card {
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); /* Ultra subtle shadow */
+    border: 1px solid rgba(0,0,0,0.05); /* Very faint border */
+}
+
+.feature-card:hover, .service-card:hover, .pricing-card:hover {
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.08); /* Smooth lift */
+    transform: translateY(-5px);
+}
+
+/* 4. Fix Weekend Banner Text */
+.weekend-banner {
+    background: #0f172a; /* Dark Navy Background */
+}
+.weekend-title {
+    color: #ffffff !important; /* Force White Text */
+}
+.weekend-subtitle {
+    color: #cbd5e1 !important; /* Light Grey Text */
+}
+.weekend-badge {
+    background: var(--accent-gold);
+    color: #000;
+}
+    </style>
     <style>
     /* --- MAIN NAV NEW BUTTONS --- */
     .nav-btn-special {
