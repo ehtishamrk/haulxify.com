@@ -268,16 +268,6 @@
             letter-spacing: -2px; 
         }
 
-        /* Elegant Gold Underline Highlight */
-        .hero-title .highlight {
-            background: linear-gradient(to right, var(--accent-gold), var(--accent-gold));
-            background-size: 100% 6px; 
-            background-position: 0 90%;
-            background-repeat: no-repeat;
-            -webkit-text-fill-color: initial;
-            color: var(--primary-navy);
-        }
-
         .hero-subtitle {
             font-size: 1.4rem;
             color: var(--text-body);
@@ -5108,6 +5098,18 @@
         <div class="wire-content"><h3 style="color: white; margin-top: 10px;">Best looking rig at the Iowa 80 show?</h3></div>
     </div>
 </div>
+<div id="view-news" class="wire-view" style="display: none;">
+    <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Industry News 📰</h2>
+    <div id="news-container"></div>
+</div>
+<div id="view-saved" class="wire-view" style="display: none;">
+    <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Saved Posts 🔖</h2>
+    <div class="wire-post">
+        <div class="wire-content">
+            <p style="color: #666; text-align: center; padding: 3rem;">You haven't saved any posts yet.</p>
+        </div>
+    </div>
+</div>
 
 <div id="view-live" class="wire-view" style="display: none;">
     <h2 style="color: white; margin-bottom: 1.5rem; font-family:'Playfair Display';">Live on Wire 🔴</h2>
@@ -5539,6 +5541,8 @@
                     app.classList.add('active');
                     document.title = "WIRE | The Logistics Network";
                     document.body.style.overflow = 'auto';
+                            fetchFuelPrices(); // ADD THIS LINE
+
                 }
             }
         } else {
@@ -5628,7 +5632,7 @@
     }
 
     // Trigger fuel fetch when Wire loads
-    window.addEventListener('load', fetchFuelPrices);
+   // window.addEventListener('load', fetchFuelPrices);
         // --- MENU TOGGLE LOGIC ---
 function toggleMenu(btn) {
     // Close all other open menus first
@@ -5677,61 +5681,6 @@ function wireNav(viewName) {
         if(viewName === 'news') fetchNews();
 
         window.scrollTo(0,0);
-    }
-
-    // --- FREIGHTWAVES NEWS SCRAPER (RSS via Proxy) ---
-    async function fetchNews() {
-        const container = document.getElementById('news-container');
-        if(container.innerHTML.includes('news-card')) return; // Already loaded
-        
-        container.innerHTML = '<div style="color:#666; text-align:center;">Fetching latest headlines...</div>';
-
-        try {
-            // We use the RSS feed because it's cleaner than scraping HTML
-            const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.freightwaves.com/feed'));
-            const data = await response.json();
-            
-            // Parse XML
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(data.contents, "text/xml");
-            const items = xmlDoc.querySelectorAll("item");
-            
-            let html = '';
-            
-            // Get first 10 items
-            items.forEach((item, index) => {
-                if(index > 10) return;
-                
-                const title = item.querySelector("title").textContent;
-                const link = item.querySelector("link").textContent;
-                const description = item.querySelector("description").textContent.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
-                
-                // Try to find an image in content:encoded or use a default
-                let img = 'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?q=80&w=800'; 
-                const content = item.getElementsByTagNameNS("*", "encoded")[0];
-                if(content) {
-                    const imgMatch = content.textContent.match(/src="([^"]+)"/);
-                    if(imgMatch) img = imgMatch[1];
-                }
-
-                html += `
-                    <a href="${link}" target="_blank" class="news-card">
-                        <img src="${img}" class="news-img">
-                        <div class="news-content">
-                            <span class="news-tag">Logistics News</span>
-                            <div class="news-title">${title}</div>
-                            <div class="news-excerpt">${description}</div>
-                        </div>
-                    </a>
-                `;
-            });
-            
-            container.innerHTML = html;
-
-        } catch (error) {
-            console.error("News fetch error:", error);
-            container.innerHTML = '<div style="color:#ef4444; text-align:center;">Failed to load news. Please try again later.</div>';
-        }
     }
 
     // --- LOGIN SIMULATION FIX ---
