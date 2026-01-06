@@ -278,16 +278,6 @@
             letter-spacing: -2px; 
         }
 
-        /* Elegant Gold Underline Highlight */
-        .hero-title .highlight {
-            background: linear-gradient(to right, var(--accent-gold), var(--accent-gold));
-            background-size: 100% 6px; 
-            background-position: 0 90%;
-            background-repeat: no-repeat;
-            -webkit-text-fill-color: initial;
-            color: var(--primary-navy);
-        }
-
         .hero-subtitle {
             font-size: 1.4rem;
             color: var(--text-body);
@@ -2245,9 +2235,10 @@ section {
 }
        /* FIX FOR TAXI PAGE & APPLE SECTIONS */
 .apple-hero, .apple-section {
-    background-color: #0f172a; /* Force Dark Navy Background */
+    background-color: #ffffff; /* Changed to white for consistency */
     position: relative;
 }
+
 
 /* Ensure the glass cards on these dark sections look correct */
 .apple-glass-card {
@@ -2505,38 +2496,6 @@ section {
     .news-tag { color: #3b82f6; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
     .news-title { color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
     .news-excerpt { color: #888; font-size: 0.9rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-   /* --- SERVICES DROPDOWN STYLES --- */
-.nav-item-dropdown { position: relative; }
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--primary-navy);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 1rem 0;
-    min-width: 250px;
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    backdrop-filter: blur(20px);
-}
-.nav-item-dropdown:hover .dropdown-menu { display: flex; }
-.dropdown-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
-    transition: 0.3s;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.dropdown-link:hover {
-    background: rgba(201, 162, 39, 0.1);
-    color: var(--accent-gold);
-    padding-left: 2rem; /* Slide effect */
-}
-.dropdown-link:last-child { border-bottom: none; }
-
 /* --- TAXI PAGE SPECIFIC STYLES --- */
 .taxi-hero {
     min-height: 100vh;
@@ -2572,10 +2531,11 @@ section {
     align-items: center;
     padding: 1rem 0;
     cursor: pointer;
-    color: var(--text-light);
+    color: var(--text-main);
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
 }
+
 .taxi-accordion-header:hover { color: var(--accent-gold); }
 .taxi-accordion-content {
     max-height: 0;
@@ -2634,20 +2594,19 @@ section {
     position: absolute;
     top: 100%;
     left: -20px;
-    background: rgba(10, 15, 26, 0.95);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #ffffff;
+    border: 1px solid var(--border-light);
     border-radius: 16px;
     padding: 0.5rem;
     min-width: 260px;
     display: none;
     flex-direction: column;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
     backdrop-filter: blur(20px);
     z-index: 2000;
 }
-.nav-item-dropdown:hover .dropdown-menu { display: flex; animation: fadeUp 0.3s ease; }
 .dropdown-link {
-    color: #a0aec0;
+    color: var(--text-main);
     text-decoration: none;
     padding: 1rem 1.5rem;
     font-size: 0.9rem;
@@ -2655,10 +2614,11 @@ section {
     transition: all 0.2s ease;
 }
 .dropdown-link:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--primary-navy);
     color: white;
     transform: translateX(5px);
 }
+
 
 /* Hero: Negative Space Concept */
 .apple-hero {
