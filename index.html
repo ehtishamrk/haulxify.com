@@ -2340,7 +2340,48 @@ p, li, span, div, a,
 }
 .dropdown-link:hover {
     color: #c9a227 !important; /* Gold on hover */
-}    
+}   
+     /* =================================================================
+   FINAL BUTTON TEXT VISIBILITY FIX (Paste at bottom of CSS)
+   ================================================================= */
+
+/* 1. SOLID BUTTONS (Dark Background -> Require White Text) */
+.btn-primary, 
+.nav-cta, 
+.market-search-btn,
+.pricing-card.featured .btn {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+/* Ensure the text inside spans is also white */
+.btn-primary span, 
+.nav-cta span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 2. SECONDARY/OUTLINE BUTTONS (Transparent Background -> Require Dark Text) */
+.btn-secondary {
+    color: #0f172a !important; /* Dark Navy Text */
+    -webkit-text-fill-color: #0f172a !important;
+    background: transparent !important;
+    border: 2px solid #e2e8f0 !important;
+}
+.btn-secondary span {
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+}
+
+/* 3. SECONDARY BUTTON HOVER (Turns Dark -> Text must turn White) */
+.btn-secondary:hover {
+    background: #0f172a !important; /* Dark Background on Hover */
+    border-color: #0f172a !important;
+    color: #ffffff !important; /* Text turns White */
+}
+.btn-secondary:hover span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}   
 </style>
     <style>
     /* --- MAIN NAV NEW BUTTONS --- */
