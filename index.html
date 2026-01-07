@@ -3039,6 +3039,15 @@ section {
         grid-template-columns: 1fr;
     }
 }
+       /* EMERGENCY FIX - Hide any stray navigation menus */
+nav > ul:not(.nav-links),
+.nav > ul:not(.nav-links),
+.nav-menu-mobile,
+.mobile-nav,
+.side-menu,
+header > div > ul:not(.nav-links) {
+    display: none !important;
+} 
     </style>
 </head>
 <body>
