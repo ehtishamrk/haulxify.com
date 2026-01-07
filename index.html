@@ -2382,6 +2382,62 @@ p, li, span, div, a,
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
 }   
+        /* =================================================================
+   UNIVERSAL BUTTON FIX (Paste at the very bottom of CSS)
+   ================================================================= */
+
+/* 1. SECONDARY BUTTONS (The "Book a Call" / Transparent Buttons) */
+/* DEFAULT STATE: Transparent Background + Dark Navy Text */
+.btn-secondary, 
+a.btn-secondary, 
+button.btn-secondary {
+    background-color: transparent !important;
+    border: 2px solid #0f172a !important; /* Dark Navy Border */
+    color: #0f172a !important;            /* Dark Navy Text */
+    -webkit-text-fill-color: #0f172a !important;
+    box-shadow: none !important;
+}
+
+/* HOVER STATE: Dark Navy Background + White Text */
+.btn-secondary:hover, 
+a.btn-secondary:hover, 
+button.btn-secondary:hover {
+    background-color: #0f172a !important; /* Fills with Dark Navy */
+    border-color: #0f172a !important;
+    color: #ffffff !important;            /* Text turns White */
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 2. PRIMARY BUTTONS (The "Get Started" / Solid Buttons) */
+/* DEFAULT STATE: Dark Navy Background + White Text */
+.btn-primary, 
+a.btn-primary, 
+button.btn-primary,
+.nav-cta,
+.market-search-btn {
+    background-color: #0f172a !important;
+    border: 2px solid #0f172a !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* HOVER STATE: Gold Background + White Text */
+.btn-primary:hover, 
+a.btn-primary:hover, 
+button.btn-primary:hover,
+.nav-cta:hover,
+.market-search-btn:hover {
+    background-color: #c9a227 !important; /* Gold */
+    border-color: #c9a227 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 3. SAFETY NET FOR SPANS INSIDE BUTTONS */
+.btn span, .btn-secondary span, .btn-primary span {
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+}
 </style>
     <style>
     /* --- MAIN NAV NEW BUTTONS --- */
