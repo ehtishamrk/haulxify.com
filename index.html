@@ -2281,7 +2281,66 @@
     color: #c9a227 !important; /* Gold Text on Hover */
     transform: translateX(5px);
 } 
-      
+  /* =================================================================
+   FINAL COLOR CORRECTION (Paste at the bottom of CSS)
+   ================================================================= */
+
+/* 1. UNIFY ALL HEADINGS & TEXT TO DARK NAVY */
+h1, h2, h3, h4, h5, h6, 
+p, li, span, div, a, 
+.nav-link, 
+.hero-subtitle, 
+.section-subtitle {
+    color: #0f172a !important;
+}
+
+/* 2. PROTECT GOLDEN ELEMENTS (Keep them Gold) */
+.section-tag,
+.feature-icon,
+.service-icon,
+.pricing-price span,
+.weekend-badge,
+.text-shimmer {
+    color: #c9a227 !important; /* Force Gold */
+    -webkit-text-fill-color: #c9a227 !important; /* Override any gradient issues */
+    background: none !important;
+}
+
+/* 3. FIX BUTTONS (Restore White Text) */
+.btn, 
+.btn span, 
+.btn-primary, 
+.nav-cta, 
+.market-search-btn {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 4. FIX FOOTER (Keep it White on Dark Background) */
+.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6,
+.footer p, .footer a, .footer li, .footer i, .footer span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+.footer p, .footer a, .footer li {
+    color: #94a3b8 !important; /* Light Gray for readability */
+    -webkit-text-fill-color: #94a3b8 !important;
+}
+
+/* 5. FIX WEEKEND BANNER (Keep White Text on Dark BG) */
+.weekend-banner h2, 
+.weekend-banner p {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 6. FIX SERVICES DROPDOWN (Ensure Links are Visible) */
+.dropdown-link {
+    color: #0f172a !important;
+}
+.dropdown-link:hover {
+    color: #c9a227 !important; /* Gold on hover */
+}    
 </style>
     <style>
     /* --- MAIN NAV NEW BUTTONS --- */
