@@ -2484,6 +2484,61 @@ button.btn-primary:hover,
     display: inline-block !important;
     color: #c9a227 !important;
 } 
+       /* =================================================================
+   FINAL FORM & FOOTER VISIBILITY FIX (Paste at bottom of CSS)
+   ================================================================= */
+
+/* 1. FIX FORMS (Remove Blue Focus & Fix Visibility) */
+.form-group input,
+.form-group textarea,
+.form-group select,
+.market-search-input {
+    background-color: #ffffff !important; /* Force White Background */
+    color: #0f172a !important;            /* Dark Navy Text */
+    border: 1px solid #cbd5e1 !important; /* Clean Grey Border */
+    -webkit-text-fill-color: #0f172a !important;
+    box-shadow: none !important;
+}
+
+/* FORM FOCUS STATE (When you click to type) */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus,
+.market-search-input:focus {
+    background-color: #ffffff !important; /* Stay White (No Cheap Blue) */
+    border-color: #0f172a !important;     /* Professional Dark Border */
+    color: #0f172a !important;            /* Text stays Dark */
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1) !important; /* Subtle Shadow */
+    transform: none !important;
+}
+
+/* Make Form Labels Dark & Readable */
+.form-group label {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}
+
+/* 2. FIX FOOTER TEXT (Make it Pop) */
+.footer {
+    background-color: #0f172a !important; /* Ensure Dark Navy Background */
+}
+
+/* Force all footer text to be Pure White */
+.footer h1, .footer h2, .footer h3, .footer h4, .footer h5,
+.footer p, .footer a, .footer li, .footer i, .footer span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important; /* Remove any dimming/fading */
+    font-weight: 500 !important; /* Make text slightly bolder for reading */
+}
+
+/* Footer Links Hover */
+.footer a:hover {
+    color: #c9a227 !important; /* Gold on Hover */
+    -webkit-text-fill-color: #c9a227 !important;
+    opacity: 1 !important;
+} 
 </style>
     <style>
     /* --- MAIN NAV NEW BUTTONS --- */
