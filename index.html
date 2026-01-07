@@ -142,53 +142,35 @@ body {
 
 .nav {
     position: fixed;
-    top: 20px; /* Floating effect - not touching top */
+    top: 16px;
     left: 50%;
     transform: translateX(-50%);
-    width: 95%;
-    max-width: 1400px;
-    height: 80px;
-    padding: 0 2rem;
+    width: 94%;
+    max-width: 1350px;
+    height: 72px;
+    padding: 0 1.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 10000;
     
-    /* PREMIUM GLASSMORPHISM */
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    /* ULTRA PREMIUM GLASSMORPHISM */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     
-    /* ELEVATED SHADOW */
+    /* REFINED ELEVATED SHADOW */
     box-shadow: 
-        0 8px 32px rgba(15, 23, 42, 0.08),
-        0 2px 8px rgba(15, 23, 42, 0.04),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.9);
+        0 10px 40px rgba(15, 23, 42, 0.06),
+        0 4px 12px rgba(15, 23, 42, 0.03),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.95),
+        0 0 0 1px rgba(15, 23, 42, 0.02);
     
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
     
-    /* SMOOTH TRANSITIONS */
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* SCROLL BEHAVIOR - Shrinks when scrolling */
-.nav.scrolled {
-    top: 10px;
-    height: 70px;
-    padding: 0 1.5rem;
-    background: rgba(255, 255, 255, 0.85);
-    box-shadow: 
-        0 12px 40px rgba(15, 23, 42, 0.12),
-        0 4px 12px rgba(15, 23, 42, 0.06);
-}
-
-/* HOVER STATE - Elevate further */
-.nav:hover {
-    box-shadow: 
-        0 12px 48px rgba(15, 23, 42, 0.1),
-        0 4px 16px rgba(15, 23, 42, 0.06),
-        inset 0 -1px 0 rgba(255, 255, 255, 1);
+    /* BUTTERY SMOOTH TRANSITIONS */
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================================
@@ -197,42 +179,27 @@ body {
 
 .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     text-decoration: none;
     position: relative;
     
-    /* GRADIENT TEXT */
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    /* REFINED GRADIENT TEXT */
+    background: linear-gradient(135deg, #0f172a 0%, #334155 50%, #0f172a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200% auto;
     
-    transition: all 0.3s ease;
+    transition: all 0.35s ease;
 }
 
 .nav-logo:hover {
     background-position: right center;
-    transform: scale(1.05);
-}
-
-/* Subtle underline accent */
-.nav-logo::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #c9a227, #e8c547);
-    transition: width 0.3s ease;
-}
-
-.nav-logo:hover::after {
-    width: 100%;
+    transform: scale(1.03);
+    letter-spacing: 0px;
 }
 
 /* ============================================================
@@ -251,64 +218,27 @@ body {
 
 .nav-link {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 600;
     color: #475569;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 0.8rem 1.2rem;
-    border-radius: 12px;
+    letter-spacing: 0.75px;
+    padding: 0.75rem 1.1rem;
+    border-radius: 11px;
     position: relative;
     display: flex;
     align-items: center;
     
-    /* SMOOTH TRANSITIONS */
+    /* SILKY SMOOTH TRANSITIONS */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* MAGNETIC HOVER EFFECT */
+/* REFINED HOVER EFFECT */
 .nav-link:hover {
-    color: #c9a227 !important; /* Gold on hover */
-    background: rgba(201, 162, 39, 0.08);
-    transform: translateY(-2px);
-}
-
-/* ACTIVE STATE - Gradient Underline */
-.nav-link.active {
-    color: #0f172a;
-    font-weight: 700;
-}
-
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 3px;
-    background: linear-gradient(90deg, #c9a227, #e8c547);
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(201, 162, 39, 0.4);
-}
-
-/* HOVER INDICATOR - Dot appears */
-.nav-link::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 8px;
-    width: 4px;
-    height: 4px;
-    background: #c9a227;
-    border-radius: 50%;
-    transform: translateY(-50%) scale(0);
-    transition: transform 0.2s ease;
-}
-
-.nav-link:hover::before {
-    transform: translateY(-50%) scale(1);
+    color: #c9a227 !important;
+    background: rgba(201, 162, 39, 0.06);
+    transform: translateY(-1px);
 }
 
 /* ============================================================
@@ -336,10 +266,14 @@ body {
 
 .dropdown-menu {
     position: absolute;
-    top: calc(100% + 10px); /* Reduced gap from 15px to 10px */
+    top: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    z-index: 9999; /* Above the bridge */
+    z-index: 9999;
+    
+    /* FIX: Set minimum width to prevent shrinking */
+    min-width: 280px;
+    width: max-content;
     
     /* PREMIUM GLASS */
     background: rgba(255, 255, 255, 0.9);
@@ -428,16 +362,16 @@ body {
 
 .nav-btn-special {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    padding: 0.65rem 1.3rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 50px;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -466,26 +400,25 @@ body {
 .btn-rigfolio {
     background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 3px 12px rgba(59, 130, 246, 0.25);
 }
 
 .btn-rigfolio:hover {
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+    transform: translateY(-1px);
 }
 
 /* TrucTak Button */
 .btn-wire {
     background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 3px 12px rgba(255, 107, 53, 0.25);
 }
 
 .btn-wire:hover {
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+    transform: translateY(-1px);
 }
-
 /* ============================================================
    PRIMARY CTA - MAGNETIC BUTTON
    ============================================================ */
@@ -493,21 +426,21 @@ body {
 .nav-cta {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: #ffffff;
-    padding: 1rem 2.5rem;
+    padding: 0.9rem 2.25rem;
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
     
     box-shadow: 
-        0 4px 15px rgba(15, 23, 42, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 4px 16px rgba(15, 23, 42, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
     
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Shine effect */
@@ -528,9 +461,9 @@ body {
 
 .nav-cta:hover {
     background: linear-gradient(135deg, #c9a227 0%, #e8c547 100%);
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px) scale(1.03);
     box-shadow: 
-        0 12px 30px rgba(201, 162, 39, 0.4),
+        0 8px 24px rgba(201, 162, 39, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -6127,39 +6060,59 @@ header > div > ul:not(.nav-links) {
 
    // =================================================================
 // FLOATING CTA BUTTON - SMART SCROLL BEHAVIOR
+// Shows on load, hides when scrolling down, reappears when scrolling up
+// Works on ALL pages except RigFolio and Wire apps
 // =================================================================
 let lastScrollTop = 0;
 const floatingCta = document.getElementById('floatingCta');
 let scrollTimeout;
 
+// Show button initially after page loads
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        // Check if we're NOT in app mode
+        const urlParams = new URLSearchParams(window.location.search);
+        const isAppMode = urlParams.get('app');
+        
+        if (!isAppMode && floatingCta) {
+            floatingCta.classList.add('visible');
+        }
+    }, 2500); // Show after preloader finishes
+});
+
 window.addEventListener('scroll', () => {
-    // Only show on home page
-    const isHomePage = document.getElementById('page-home')?.classList.contains('active');
+    // Check if we're in app mode (RigFolio or Wire)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAppMode = urlParams.get('app');
     
-    if (!isHomePage || !floatingCta) return;
+    // Don't show button in app mode
+    if (isAppMode || !floatingCta) return;
     
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     // Clear existing timeout
     clearTimeout(scrollTimeout);
     
-    // Show when scrolling up, hide when scrolling down
-    if (scrollTop > 400) { // Start showing after 400px scroll
+    // Behavior logic:
+    // - Initially visible (handled by load event above)
+    // - Hide when scrolling down past 100px
+    // - Show when scrolling up past 200px
+    
+    if (scrollTop > 200) {
         if (scrollTop < lastScrollTop) {
-            // Scrolling UP
+            // Scrolling UP - show button
             floatingCta.classList.add('visible');
         } else {
-            // Scrolling DOWN
+            // Scrolling DOWN - hide button
             floatingCta.classList.remove('visible');
         }
-    } else {
-        // At top of page - hide button
-        floatingCta.classList.remove('visible');
+    } else if (scrollTop < 100) {
+        // Near top - show button
+        floatingCta.classList.add('visible');
     }
     
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
-
 // =================================================================
 // MOBILE MENU - BEAST MODE
 // =================================================================
@@ -6419,6 +6372,9 @@ window.toggleMobileDropdown = function(element) {
             document.getElementById('nav').style.display = 'none';
             document.getElementById('mobileMenu').style.display = 'none';
             document.querySelector('.footer').style.display = 'none';
+            // HIDE FLOATING CTA IN APP MODE
+            const floatingCta = document.getElementById('floatingCta');
+            if (floatingCta) floatingCta.style.display = 'none';
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
             
             // Force Preloader Off immediately
