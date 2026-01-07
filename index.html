@@ -115,121 +115,209 @@
             to { width: 100%; }
         }
 
-        /* --- 4. BEAST MODE NAVIGATION --- */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.98); /* Solid White */
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
-        }
+        /* =================================================================
+   ULTIMATE PROFESSIONAL NAVIGATION (Paste at bottom of CSS)
+   ================================================================= */
 
-        .nav.scrolled {
-            padding: 0.8rem 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--primary-navy);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-main);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-gold);
-        }
-
-        /* Updated CTA Button for Nav */
-        .nav-cta {
-            background: var(--primary-navy);
-            color: #ffffff;
-            padding: 0.8rem 2rem;
-            border-radius: 2px; /* Square/Corporate look */
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: none;
-        }
-
-        .nav-cta:hover {
-            background: var(--accent-gold);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
-        }
-
-        /* Updated Mobile Toggle (Dark lines) */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .nav-toggle span {
-            width: 30px;
-            height: 3px;
-            background: var(--primary-navy); /* Dark lines */
-            transition: all 0.3s ease;
-        }
-
-        /* Mobile Menu */
-       .mobile-menu {
+/* 1. THE GLASS COMMAND BAR */
+.nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    left: 0;
     width: 100%;
-    height: 100vh;
-    background: #ffffff; /* <--- CHANGE THIS FROM var(--primary-dark) TO #ffffff */
-    z-index: 999;
+    height: 90px;
+    padding: 0 5%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    transition: right 0.5s ease;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9); /* High-end transparency */
+    backdrop-filter: blur(20px) saturate(180%); /* Premium Frosted Glass */
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05); /* Ultra subtle border */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-        .mobile-menu.active {
-            right: 0;
-        }
+/* Scroll Effect: Shrink and Solidify */
+.nav.scrolled {
+    height: 70px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
 
-        .mobile-menu .nav-link {
-            font-size: 1.5rem;
-        }
+/* 2. LOGO: AUTHORITATIVE & CLEAN */
+.nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 3. LINKS: SOPHISTICATED & SPACED */
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+    margin: 0 auto; /* Centers the links if you want, or remove to keep right */
+    padding: 0 2rem;
+}
+
+.nav-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569; /* Soft Slate for unselected items */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+/* Hover Animation: Elegant Gold Underline Expansion */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Start from center */
+    width: 0%;
+    height: 2px;
+    background: #c9a227; /* Gold */
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: #0f172a; /* Darken text on hover */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Expand to full width */
+}
+
+/* 4. APP SWITCHER BUTTONS (RigFolio & TrucTak) */
+/* This makes them look like "Tags" or "System Switches" */
+.nav-btn-special {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid transparent;
+}
+
+/* RigFolio (Blue Tech Look) */
+.btn-rigfolio {
+    background: rgba(59, 130, 246, 0.08);
+    color: #2563eb;
+}
+.btn-rigfolio::before {
+    content: '●'; /* Status dot */
+    font-size: 0.8rem;
+    color: #2563eb;
+}
+.btn-rigfolio:hover {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+.btn-rigfolio:hover::before { color: white; }
+
+/* TrucTak (Orange Alert Look) */
+.btn-wire {
+    background: rgba(255, 69, 0, 0.08);
+    color: #ea580c;
+}
+.btn-wire::before {
+    content: '●';
+    font-size: 0.8rem;
+    color: #ea580c;
+}
+.btn-wire:hover {
+    background: #ea580c;
+    color: white;
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+}
+.btn-wire:hover::before { color: white; }
+
+/* 5. PRIMARY CTA (Get Started) */
+.nav-cta {
+    background: #0f172a; /* Dark Navy */
+    color: #ffffff;
+    padding: 0.9rem 2.2rem;
+    border-radius: 4px; /* Professional square corners */
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(15, 23, 42, 0.2);
+}
+
+.nav-cta:hover {
+    background: #c9a227; /* Gold on hover */
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(201, 162, 39, 0.3);
+}
+
+/* 6. DROPDOWN POLISH */
+.nav-item-dropdown {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Add a tiny arrow that rotates */
+.nav-item-dropdown > a::after {
+    content: '▼';
+    font-size: 0.5rem;
+    margin-left: 6px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    color: #c9a227; /* Gold Arrow */
+}
+
+.nav-item-dropdown:hover > a::after {
+    transform: rotate(180deg);
+}
+
+/* The Dropdown Box */
+.dropdown-menu {
+    top: 75px !important; /* Push it down slightly for spacing */
+    border-radius: 8px !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1) !important;
+    padding: 0.5rem !important;
+    background: #ffffff !important;
+}
+
+.dropdown-link {
+    border-radius: 6px !important;
+    font-size: 0.9rem !important;
+    color: #475569 !important;
+    padding: 0.8rem 1.2rem !important;
+}
+
+.dropdown-link:hover {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    padding-left: 1.5rem !important; /* Slide effect */
+}
 
         /* Hero Section */
        /* --- 4. THE 'TITAN' HERO SECTION --- */
@@ -2541,43 +2629,6 @@ button.btn-primary:hover,
 } 
 </style>
     <style>
-    /* --- MAIN NAV NEW BUTTONS --- */
-    .nav-btn-special {
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: 700;
-        font-size: 0.85rem;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .btn-rigfolio {
-        background: rgba(59, 130, 246, 0.1);
-        color: #3b82f6;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        margin-left: 10px;
-    }
-    .btn-rigfolio:hover {
-        background: #3b82f6;
-        color: white;
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-    }
-
-    .btn-wire {
-        background: rgba(255, 69, 0, 0.1);
-        color: #ff4500;
-        border: 1px solid rgba(255, 69, 0, 0.3);
-        margin-left: 10px;
-    }
-    .btn-wire:hover {
-        background: #ff4500;
-        color: white;
-        box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
-    }
-
     /* --- APP CONTAINERS --- */
     #rigfolio-app, #wire-app {
         display: none; /* Hidden by default */
