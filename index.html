@@ -3844,6 +3844,997 @@ header > div > ul:not(.nav-links) {
         padding: 2rem 1.5rem;
     }
 } 
+       /* Premium Services Page Styling */
+.service-hero-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 10rem 5% 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(201, 162, 39, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.premium-service-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    height: 280px;
+}
+
+.premium-service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.premium-service-card:hover .service-card-image {
+    transform: scale(1.1);
+}
+
+.service-card-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary-navy);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.service-card-description {
+    color: var(--text-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.service-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.service-features-list li {
+    color: var(--text-body);
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.service-features-list li::before {
+    content: '✓';
+    color: var(--accent-gold);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.service-price-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.1), rgba(201, 162, 39, 0.05));
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.services-premium-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+    .premium-service-card {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .service-card-image {
+        height: 250px;
+    }
+}
+       /* Luxurious Pricing Page */
+.pricing-hero-luxury {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    padding: 10rem 5% 8rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-hero-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(201, 162, 39, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(201, 162, 39, 0.1), transparent 50%);
+}
+
+.pricing-selector {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 0.5rem;
+    display: inline-flex;
+    gap: 0.5rem;
+    margin: 3rem auto 4rem;
+}
+
+.pricing-selector-btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.pricing-selector-btn.active {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+    color: var(--primary-dark);
+    box-shadow: 0 8px 20px rgba(201, 162, 39, 0.3);
+}
+
+.pricing-discount-tag {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+.luxury-pricing-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.luxury-pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gradient-gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.luxury-pricing-card:hover::before {
+    transform: scaleX(1);
+}
+
+.luxury-pricing-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.pricing-service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary-navy);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.pricing-service-tagline {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.pricing-amount-display {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-dollar {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pricing-rate {
+    color: var(--text-body);
+    font-size: 1.1rem;
+}
+
+.pricing-billing-note {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+}
+
+.pricing-feature-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.pricing-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(201, 162, 39, 0.03);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.pricing-feature-item:hover {
+    background: rgba(201, 162, 39, 0.08);
+}
+
+.pricing-feature-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    background: var(--gradient-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.pricing-feature-text {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.pricing-note-box {
+    background: rgba(201, 162, 39, 0.05);
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.pricing-note-title {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-note-text {
+    color: var(--text-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .pricing-selector {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .pricing-selector-btn {
+        width: 100%;
+    }
+    
+    .luxury-pricing-card {
+        padding: 2rem 1.5rem;
+    }
+} 
+        /* Premium About Us Page */
+.about-hero-premium {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 10rem 5% 6rem;
+    text-align: center;
+    position: relative;
+}
+
+.about-story-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.about-image-premium {
+    width: 100%;
+    height: 500px;
+    border-radius: 24px;
+    object-fit: cover;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary-navy);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.about-text p {
+    color: var(--text-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.stats-premium-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stat-premium {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stat-premium:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.stat-premium-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-premium-label {
+    color: var(--text-body);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.value-card {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.value-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--primary-navy);
+    margin-bottom: 1rem;
+}
+
+.value-card p {
+    color: var(--text-body);
+    line-height: 1.7;
+}
+
+@media (max-width: 992px) {
+    .about-story-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .stats-premium-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    /* Premium Contact Form - 10DLC Compliant */
+.contact-hero-premium {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 10rem 5% 6rem;
+    text-align: center;
+}
+
+.contact-premium-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.contact-form-header {
+    background: linear-gradient(135deg, var(--primary-navy), var(--primary-accent));
+    padding: 3rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.contact-form-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.contact-form-body {
+    padding: 3rem;
+}
+
+.form-premium-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-premium-label {
+    display: block;
+    color: var(--primary-navy);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-premium-input,
+.form-premium-select,
+.form-premium-textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    color: var(--primary-navy);
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.form-premium-input:focus,
+.form-premium-select:focus,
+.form-premium-textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.1);
+}
+
+.form-premium-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 2rem 0;
+}
+
+.form-checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    cursor: pointer;
+    accent-color: var(--accent-gold);
+}
+
+.form-checkbox-label {
+    color: var(--text-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.form-privacy-notice {
+    background: rgba(201, 162, 39, 0.05);
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.form-privacy-notice h4 {
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.form-privacy-notice p {
+    color: var(--text-body);
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+
+.form-submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--primary-navy), var(--primary-accent));
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2);
+}
+
+.form-submit-btn:hover {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201, 162, 39, 0.3);
+}
+
+.form-submit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .contact-form-header {
+        padding: 2rem;
+    }
+    
+    .contact-form-body {
+        padding: 2rem 1.5rem;
+    }
+}
+        /* Elegant Cookie Consent Popup */
+.cookie-consent {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    z-index: 99999;
+    transform: translateY(150%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-consent.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.cookie-consent-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.cookie-icon {
+    font-size: 1.8rem;
+}
+
+.cookie-consent-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--primary-navy);
+}
+
+.cookie-consent-text {
+    color: var(--text-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.cookie-consent-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.cookie-btn {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cookie-btn-accept {
+    background: linear-gradient(135deg, var(--primary-navy), var(--primary-accent));
+    color: #ffffff;
+}
+
+.cookie-btn-accept:hover {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 162, 39, 0.3);
+}
+
+.cookie-btn-decline {
+    background: transparent;
+    border: 2px solid var(--border-light);
+    color: var(--text-body);
+}
+
+.cookie-btn-decline:hover {
+    border-color: var(--primary-navy);
+    color: var(--primary-navy);
+}
+
+@media (max-width: 768px) {
+    .cookie-consent {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        max-width: none;
+        padding: 1.5rem;
+    }
+    
+    .cookie-consent-actions {
+        flex-direction: column;
+    }
+}
+        /* Enhanced Mobile Optimization for All Pages */
+@media (max-width: 768px) {
+    /* Hero Section Mobile */
+    .hero {
+        min-height: auto;
+        padding: 120px 5% 4rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Services Cards Mobile */
+    .premium-service-card {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .service-card-image {
+        height: 220px;
+    }
+    
+    .service-card-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Pricing Cards Mobile */
+    .pricing-selector {
+        flex-direction: column;
+        width: 100%;
+        padding: 0.3rem;
+    }
+    
+    .pricing-selector-btn {
+        width: 100%;
+        padding: 0.9rem 2rem;
+    }
+    
+    /* About Page Mobile */
+    .about-story-section {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .about-image-premium {
+        height: 300px;
+    }
+    
+    .about-text h2 {
+        font-size: 2rem;
+    }
+    
+    .stats-premium-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stat-premium-number {
+        font-size: 2.5rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Contact Form Mobile */
+    .contact-form-body form > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+    
+    /* Section Padding Mobile */
+    section {
+        padding: 4rem 5%;
+    }
+    
+    .service-hero-banner,
+    .pricing-hero-luxury,
+    .about-hero-premium,
+    .contact-hero-premium {
+        padding: 8rem 5% 4rem;
+    }
+    
+    /* Typography Mobile */
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .pricing-service-name {
+        font-size: 1.5rem;
+    }
+    
+    .service-card-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra Small Devices */
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .service-category-card {
+        padding: 1.8rem 1.3rem;
+    }
+    
+    .luxury-pricing-card {
+        padding: 2rem 1.3rem;
+    }
+    
+    .contact-form-header {
+        padding: 2rem 1.5rem;
+    }
+    
+    .contact-form-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-form-body {
+        padding: 2rem 1.3rem;
+    }
+    
+    .btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Tablet Optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .services-showcase,
+    .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .premium-service-card {
+        grid-template-columns: 300px 1fr;
+    }
+    
+    .about-story-section {
+        gap: 3rem;
+    }
+    
+    .stats-premium-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Smooth Scroll Behavior */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    .service-category-card:hover,
+    .premium-service-card:hover,
+    .luxury-pricing-card:hover,
+    .value-card:hover {
+        transform: none;
+    }
+    
+    /* Larger touch targets */
+    .btn,
+    .nav-link,
+    .form-premium-input,
+    .form-premium-select,
+    .cookie-btn {
+        min-height: 48px;
+    }
+}
+        /* Print Styles for Professional Documents */
+@media print {
+    .nav,
+    .footer,
+    .floating-cta,
+    .cookie-consent,
+    .hero-cta,
+    .btn,
+    .mobile-menu-overlay,
+    .nav-toggle {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .luxury-pricing-card,
+    .premium-service-card,
+    .value-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+    
+    .section-title,
+    .pricing-service-name,
+    .service-card-title {
+        color: black;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+    
+    .pricing-amount-display,
+    .service-price-badge {
+        color: black !important;
+        -webkit-text-fill-color: black !important;
+    }
+}
+
+/* Dark Mode Support (Future-proof) */
+@media (prefers-color-scheme: dark) {
+    /* This is ready for when you want to add dark mode */
+}
+       /* Keyboard Navigation Styles */
+.using-mouse *:focus {
+    outline: none;
+}
+
+body:not(.using-mouse) *:focus {
+    outline: 3px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+/* Skip to content link for screen readers */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100001;
+}
+
+.skip-to-content:focus {
+    top: 0;
+} 
     </style>
 </head>
 <body>
@@ -4219,322 +5210,593 @@ header > div > ul:not(.nav-links) {
     </div>
     <!-- SERVICES PAGE -->
     <div class="page" id="page-services">
-        <section class="services-hero">
-            <div class="section-header">
-                <span class="section-tag">Our Services</span>
-                <h1 class="section-title reveal">Premium <span class="text-shimmer">Solutions</span> for Logistic companies</h1>
-                <p class="section-subtitle reveal">Comprehensive services designed to handle every aspect of your logistic business.</p>
-            </div>
-        </section>
+        <section class="service-hero-banner">
+    <div class="section-header">
+        <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Our Services</span>
+        <h1 class="section-title reveal" style="color: #ffffff;">Premium <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dispatch Solutions</span></h1>
+        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 700px;">Professional dispatch services tailored to your industry. From logistics to luxury transport, we deliver excellence 24/7.</p>
+    </div>
+</section>
 
-        <section>
-            <div class="section-header">
-                <span class="section-tag">Core Services</span>
-                <h2 class="section-title reveal">Under <span class="text-shimmer">$5/Hour</span></h2>
-                <p class="section-subtitle reveal">Essential services to keep your business running smoothly</p>
+<section style="padding: 6rem 5%; background: #ffffff;">
+    <div class="services-premium-grid">
+        
+        <!-- Truck Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&fit=crop" alt="Truck Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Truck Dispatch Services</h3>
+                <p class="service-card-description">Complete logistics support for owner-operators and fleet managers. Load finding, rate negotiation, and full back-office support.</p>
+                <ul class="service-features-list">
+                    <li>Dedicated dispatcher for your fleet</li>
+                    <li>Load board monitoring & booking</li>
+                    <li>Rate negotiation & paperwork</li>
+                    <li>8 hours daily coverage (176hrs/month)</li>
+                </ul>
+                <span class="service-price-badge">Starting at $5/hour per truck</span>
             </div>
+        </div>
 
-            <div class="services-grid">
-                <div class="service-card reveal stagger-1">
-                    <div class="service-card-inner">
-                        <div class="service-icon">🎯</div>
-                        <h3 class="service-title">Dedicated Dispatcher</h3>
-                        <p class="service-desc">Your personal dispatcher finds the best loads, negotiates rates, and ensures you're always hauling profitably.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-2">
-                    <div class="service-card-inner">
-                        <div class="service-icon">📋</div>
-                        <h3 class="service-title">Back Office Support</h3>
-                        <p class="service-desc">Complete administrative support including document management, invoicing, and carrier packets.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-3">
-                    <div class="service-card-inner">
-                        <div class="service-icon">🗺️</div>
-                        <h3 class="service-title">Route Planning</h3>
-                        <p class="service-desc">Optimized route planning to minimize deadhead miles, reduce fuel costs, and maximize earnings.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-4">
-                    <div class="service-card-inner">
-                        <div class="service-icon">💹</div>
-                        <h3 class="service-title">Cost & Profit Breakdown</h3>
-                        <p class="service-desc">Detailed analysis of your operating costs and profit margins to help you make informed decisions.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-5">
-                    <div class="service-card-inner">
-                        <div class="service-icon">📒</div>
-                        <h3 class="service-title">Simple Bookkeeping</h3>
-                        <p class="service-desc">Basic bookkeeping services to track income, expenses, and keep your finances organized.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-6">
-                    <div class="service-card-inner">
-                        <div class="service-icon">📞</div>
-                        <h3 class="service-title">Broker Negotiations</h3>
-                        <p class="service-desc">Expert negotiators work to secure the best rates from brokers and shippers on your behalf.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-1">
-                    <div class="service-card-inner">
-                        <div class="service-icon">⚡</div>
-                        <h3 class="service-title">Load Board Monitoring</h3>
-                        <p class="service-desc">24/7 monitoring of top load boards to find the best opportunities before they're gone.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-2">
-                    <div class="service-card-inner">
-                        <div class="service-icon">📄</div>
-                        <h3 class="service-title">Document Processing</h3>
-                        <p class="service-desc">Quick processing of BOLs, PODs, rate confirmations, and all essential documentation.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
-                <div class="service-card reveal stagger-3">
-                    <div class="service-card-inner">
-                        <div class="service-icon">🔔</div>
-                        <h3 class="service-title">Appointment Setting</h3>
-                        <p class="service-desc">We handle all pickup and delivery appointments, ensuring smooth operations.</p>
-                        <span class="service-price">$4/hour</span>
-                    </div>
-                </div>
+        <!-- Tow Truck Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&fit=crop" alt="Tow Truck Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Tow Truck Dispatch</h3>
+                <p class="service-card-description">24/7 emergency call handling and dispatch coordination for towing and recovery services. Fast response guaranteed.</p>
+                <ul class="service-features-list">
+                    <li>24/7 dedicated phone line coverage</li>
+                    <li>Emergency response coordination</li>
+                    <li>Multi-shift agent support (720hrs/month)</li>
+                    <li>Scheduled towing management</li>
+                </ul>
+                <span class="service-price-badge">$5/hour per line • 720hrs monthly</span>
             </div>
-        </section>
+        </div>
 
-        <section class="additional-services">
-            <div class="section-header">
-                <span class="section-tag">Additional Services</span>
-                <h2 class="section-title reveal">Specialized <span class="text-shimmer">Solutions</span></h2>
-                <p class="section-subtitle reveal">Premium add-ons to expand your business capabilities</p>
+        <!-- Car Hauler Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&fit=crop" alt="Car Hauler Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Car Hauler Dispatch</h3>
+                <p class="service-card-description">Specialized dispatch for auto transport carriers. Route optimization, dealer coordination, and logistics management.</p>
+                <ul class="service-features-list">
+                    <li>Auto transport load booking</li>
+                    <li>Dealer & auction coordination</li>
+                    <li>Route planning & optimization</li>
+                    <li>8 hours daily coverage (176hrs/month)</li>
+                </ul>
+                <span class="service-price-badge">Starting at $5/hour per hauler</span>
             </div>
+        </div>
 
-            <div class="additional-grid">
-                <div class="additional-card reveal stagger-1">
-                    <div class="additional-icon">👥</div>
-                    <div class="additional-info">
-                        <h4>Driver Recruitment</h4>
-                        <p>Find qualified CDL drivers for your fleet</p>
-                        <span class="additional-price">$150/driver placed</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-2">
-                    <div class="additional-icon">💳</div>
-                    <div class="additional-info">
-                        <h4>Factoring Assistance</h4>
-                        <p>Connect with top factoring companies</p>
-                        <span class="additional-price">Free consultation</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-3">
-                    <div class="additional-icon">🚚</div>
-                    <div class="additional-info">
-                        <h4>Trailer Rentals</h4>
-                        <p>Access to rental trailer partnerships</p>
-                        <span class="additional-price">Varies by type</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-4">
-                    <div class="additional-icon">🛡️</div>
-                    <div class="additional-info">
-                        <h4>Insurance Assistance</h4>
-                        <p>Help finding the best insurance rates</p>
-                        <span class="additional-price">Free consultation</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-5">
-                    <div class="additional-icon">🔧</div>
-                    <div class="additional-info">
-                        <h4>Maintenance Coordination</h4>
-                        <p>Schedule and coordinate vechile repairs</p>
-                        <span class="additional-price">$25/incident</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-6">
-                    <div class="additional-icon">📊</div>
-                    <div class="additional-info">
-                        <h4>IFTA Filing</h4>
-                        <p>Quarterly IFTA tax filing service</p>
-                        <span class="additional-price">$75/quarter</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-1">
-                    <div class="additional-icon">🚗</div>
-                    <div class="additional-info">
-                        <h4>MC Authority Setup</h4>
-                        <p>Complete MC authority application</p>
-                        <span class="additional-price">$500 one-time</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-2">
-                    <div class="additional-icon">📈</div>
-                    <div class="additional-info">
-                        <h4>Business Consulting</h4>
-                        <p>Strategic growth consulting for fleets</p>
-                        <span class="additional-price">$75/hour</span>
-                    </div>
-                </div>
+        <!-- Animal Hauler Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=800&fit=crop" alt="Animal Hauler Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Animal Hauler Dispatch</h3>
+                <p class="service-card-description">Compassionate coordination for livestock and pet transportation. Special care protocols and compliance management.</p>
+                <ul class="service-features-list">
+                    <li>Livestock transport coordination</li>
+                    <li>Veterinary compliance tracking</li>
+                    <li>Temperature & welfare monitoring</li>
+                    <li>8 hours daily coverage (176hrs/month)</li>
+                </ul>
+                <span class="service-price-badge">Starting at $5/hour per hauler</span>
             </div>
-        </section>
+        </div>
 
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2 class="cta-title reveal">Need a Custom <span class="text-shimmer">Solution</span>?</h2>
-                <p class="cta-subtitle reveal">Let's discuss your specific needs and create a tailored package for your business.</p>
-                <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Contact Us</span></a>
+        <!-- Dump Truck Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&fit=crop" alt="Dump Truck Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Dump Truck Dispatch</h3>
+                <p class="service-card-description">Construction and material hauling dispatch. Job site coordination, material tracking, and fleet management.</p>
+                <ul class="service-features-list">
+                    <li>Job site dispatch coordination</li>
+                    <li>Material delivery scheduling</li>
+                    <li>Multiple site management</li>
+                    <li>8 hours daily coverage (176hrs/month)</li>
+                </ul>
+                <span class="service-price-badge">Starting at $5/hour per truck</span>
             </div>
-        </section>
+        </div>
+
+        <!-- After Hours Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?q=80&w=800&fit=crop" alt="After Hours Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">After Hours Dispatch</h3>
+                <p class="service-card-description">Extend your business hours with professional night and weekend coverage. Never miss an opportunity.</p>
+                <ul class="service-features-list">
+                    <li>Evening & overnight coverage</li>
+                    <li>Weekend operations support</li>
+                    <li>Seamless handoff protocols</li>
+                    <li>Flexible scheduling options</li>
+                </ul>
+                <span class="service-price-badge">$5/hour per agent</span>
+            </div>
+        </div>
+
+        <!-- NEMT Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1632833239869-a37e3a5806d2?q=80&w=800&fit=crop" alt="NEMT Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Medical Transport Dispatch</h3>
+                <p class="service-card-description">HIPAA-compliant non-emergency medical transportation coordination. Patient scheduling and insurance verification.</p>
+                <ul class="service-features-list">
+                    <li>HIPAA-compliant call handling</li>
+                    <li>Patient appointment scheduling</li>
+                    <li>Insurance verification support</li>
+                    <li>Medical facility coordination</li>
+                </ul>
+                <span class="service-price-badge">$5/hour per agent</span>
+            </div>
+        </div>
+
+        <!-- Taxi Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&fit=crop" alt="Taxi Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Taxi Dispatch Services</h3>
+                <p class="service-card-description">Complete call answering and ride coordination for taxi services. High-volume call handling with fast response times.</p>
+                <ul class="service-features-list">
+                    <li>24/7 call answering service</li>
+                    <li>Ride coordination & driver dispatch</li>
+                    <li>Customer booking management</li>
+                    <li>Multi-line support available</li>
+                </ul>
+                <span class="service-price-badge">$5/hour per agent</span>
+            </div>
+        </div>
+
+        <!-- Limousine Dispatch -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800&fit=crop" alt="Limousine Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Limousine Dispatch</h3>
+                <p class="service-card-description">Premium dispatch services for luxury transportation providers. VIP client handling and concierge-level service.</p>
+                <ul class="service-features-list">
+                    <li>VIP client management</li>
+                    <li>Luxury fleet coordination</li>
+                    <li>Event & corporate bookings</li>
+                    <li>White-glove customer service</li>
+                </ul>
+                <span class="service-price-badge">$5/hour per agent</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-content">
+        <h2 class="cta-title reveal">Ready to Elevate <span class="text-shimmer">Your Operations</span>?</h2>
+        <p class="cta-subtitle reveal">Choose your service and experience professional dispatch support starting at just $5/hour.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="#pricing" class="btn btn-primary magnetic reveal" data-page="pricing"><span>View Pricing Details</span></a>
+            <a href="#contact" class="btn btn-secondary magnetic reveal" data-page="contact"><span>Request Quote</span></a>
+        </div>
+    </div>
+</section>
+           
     </div>
 
     <!-- PRICING PAGE -->
     <div class="page" id="page-pricing">
-        <section class="services-hero">
-            <div class="section-header">
-                <span class="section-tag">Pricing</span>
-                <h1 class="section-title reveal">Transparent <span class="text-shimmer">Pricing</span></h1>
-                <p class="section-subtitle reveal">Simple, affordable rates with no hidden fees. Choose your billing cycle and save.</p>
+        <section class="pricing-hero-luxury">
+    <div style="position: relative; z-index: 2;">
+        <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Transparent Pricing</span>
+        <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Choose Your <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Perfect Plan</span></h1>
+        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto;">Professional dispatch services with flexible billing options. Select your service and billing cycle below.</p>
+        
+        <div class="pricing-selector">
+            <button class="pricing-selector-btn active" onclick="switchBillingCycle('weekly')" id="btn-weekly">
+                Weekly
+            </button>
+            <button class="pricing-selector-btn" onclick="switchBillingCycle('monthly')" id="btn-monthly">
+                Monthly
+                <span class="pricing-discount-tag">Sundays FREE</span>
+            </button>
+            <button class="pricing-selector-btn" onclick="switchBillingCycle('quarterly')" id="btn-quarterly">
+                Quarterly
+                <span class="pricing-discount-tag">Weekends FREE</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 6rem 5%; background: var(--bg-section);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem;">
+        
+        <!-- Truck Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Truck Dispatch</h3>
+            <p class="pricing-service-tagline">Complete logistics & load board management</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per truck</span>
             </div>
-        </section>
-
-        <section>
-            <div class="pricing-toggle">
-                <button class="toggle-btn active" data-billing="weekly">Weekly</button>
-                <button class="toggle-btn" data-billing="monthly">Monthly <span class="discount-badge">15% OFF</span></button>
-                <button class="toggle-btn" data-billing="quarterly">Quarterly <span class="discount-badge">25% OFF</span></button>
-            </div>
-
-            <div class="pricing-cards">
-                <div class="pricing-card reveal stagger-1">
-                    <span class="pricing-tier">Starter</span>
-                    <h3 class="pricing-name">Basic Dispatch</h3>
-                    <div class="pricing-price">
-                        <span class="pricing-amount" data-weekly="4" data-monthly="3.40" data-quarterly="3">$4</span>
-                        <span class="pricing-period">/hour</span>
-                    </div>
-                    <p class="pricing-original" style="visibility: hidden;">Originally $4/hour</p>
-                    <ul class="pricing-features">
-                        <li>Dedicated Dispatcher</li>
-                        <li>Load Finding & Booking</li>
-                        <li>Rate Negotiation</li>
-                        <li>Basic Document Handling</li>
-                        <li>Email Support</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-secondary pricing-cta magnetic" data-page="contact"><span>Get Started</span></a>
+            <p class="pricing-billing-note">Additional trucks: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
                 </div>
-
-                <div class="pricing-card featured reveal stagger-2 glow">
-                    <span class="pricing-badge">Most Popular</span>
-                    <span class="pricing-tier">Professional</span>
-                    <h3 class="pricing-name">Full Service</h3>
-                    <div class="pricing-price">
-                        <span class="pricing-amount" data-weekly="4" data-monthly="3.40" data-quarterly="3">$4</span>
-                        <span class="pricing-period">/hour</span>
-                    </div>
-                    <p class="pricing-original" style="visibility: hidden;">Originally $4/hour</p>
-                    <ul class="pricing-features">
-                        <li>Everything in Basic</li>
-                        <li>Back Office Support</li>
-                        <li>Route Optimization</li>
-                        <li>Cost & Profit Analysis</li>
-                        <li>Simple Bookkeeping</li>
-                        <li>Broker Negotiations</li>
-                        <li>24/7 Phone Support</li>
-                        <li>FREE Weekend Service*</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary pricing-cta" data-page="contact"><span>Get Started</span></a>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Dedicated dispatcher for your fleet</span>
                 </div>
-
-                <div class="pricing-card reveal stagger-3">
-                    <span class="pricing-tier">Enterprise</span>
-                    <h3 class="pricing-name">Fleet Solutions</h3>
-                    <div class="pricing-price">
-                        <span class="pricing-amount">Custom</span>
-                    </div>
-                    <p class="pricing-original" style="visibility: hidden;">Contact for pricing</p>
-                    <ul class="pricing-features">
-                        <li>Everything in Professional</li>
-                        <li>Multi-Vechile Management</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>Driver Recruitment Support</li>
-                        <li>Custom Reporting</li>
-                        <li>Priority Support Line</li>
-                        <li>Volume Discounts</li>
-                        <li>Compliance Management</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-secondary pricing-cta magnetic" data-page="contact"><span>Contact Sales</span></a>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Load finding & rate negotiation</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Complete back-office support</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Route planning & optimization</span>
                 </div>
             </div>
-
-            <div style="text-align: center; margin-top: 3rem; color: var(--text-muted);">
-                <p>*Weekend service (Saturday & Sunday) is FREE when you haul on weekends</p>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">⚠ Important Note</div>
+                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
             </div>
-        </section>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
 
-        <section class="additional-services">
-            <div class="section-header">
-                <span class="section-tag">Add-Ons</span>
-                <h2 class="section-title reveal">Additional <span class="text-shimmer">Services</span> Pricing</h2>
+        <!-- Tow Truck Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Tow Truck Dispatch</h3>
+            <p class="pricing-service-tagline">24/7 emergency & scheduled towing</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per line</span>
             </div>
-
-            <div class="additional-grid">
-                <div class="additional-card reveal stagger-1">
-                    <div class="additional-icon">👥</div>
-                    <div class="additional-info">
-                        <h4>Driver Recruitment</h4>
-                        <p>Qualified CDL driver placement</p>
-                        <span class="additional-price">$150/driver</span>
-                    </div>
+            <p class="pricing-billing-note">Additional lines: $3.50/hour each • 720hrs/month</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">24/7 dedicated phone line coverage</span>
                 </div>
-                <div class="additional-card reveal stagger-2">
-                    <div class="additional-icon">📊</div>
-                    <div class="additional-info">
-                        <h4>IFTA Filing</h4>
-                        <p>Quarterly tax filing</p>
-                        <span class="additional-price">$75/quarter</span>
-                    </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">3-shift agent rotation per line</span>
                 </div>
-                <div class="additional-card reveal stagger-3">
-                    <div class="additional-icon">🔧</div>
-                    <div class="additional-info">
-                        <h4>Maintenance Coordination</h4>
-                        <p>Repair scheduling</p>
-                        <span class="additional-price">$25/incident</span>
-                    </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Emergency dispatch coordination</span>
                 </div>
-                <div class="additional-card reveal stagger-4">
-                    <div class="additional-icon">🚗</div>
-                    <div class="additional-info">
-                        <h4>MC Authority Setup</h4>
-                        <p>Complete application</p>
-                        <span class="additional-price">$500 one-time</span>
-                    </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Customer call handling</span>
                 </div>
-                <div class="additional-card reveal stagger-5">
-                    <div class="additional-icon">📈</div>
-                    <div class="additional-info">
-                        <h4>Business Consulting</h4>
-                        <p>Growth strategy sessions</p>
-                        <span class="additional-price">$75/hour</span>
-                    </div>
-                </div>
-                <div class="additional-card reveal stagger-6">
-                    <div class="additional-icon">💳</div>
-                    <div class="additional-info">
-                        <h4>Factoring Setup</h4>
-                        <p>Connect with factoring companies</p>
-                        <span class="additional-price">Free</span>
-                    </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">720 hours monthly coverage</span>
                 </div>
             </div>
-        </section>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">💡 Billing Discounts</div>
+                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- Car Hauler Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Car Hauler Dispatch</h3>
+            <p class="pricing-service-tagline">Auto transport & dealer coordination</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per hauler</span>
+            </div>
+            <p class="pricing-billing-note">Additional haulers: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Auto transport load booking</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Dealer & auction coordination</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Route optimization</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Documentation management</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">⚠ Important Note</div>
+                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- Animal Hauler Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Animal Hauler Dispatch</h3>
+            <p class="pricing-service-tagline">Livestock & pet transport coordination</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per hauler</span>
+            </div>
+            <p class="pricing-billing-note">Additional haulers: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Specialized animal transport loads</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Veterinary compliance tracking</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Welfare monitoring coordination</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Temperature control oversight</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">⚠ Important Note</div>
+                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- Dump Truck Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Dump Truck Dispatch</h3>
+            <p class="pricing-service-tagline">Construction & material hauling</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per truck</span>
+            </div>
+            <p class="pricing-billing-note">Additional trucks: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Job site coordination</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Material delivery scheduling</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Multiple site management</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Load tracking & documentation</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">⚠ Important Note</div>
+                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- After Hours Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">After Hours Dispatch</h3>
+            <p class="pricing-service-tagline">Evening & weekend coverage</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per agent</span>
+            </div>
+            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Flexible scheduling options</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Evening & overnight support</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Weekend operations coverage</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Seamless handoff protocols</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Emergency escalation support</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">💡 Billing Discounts</div>
+                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- NEMT Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Medical Transport Dispatch</h3>
+            <p class="pricing-service-tagline">HIPAA-compliant NEMT coordination</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per agent</span>
+            </div>
+            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">HIPAA-compliant call handling</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Patient appointment scheduling</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Insurance verification support</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Medical facility coordination</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Secure patient data handling</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">💡 Billing Discounts</div>
+                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- Taxi Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Taxi Dispatch</h3>
+            <p class="pricing-service-tagline">24/7 ride coordination & call answering</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per agent</span>
+            </div>
+            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">24/7 call answering service</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Real-time ride coordination</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Driver dispatch management</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Customer booking system</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Multi-line support available</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">💡 Billing Discounts</div>
+                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+        <!-- Limousine Dispatch -->
+        <div class="luxury-pricing-card reveal">
+            <h3 class="pricing-service-name">Limousine Dispatch</h3>
+            <p class="pricing-service-tagline">Premium VIP transportation services</p>
+            
+            <div class="pricing-amount-display">
+                <span class="pricing-dollar">$5</span>
+                <span class="pricing-rate">/hour per agent</span>
+            </div>
+            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
+            
+            <div class="pricing-feature-grid">
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">VIP client management</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Luxury fleet coordination</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Event & corporate bookings</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Concierge-level customer service</span>
+                </div>
+                <div class="pricing-feature-item">
+                    <div class="pricing-feature-icon">✓</div>
+                    <span class="pricing-feature-text">Premium client communication</span>
+                </div>
+            </div>
+            
+            <div class="pricing-note-box">
+                <div class="pricing-note-title">💡 Billing Discounts</div>
+                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
+            </div>
+            
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-content">
+        <h2 class="cta-title reveal">Questions About <span class="text-shimmer">Pricing</span>?</h2>
+        <p class="cta-subtitle reveal">Our team is ready to create a custom package for your specific needs.</p>
+        <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Contact Us Today</span></a>
+    </div>
+</section>
+        </div>
 
         <!-- FAQ Section -->
         <section id="faq">
@@ -5092,103 +6354,157 @@ header > div > ul:not(.nav-links) {
 </div>
     <!-- ABOUT PAGE -->
     <div class="page" id="page-about">
-        <section class="services-hero">
-            <div class="section-header">
-                <span class="section-tag">About Us</span>
-                <h1 class="section-title reveal">Our <span class="text-shimmer">Story</span></h1>
-                <p class="section-subtitle reveal">Building bridges between American companies and premium support services.</p>
-            </div>
-        </section>
+       <section class="about-hero-premium">
+    <div style="position: relative; z-index: 2;">
+        <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">About Haulxify</span>
+        <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Redefining <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dispatch Excellence</span></h1>
+        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto;">Built on the foundation of reliability, powered by expertise across 9+ transportation industries.</p>
+    </div>
+</section>
 
-        <section>
-            <div class="about-grid">
-                <div class="about-image reveal-left">
-                    <div class="about-image-main">🚛</div>
-                    <div class="about-stats-card">
-                        <h4>500+</h4>
-                        <p>Companies Served</p>
-                    </div>
-                </div>
-                <div class="about-content reveal-right">
-                    <h3>Why We Exist</h3>
-                    <p>Haulxify was born from a simple observation: American Logistic companiess deserve premium support services without premium prices. Based in Pakistan, we leverage global talent to provide world-class dispatch services at rates that make sense.</p>
-                    <p>Our team understands the American industry inside and out. We know the load boards, we know the lanes, and we know what it takes to keep owner-operators profitable.</p>
-                    <div class="about-features">
-                        <div class="about-feature">24/7 Operations</div>
-                        <div class="about-feature">US Market Experts</div>
-                        <div class="about-feature">100+ Trained Staff</div>
-                        <div class="about-feature">Premium Quality</div>
-                    </div>
-                </div>
+<section style="padding: 8rem 5%; background: #ffffff;">
+    <div class="about-story-section">
+        <div class="reveal-left">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&fit=crop" alt="Professional Team" class="about-image-premium">
+        </div>
+        <div class="about-text reveal-right">
+            <h2>Our Story</h2>
+            <p>Haulxify was founded with a simple yet powerful vision: to provide world-class dispatch services at rates that make sense for businesses of all sizes. What started as a truck dispatch service has evolved into a comprehensive multi-industry solution.</p>
+            <p>Based in Pakistan with deep expertise in American markets, we've built a team of over 100 trained professionals who understand the unique challenges of transportation and logistics across multiple sectors.</p>
+            <p>We don't just answer calls—we become an extension of your team, learning your business, understanding your customers, and representing your brand with the same care and attention you would.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact"><span>Join Our Family</span></a>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section>
-            <div class="section-header">
-                <span class="section-tag">Our Values</span>
-                <h2 class="section-title reveal">What Drives <span class="text-shimmer">Us</span></h2>
-            </div>
+<section style="padding: 8rem 5%; background: var(--bg-section);">
+    <div class="section-header">
+        <span class="section-tag">Our Impact</span>
+        <h2 class="section-title reveal">By the <span class="text-shimmer">Numbers</span></h2>
+    </div>
+    
+    <div class="stats-premium-grid">
+        <div class="stat-premium reveal stagger-1">
+            <div class="stat-premium-number" data-count="9">0</div>
+            <div class="stat-premium-label">Industries Served</div>
+        </div>
+        <div class="stat-premium reveal stagger-2">
+            <div class="stat-premium-number" data-count="500">0</div>
+            <div class="stat-premium-label">Active Clients</div>
+        </div>
+        <div class="stat-premium reveal stagger-3">
+            <div class="stat-premium-number" data-count="100">0</div>
+            <div class="stat-premium-label">Trained Agents</div>
+        </div>
+        <div class="stat-premium reveal stagger-4">
+            <div class="stat-premium-number">24/7</div>
+            <div class="stat-premium-label">Always Available</div>
+        </div>
+    </div>
+</section>
 
-            <div class="features-grid">
-                <div class="feature-card reveal stagger-1">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Excellence</h3>
-                    <p class="feature-desc">We don't settle for good enough. Every load, every negotiation, every document is handled with precision.</p>
-                </div>
-                <div class="feature-card reveal stagger-2">
-                    <div class="feature-icon">🤝</div>
-                    <h3 class="feature-title">Partnership</h3>
-                    <p class="feature-desc">Your success is our success. We treat every business as if it were our own.</p>
-                </div>
-                <div class="feature-card reveal stagger-3">
-                    <div class="feature-icon">💡</div>
-                    <h3 class="feature-title">Innovation</h3>
-                    <p class="feature-desc">We constantly improve our processes and tools to serve you better.</p>
-                </div>
-            </div>
-        </section>
+<section style="padding: 8rem 5%; background: #ffffff;">
+    <div class="section-header">
+        <span class="section-tag">Our Values</span>
+        <h2 class="section-title reveal">What Drives <span class="text-shimmer">Us</span></h2>
+        <p class="section-subtitle reveal">The principles that guide every interaction, every decision, every day.</p>
+    </div>
+    
+    <div class="values-grid">
+        <div class="value-card reveal stagger-1">
+            <div class="value-icon">🎯</div>
+            <h3>Excellence</h3>
+            <p>We don't settle for good enough. Every call, every booking, every interaction is handled with precision and care.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-2">
+            <div class="value-icon">🤝</div>
+            <h3>Partnership</h3>
+            <p>Your success is our success. We treat every client's business as if it were our own, with the same dedication and attention.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-3">
+            <div class="value-icon">💡</div>
+            <h3>Innovation</h3>
+            <p>We constantly improve our processes, adopt new technologies, and find better ways to serve you.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-4">
+            <div class="value-icon">🔒</div>
+            <h3>Integrity</h3>
+            <p>Transparent pricing, honest communication, and unwavering commitment to doing what's right.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-5">
+            <div class="value-icon">🌍</div>
+            <h3>Diversity</h3>
+            <p>We serve 9+ industries because we understand that great service requires deep industry knowledge.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-6">
+            <div class="value-icon">⚡</div>
+            <h3>Reliability</h3>
+            <p>24/7 availability isn't just a feature—it's a promise. We're always there when you need us.</p>
+        </div>
+    </div>
+</section>
 
-        <section>
-            <div class="section-header">
-                <span class="section-tag">Leadership</span>
-                <h2 class="section-title reveal">Meet Our <span class="text-shimmer">Team</span></h2>
-            </div>
+<section style="padding: 8rem 5%; background: var(--bg-section);">
+    <div class="about-story-section" style="flex-direction: row-reverse;">
+        <div class="reveal-right">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&fit=crop" alt="Global Team" class="about-image-premium">
+        </div>
+        <div class="about-text reveal-left">
+            <h2>Why Pakistan-Based?</h2>
+            <p>Our location in Pakistan isn't just about cost savings—it's about accessing a highly educated, English-proficient workforce with a strong work ethic and dedication to customer service.</p>
+            <p>We've built state-of-the-art facilities with the latest technology, ensuring seamless communication and operations. Our team works US hours, understands American culture, and is trained specifically for the industries we serve.</p>
+            <p>The result? You get world-class service at rates that allow you to invest more in growing your business, not just maintaining operations.</p>
+        </div>
+    </div>
+</section>
 
-            <div class="team-grid">
-                <div class="team-card reveal stagger-1">
-                    <div class="team-avatar">👨‍💼</div>
-                    <h4 class="team-name">Ehtisham Rana Khan</h4>
-                    <p class="team-role">Founder & CEO</p>
-                    <p class="team-desc">5+ years in logistics with deep expertise in American markets.</p>
-                </div>
-                <div class="team-card reveal stagger-2">
-                    <div class="team-avatar">👩‍💼</div>
-                    <h4 class="team-name">Zaighaum Rana Khan</h4>
-                    <p class="team-role">Operations Director</p>
-                    <p class="team-desc">Former dispatcher with experience managing 50+ fleets.</p>
-                </div>
-                <div class="team-card reveal stagger-3">
-                    <div class="team-avatar">👨‍💻</div>
-                    <h4 class="team-name">Ali Raza</h4>
-                    <p class="team-role">Technology Lead</p>
-                    <p class="team-desc">Building tools and systems to optimize operations.</p>
-                </div>
-                <div class="team-card reveal stagger-4">
-                    <div class="team-avatar">👩‍🏫</div>
-                    <h4 class="team-name">Farwa Qamar</h4>
-                    <p class="team-role">Training Manager</p>
-                    <p class="team-desc">Ensures every dispatcher meets our quality standards.</p>
-                </div>
-            </div>
-        </section>
+<section style="padding: 8rem 5%; background: #ffffff;">
+    <div class="section-header">
+        <span class="section-tag">Leadership</span>
+        <h2 class="section-title reveal">Meet Our <span class="text-shimmer">Founders</span></h2>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto;">
+        <div class="value-card reveal stagger-1">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&h=300&fit=crop" alt="Ehtisham Rana Khan" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem;">
+            <h3>Ehtisham Rana Khan</h3>
+            <p style="color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">Founder & CEO</p>
+            <p>5+ years in logistics with deep expertise in American markets and multi-industry operations.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-2">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&h=300&fit=crop" alt="Zaighaum Rana Khan" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem;">
+            <h3>Zaighaum Rana Khan</h3>
+            <p style="color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">Operations Director</p>
+            <p>Former dispatcher with experience managing 50+ fleets across different transportation sectors.</p>
+        </div>
+        
+        <div class="value-card reveal stagger-3">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&h=300&fit=crop" alt="Ali Raza" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem;">
+            <h3>Ali Raza</h3>
+            <p style="color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">Technology Lead</p>
+            <p>Building cutting-edge tools and systems to optimize dispatch operations and client experience.</p>
+        </div>
+    </div>
+</section>
 
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2 class="cta-title reveal">Ready to Partner with <span class="text-shimmer">Excellence</span>?</h2>
-                <p class="cta-subtitle reveal">Join the Haulxify family and experience the difference.</p>
-                <a href="#" class="btn btn-primary magnetic reveal" data-page="contact">Get Started</a>
-            </div>
-        </section>
+<section class="cta-section">
+    <div class="cta-content">
+        <h2 class="cta-title reveal">Ready to Experience <span class="text-shimmer">Excellence</span>?</h2>
+        <p class="cta-subtitle reveal">Join hundreds of businesses who trust Haulxify for their dispatch needs.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Get Started Today</span></a>
+            <a href="#pricing" class="btn btn-secondary magnetic reveal" data-page="pricing"><span>View Pricing</span></a>
+        </div>
+    </div>
+</section>
     </div>
 
     <!-- BLOG PAGE -->
@@ -5431,97 +6747,164 @@ header > div > ul:not(.nav-links) {
 
     <!-- CONTACT PAGE -->
     <div class="page" id="page-contact">
-        <section class="services-hero">
-            <div class="section-header">
-                <span class="section-tag">Contact</span>
-                <h1 class="section-title reveal">Get in <span class="text-shimmer">Touch</span></h1>
-                <p class="section-subtitle reveal">Ready to elevate your logistic business? We'd love to hear from you.</p>
-            </div>
-        </section>
-
-        <section>
-            <div class="contact-wrapper">
-                <div class="contact-info reveal-left">
-                    <h3>Let's Talk</h3>
-                    <p>Whether you're an owner-operator looking for dispatch services or a fleet owner seeking a reliable partner, we're here to help.</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>contact@haulxify.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <h4>Phone (US)</h4>
-                            <p>+1 (800) XXX-XXXX</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">💬</div>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <p>+92 XXX XXXXXXX</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕐</div>
-                        <div>
-                            <h4>Hours</h4>
-                            <p>24/7 Support Available</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form reveal-right">
-                    <form id="contactForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" required placeholder="John">
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" required placeholder="Doe">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" required placeholder="john@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="tel" placeholder="+1 (555) 000-0000">
-                            </div>
-                            <div class="form-group full">
-                                <label>Service Interest</label>
-                                <select>
-                                    <option value="">Select a service</option>
-                                    <option value="dispatch">Dispatch Services</option>
-                                    <option value="backoffice">Back Office Support</option>
-                                    <option value="fleet">Fleet Solutions</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group full">
-                                <label>Message</label>
-                                <textarea placeholder="Tell us about your business and needs..."></textarea>
-                            </div>
-                            <div class="form-submit">
-    <button type="submit" class="btn btn-primary magnetic" style="width: 100%;"><span>Send Message</span></button>
-</div>
-                        </div>
-                    </form>
-                    <div class="success-message" id="successMessage">
-                        <p style="color: var(--accent-gold); font-weight: 600;">✓ Message Sent Successfully!</p>
-                        <p style="color: var(--text-muted); margin-top: 0.5rem;">We'll get back to you within 24 hours.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section class="contact-hero-premium">
+    <div style="position: relative; z-index: 2;">
+        <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Get In Touch</span>
+        <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Start Your <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Partnership</span></h1>
+        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto;">Tell us about your business and we'll create a custom solution tailored to your needs.</p>
     </div>
+</section>
 
+<section style="padding: 6rem 5%; background: var(--bg-section);">
+    <div class="contact-premium-wrapper reveal">
+        <div class="contact-form-header">
+            <h2>Request a Quote</h2>
+            <p>Get started in less than 2 minutes</p>
+        </div>
+        
+        <div class="contact-form-body">
+            <form id="contactFormPremium" onsubmit="event.preventDefault(); handleContactSubmit();">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="form-premium-group">
+                        <label class="form-premium-label">First Name *</label>
+                        <input type="text" class="form-premium-input" required placeholder="John">
+                    </div>
+                    
+                    <div class="form-premium-group">
+                        <label class="form-premium-label">Last Name *</label>
+                        <input type="text" class="form-premium-input" required placeholder="Doe">
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="form-premium-group">
+                        <label class="form-premium-label">Email Address *</label>
+                        <input type="email" class="form-premium-input" required placeholder="john@company.com">
+                    </div>
+                    
+                    <div class="form-premium-group">
+                        <label class="form-premium-label">Phone Number *</label>
+                        <input type="tel" class="form-premium-input" required placeholder="+1 (555) 000-0000" pattern="[+]?[0-9\s\-\(\)]+">
+                    </div>
+                </div>
+                
+                <div class="form-premium-group">
+                    <label class="form-premium-label">Company Name *</label>
+                    <input type="text" class="form-premium-input" required placeholder="Your Company LLC">
+                </div>
+                
+                <div class="form-premium-group">
+                    <label class="form-premium-label">Service Interest *</label>
+                    <select class="form-premium-select" required>
+                        <option value="">Select a service</option>
+                        <option value="truck">Truck Dispatch</option>
+                        <option value="tow">Tow Truck Dispatch</option>
+                        <option value="car-hauler">Car Hauler Dispatch</option>
+                        <option value="animal">Animal Hauler Dispatch</option>
+                        <option value="dump">Dump Truck Dispatch</option>
+                        <option value="after-hours">After Hours Dispatch</option>
+                        <option value="nemt">Medical Transport (NEMT)</option>
+                        <option value="taxi">Taxi Dispatch</option>
+                        <option value="limo">Limousine Dispatch</option>
+                        <option value="multiple">Multiple Services</option>
+                    </select>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="form-premium-group">
+                        <label class="form-premium-label">Fleet Size</label>
+                        <select class="form-premium-select">
+                            <option value="">Select fleet size</option>
+                            <option value="1">1 Vehicle</option>
+                            <option value="2-5">2-5 Vehicles</option>
+                            <option value="6-10">6-10 Vehicles</option>
+                            <option value="11-20">11-20 Vehicles</option>
+                            <option value="21+">21+ Vehicles</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-premium-group">
+                        <label class="form-premium-label">Preferred Billing</label>
+                        <select class="form-premium-select">
+                            <option value="">Select billing cycle</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly (Sundays FREE)</option>
+                            <option value="quarterly">Quarterly (Weekends FREE)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-premium-group">
+                    <label class="form-premium-label">Tell Us About Your Needs *</label>
+                    <textarea class="form-premium-textarea" required placeholder="Please describe your dispatch needs, current challenges, and what you're looking for in a dispatch service..."></textarea>
+                </div>
+                
+                <div class="form-checkbox-group">
+                    <input type="checkbox" id="smsConsent" class="form-checkbox" required>
+                    <label for="smsConsent" class="form-checkbox-label">
+                        I consent to receive automated marketing messages via SMS/text to the phone number provided. Message frequency varies. Reply STOP to opt-out. Message and data rates may apply. <strong>This consent is not required to purchase services.</strong>
+                    </label>
+                </div>
+                
+                <div class="form-privacy-notice">
+                    <h4>🔒 Your Privacy Matters</h4>
+                    <p>We respect your privacy and will never sell, trade, or share your contact information with third parties. Your data is securely stored and used solely to provide you with dispatch services and respond to your inquiries. We are fully 10DLC compliant for all SMS communications.</p>
+                </div>
+                
+                <button type="submit" class="form-submit-btn">
+                    Get Your Custom Quote
+                </button>
+            </form>
+            
+            <div id="formSuccessMessage" style="display: none; text-align: center; padding: 3rem; background: rgba(34, 197, 94, 0.1); border-radius: 12px; margin-top: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
+                <h3 style="color: #16a34a; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem;">Thank You!</h3>
+                <p style="color: var(--text-body);">We've received your request and will contact you within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 6rem 5%; background: #ffffff;">
+    <div class="section-header">
+        <h2 class="section-title reveal">Other Ways to <span class="text-shimmer">Reach Us</span></h2>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+        <div class="value-card reveal stagger-1">
+            <div class="value-icon">📧</div>
+            <h3>Email</h3>
+            <p style="color: var(--accent-gold); font-weight: 600; margin-top: 1rem;">contact@haulxify.com</p>
+        </div>
+        
+        <div class="value-card reveal stagger-2">
+            <div class="value-icon">📞</div>
+            <h3>Phone (US)</h3>
+            <p style="color: var(--accent-gold); font-weight: 600; margin-top: 1rem;">+1 (800) XXX-XXXX</p>
+        </div>
+        
+        <div class="value-card reveal stagger-3">
+            <div class="value-icon">💬</div>
+            <h3>WhatsApp</h3>
+            <p style="color: var(--accent-gold); font-weight: 600; margin-top: 1rem;">+92 XXX XXXXXXX</p>
+        </div>
+    </div>
+</section>
+    </div>
+<!-- Cookie Consent Popup -->
+<div class="cookie-consent" id="cookieConsent">
+    <div class="cookie-consent-header">
+        <span class="cookie-icon">🍪</span>
+        <h3>Cookie Notice</h3>
+    </div>
+    <p class="cookie-consent-text">
+        We use cookies to enhance your experience, analyze site traffic, and provide personalized content. By clicking "Accept", you consent to our use of cookies.
+    </p>
+    <div class="cookie-consent-actions">
+        <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
+        <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Decline</button>
+    </div>
+</div>
     <!-- PRIVACY POLICY PAGE -->
     <div class="page" id="page-privacy">
         <section class="legal-content">
@@ -7163,6 +8546,224 @@ document.querySelectorAll('.industry-pill').forEach((pill, index) => {
     observer.observe(pill);
     pill.style.animationDelay = `${index * 0.1}s`;
 }); 
+        // Pricing Billing Cycle Switcher
+function switchBillingCycle(cycle) {
+    // Update button states
+    document.querySelectorAll('.pricing-selector-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.getElementById('btn-' + cycle).classList.add('active');
+    
+    // You can add logic here to update pricing displays if needed
+    // For now, the discounts are shown in the note boxes
+}
+        // Premium Contact Form Handler
+function handleContactSubmit() {
+    const form = document.getElementById('contactFormPremium');
+    const successMsg = document.getElementById('formSuccessMessage');
+    
+    // Hide form and show success message
+    form.style.display = 'none';
+    successMsg.style.display = 'block';
+    
+    // In production, this would send data to your backend
+    console.log('Form submitted successfully');
+    
+    // Scroll to success message
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Initialize counter animations for About page
+document.querySelectorAll('.stat-premium-number[data-count]').forEach(counter => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                updateCounter();
+                observer.unobserve(counter);
+            }
+        });
+    });
+    observer.observe(counter);
+});
+      // Cookie Consent Management
+function showCookieConsent() {
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+        setTimeout(() => {
+            document.getElementById('cookieConsent').classList.add('show');
+        }, 2000); // Show after 2 seconds
+    }
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    document.getElementById('cookieConsent').classList.remove('show');
+    // Initialize analytics or tracking here
+    console.log('Cookies accepted');
+}
+
+function declineCookies() {
+    localStorage.setItem('cookieConsent', 'declined');
+    document.getElementById('cookieConsent').classList.remove('show');
+    console.log('Cookies declined');
+}
+
+// Show cookie consent on page load
+window.addEventListener('load', showCookieConsent);  
+   // Premium Page Transitions
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth fade-in for premium cards
+    const cards = document.querySelectorAll('.luxury-pricing-card, .premium-service-card, .value-card');
+    
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        cardObserver.observe(card);
+    });
+    
+    // Parallax effect for images (desktop only)
+    if (window.innerWidth > 992) {
+        const images = document.querySelectorAll('.about-image-premium');
+        
+        window.addEventListener('scroll', () => {
+            images.forEach(img => {
+                const rect = img.getBoundingClientRect();
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * 0.3;
+                
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    img.style.transform = `translateY(${rate - rect.top * 0.1}px)`;
+                }
+            });
+        });
+    }
+});
+
+// Service card image hover effect
+document.querySelectorAll('.premium-service-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        const img = this.querySelector('.service-card-image');
+        if (img) {
+            img.style.transform = 'scale(1.1)';
+        }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        const img = this.querySelector('.service-card-image');
+        if (img) {
+            img.style.transform = 'scale(1)';
+        }
+    });
+});
+
+// Pricing card glow effect on hover
+document.querySelectorAll('.luxury-pricing-card').forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        this.style.setProperty('--mouse-x', x + 'px');
+        this.style.setProperty('--mouse-y', y + 'px');
+    });
+});
+
+// Form validation enhancement
+const contactForm = document.getElementById('contactFormPremium');
+if (contactForm) {
+    const inputs = contactForm.querySelectorAll('.form-premium-input, .form-premium-select, .form-premium-textarea');
+    
+    inputs.forEach(input => {
+        // Add success state on valid input
+        input.addEventListener('blur', function() {
+            if (this.value && this.checkValidity()) {
+                this.style.borderColor = '#22c55e';
+            }
+        });
+        
+        // Reset border on focus
+        input.addEventListener('focus', function() {
+            if (this.style.borderColor === 'rgb(34, 197, 94)') {
+                this.style.borderColor = '#c9a227';
+            }
+        });
+    });
+}
+
+// Page load animation sequence
+window.addEventListener('load', () => {
+    // Animate hero elements
+    const heroElements = document.querySelectorAll('.hero-content > *');
+    heroElements.forEach((el, index) => {
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, index * 150 + 500);
+    });
+});
+        // Accessibility: Keyboard Navigation Enhancement
+document.addEventListener('keydown', function(e) {
+    // Skip to main content with 'S' key
+    if (e.key === 's' || e.key === 'S') {
+        const main = document.querySelector('main') || document.querySelector('.page.active');
+        if (main) {
+            main.focus();
+            main.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    
+    // Escape key closes modals and mobile menu
+    if (e.key === 'Escape') {
+        // Close modals
+        document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        // Close mobile menu
+        closeMobileMenu();
+    }
+});
+
+// Add focus visible for keyboard users only
+document.addEventListener('mousedown', () => {
+    document.body.classList.add('using-mouse');
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+        document.body.classList.remove('using-mouse');
+    }
+});
     </script>
 </body>
 </html>
