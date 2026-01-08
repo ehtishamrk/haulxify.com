@@ -8734,7 +8734,23 @@ class WebsiteLoader {
         this.isAppMode = false;
         this.currentPage = 'home';
     }
+// Add this method inside the WebsiteLoader class
+    async init() {
+        // 1. Check if we are in App Mode (RigFolio/Wire)
+        this.initAppMode();
 
+        // 2. If NOT in App Mode, run the Normal Website Sequence
+        if (!this.isAppMode) {
+            // A. Wait for preloader to hide
+            await this.hidePreloader();
+            
+            // B. Initialize normal site features
+            this.initNormalMode();
+            
+            // C. Animate Hero Content
+            this.animateHeroContent();
+        }
+    }
     // ============= PRELOADER =============
     hidePreloader() {
         return new Promise((resolve) => {
