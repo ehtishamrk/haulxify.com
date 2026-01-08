@@ -906,9 +906,9 @@ body {
    5. BUTTONS
    ================================================================= */
 .btn {
-    padding: 1.2rem 3rem;
-    border-radius: 2px;
-    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -1065,7 +1065,137 @@ section {
     margin: 0 auto;
     line-height: 1.8;
 }
+/* Service Category Cards */
+.services-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
+.service-category-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.service-category-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-gold);
+}
+
+.service-cat-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.05) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    transition: all 0.4s ease;
+}
+
+.service-category-card:hover .service-cat-icon {
+    background: var(--gradient-gold);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.service-cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--primary-navy);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.service-cat-desc {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.service-cat-badge {
+    display: inline-block;
+    background: rgba(201, 162, 39, 0.1);
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Industries Section */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.industry-pill {
+    background: #ffffff;
+    border: 2px solid var(--border-light);
+    border-radius: 50px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-navy);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.industry-pill:hover {
+    border-color: var(--accent-gold);
+    background: rgba(201, 162, 39, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .services-showcase {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-category-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .industries-grid {
+        grid-template-columns: 1fr;
+    }
+}
 /* =================================================================
    8. FEATURES
    ================================================================= */
@@ -3630,6 +3760,90 @@ nav > ul:not(.nav-links),
 header > div > ul:not(.nav-links) {
     display: none !important;
 } 
+       /* Enhanced Mobile Optimization */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-stats {
+        gap: 1.5rem;
+        padding-top: 2rem;
+    }
+    
+    .stat-value {
+        font-size: 2.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .service-category-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .service-cat-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    .industries-grid {
+        gap: 1rem;
+    }
+    
+    .industry-pill {
+        padding: 1.2rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .weekend-banner {
+        padding: 3rem 5%;
+    }
+    
+    .weekend-title {
+        font-size: 1.8rem;
+    }
+    
+    .weekend-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Disable parallax effects on mobile */
+    .service-category-card {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .feature-card {
+        padding: 2rem 1.5rem;
+    }
+} 
     </style>
 </head>
 <body>
@@ -3728,190 +3942,280 @@ header > div > ul:not(.nav-links) {
     <div class="page active" id="page-home">
         <!-- Hero Section -->
         <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-grid"></div>
-            
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="dot"></span>
-                    Premium Dispatch Services
-                </div>
-                <h1 class="hero-title">
-                    Hauling Made <span class="highlight text-shimmer">Effortless</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Elite dispatch services for American Logistic companies. Expert support at $4/hour with weekends FREE when you haul. Your success is our mission.
-                </p>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value" data-count="500">0</div>
-                        <div class="stat-label">Active Companies</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">$4</div>
-                        <div class="stat-label">Per Hour</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">24/7</div>
-                        <div class="stat-label">Support</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">FREE</div>
-                        <div class="stat-label">Weekends*</div>
-                    </div>
-                </div>
-
-                <div class="hero-cta">
-    <a href="#pricing" class="btn btn-primary magnetic" data-page="pricing"><span>View Pricing</span></a>
-    <a href="#services" class="btn btn-secondary magnetic" data-page="services"><span>Our Services</span></a>
-</div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Professional Dispatch Services
+        </div>
+        <h1 class="hero-title">
+            Dispatch Services for <span class="highlight text-shimmer">Every Industry</span>
+        </h1>
+        <p class="hero-subtitle">
+            From trucks to taxis, tow services to medical transport—we provide 24/7 professional dispatch at just $4/hour. Your operations, simplified.
+        </p>
+        
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">9</div>
+                <div class="stat-label">Industries Served</div>
             </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="section-header">
-                <span class="section-tag">Why Choose Us</span>
-                <h2 class="section-title reveal">The Haulxify <span class="text-shimmer">Advantage</span></h2>
-                <p class="section-subtitle reveal">Premium services designed for the modern companies. We handle the complexity so you can focus on the road.</p>
+            <div class="stat">
+                <div class="stat-value">$4</div>
+                <div class="stat-label">Per Hour</div>
             </div>
-
-            <div class="features-grid">
-                <div class="feature-card reveal stagger-1">
-                    <span class="feature-number">01</span>
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Dedicated Dispatchers</h3>
-                    <p class="feature-desc">Your personal dispatcher works exclusively to find you the best loads and negotiate the highest rates.</p>
-                </div>
-                <div class="feature-card reveal stagger-2">
-                    <span class="feature-number">02</span>
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Complete Back Office</h3>
-                    <p class="feature-desc">From paperwork to compliance, we handle all administrative tasks so you never miss a deadline.</p>
-                </div>
-                <div class="feature-card reveal stagger-3">
-                    <span class="feature-number">03</span>
-                    <div class="feature-icon">🗺️</div>
-                    <h3 class="feature-title">Smart Route Planning</h3>
-                    <p class="feature-desc">Optimized routes that minimize deadhead miles and maximize your earnings per trip.</p>
-                </div>
-                <div class="feature-card reveal stagger-4">
-                    <span class="feature-number">04</span>
-                    <div class="feature-icon">💰</div>
-                    <h3 class="feature-title">Profit Analysis</h3>
-                    <p class="feature-desc">Detailed cost breakdowns and profit analysis to help you understand and grow your business.</p>
-                </div>
-                <div class="feature-card reveal stagger-5">
-                    <span class="feature-number">05</span>
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">24/7 Availability</h3>
-                    <p class="feature-desc">Round-the-clock support means you're never alone on the road, no matter the timezone.</p>
-                </div>
-                <div class="feature-card reveal stagger-6">
-                    <span class="feature-number">06</span>
-                    <div class="feature-icon">🔒</div>
-                    <h3 class="feature-title">Compliance Assured</h3>
-                    <p class="feature-desc">Stay compliant with DOT regulations, HOS rules, and all federal requirements effortlessly.</p>
-                </div>
+            <div class="stat">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Support</div>
             </div>
-        </section>
+            <div class="stat">
+                <div class="stat-value">500+</div>
+                <div class="stat-label">Active Clients</div>
+            </div>
+        </div>
 
+        <div class="hero-cta">
+            <a href="#services" class="btn btn-primary magnetic" data-page="services"><span>View Services</span></a>
+            <a href="#contact" class="btn btn-secondary magnetic" data-page="contact"><span>Get Started</span></a>
+        </div>
+    </div>
+</section>
+
+       <!-- Services Showcase -->
+<section style="padding: 8rem 5%; background: #ffffff;">
+    <div class="section-header">
+        <span class="section-tag">Our Services</span>
+        <h2 class="section-title reveal">Dispatch Solutions for <span class="text-shimmer">Every Business</span></h2>
+        <p class="section-subtitle reveal">Professional dispatch services tailored to your industry's unique needs</p>
+    </div>
+
+    <div class="services-showcase">
+        <div class="service-category-card reveal stagger-1">
+            <div class="service-cat-icon">🚛</div>
+            <h3 class="service-cat-title">Truck Dispatch</h3>
+            <p class="service-cat-desc">Complete logistics support for owner-operators and fleet managers</p>
+            <span class="service-cat-badge">24/7 Available</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-2">
+            <div class="service-cat-icon">🚗</div>
+            <h3 class="service-cat-title">Tow Truck Dispatch</h3>
+            <p class="service-cat-desc">Fast response coordination for emergency and scheduled towing services</p>
+            <span class="service-cat-badge">Emergency Ready</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-3">
+            <div class="service-cat-icon">🏎️</div>
+            <h3 class="service-cat-title">Car Hauler Dispatch</h3>
+            <p class="service-cat-desc">Specialized dispatch for auto transport and vehicle logistics</p>
+            <span class="service-cat-badge">Nationwide</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-4">
+            <div class="service-cat-icon">🐴</div>
+            <h3 class="service-cat-title">Animal Hauler Dispatch</h3>
+            <p class="service-cat-desc">Compassionate coordination for livestock and pet transportation</p>
+            <span class="service-cat-badge">Live Care</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-5">
+            <div class="service-cat-icon">🚜</div>
+            <h3 class="service-cat-title">Dump Truck Dispatch</h3>
+            <p class="service-cat-desc">Construction and material hauling dispatch management</p>
+            <span class="service-cat-badge">Job Site Ready</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-6">
+            <div class="service-cat-icon">🌙</div>
+            <h3 class="service-cat-title">After Hours Dispatch</h3>
+            <p class="service-cat-desc">Round-the-clock coverage when your team is off duty</p>
+            <span class="service-cat-badge">Night Shift</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-1">
+            <div class="service-cat-icon">🏥</div>
+            <h3 class="service-cat-title">Medical Transport Dispatch</h3>
+            <p class="service-cat-desc">Non-emergency medical transportation coordination and scheduling</p>
+            <span class="service-cat-badge">HIPAA Compliant</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-2">
+            <div class="service-cat-icon">🚕</div>
+            <h3 class="service-cat-title">Taxi Dispatch</h3>
+            <p class="service-cat-desc">Complete call answering and ride coordination for taxi services</p>
+            <span class="service-cat-badge">High Volume</span>
+        </div>
+
+        <div class="service-category-card reveal stagger-3">
+            <div class="service-cat-icon">🎩</div>
+            <h3 class="service-cat-title">Limousine Dispatch</h3>
+            <p class="service-cat-desc">Premium dispatch services for luxury transportation providers</p>
+            <span class="service-cat-badge">VIP Service</span>
+        </div>
+    </div>
+</section>
+<!-- Industries We Serve -->
+<section style="padding: 8rem 5%; background: var(--bg-section);">
+    <div class="section-header">
+        <span class="section-tag">Industries</span>
+        <h2 class="section-title reveal">Trusted Across <span class="text-shimmer">Multiple Industries</span></h2>
+        <p class="section-subtitle reveal">From transportation to healthcare, we understand your industry's unique challenges</p>
+    </div>
+
+    <div class="industries-grid">
+        <div class="industry-pill reveal stagger-1">
+            🚚 Logistics & Freight
+        </div>
+        <div class="industry-pill reveal stagger-2">
+            🚑 Medical Transportation
+        </div>
+        <div class="industry-pill reveal stagger-3">
+            🏗️ Construction & Heavy Equipment
+        </div>
+        <div class="industry-pill reveal stagger-4">
+            🚕 Taxi & Ride Services
+        </div>
+        <div class="industry-pill reveal stagger-5">
+            🎩 Luxury Transportation
+        </div>
+        <div class="industry-pill reveal stagger-6">
+            🔧 Towing & Recovery
+        </div>
+        <div class="industry-pill reveal stagger-1">
+            🐾 Animal & Livestock Transport
+        </div>
+        <div class="industry-pill reveal stagger-2">
+            🚗 Auto Transport
+        </div>
+    </div>
+</section>
         <!-- Weekend Banner -->
-        <section class="weekend-banner">
-            <div class="weekend-content">
-                <h2 class="weekend-title">Haul on Weekends? We've Got You Covered!</h2>
-                <p class="weekend-subtitle">Saturday & Sunday dispatch services are completely FREE when you work weekends.</p>
-                <span class="weekend-badge">🎁 Weekend Hauling = $0 Dispatch Fee</span>
-            </div>
-        </section>
+       <!-- Weekend Banner -->
+<section class="weekend-banner">
+    <div class="weekend-content">
+        <h2 class="weekend-title">Weekend Operations? We Never Close!</h2>
+        <p class="weekend-subtitle">Get FREE dispatch services on Saturday & Sunday when you operate on weekends.</p>
+        <span class="weekend-badge">🎁 Weekend Operations = $0 Dispatch Fee</span>
+    </div>
+</section>
+<!-- Why Choose Us -->
+<section style="padding: 8rem 5%; background: #ffffff;">
+    <div class="section-header">
+        <span class="section-tag">Why Haulxify</span>
+        <h2 class="section-title reveal">The <span class="text-shimmer">Haulxify</span> Advantage</h2>
+        <p class="section-subtitle reveal">What makes us different from other dispatch services</p>
+    </div>
 
+    <div class="features-grid" style="max-width: 1200px; margin: 0 auto;">
+        <div class="feature-card reveal stagger-1">
+            <span class="feature-number">01</span>
+            <div class="feature-icon">🌍</div>
+            <h3 class="feature-title">Multi-Industry Expertise</h3>
+            <p class="feature-desc">From trucks to taxis, we understand the unique needs of 9+ different transportation industries.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-2">
+            <span class="feature-number">02</span>
+            <div class="feature-icon">💰</div>
+            <h3 class="feature-title">Transparent Pricing</h3>
+            <p class="feature-desc">Just $4/hour with no hidden fees. Know exactly what you're paying for with our simple pricing.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-3">
+            <span class="feature-number">03</span>
+            <div class="feature-icon">⚡</div>
+            <h3 class="feature-title">24/7 Availability</h3>
+            <p class="feature-desc">Round-the-clock support means you're never alone, no matter what time zone or shift you operate.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-4">
+            <span class="feature-number">04</span>
+            <div class="feature-icon">🎯</div>
+            <h3 class="feature-title">Dedicated Dispatchers</h3>
+            <p class="feature-desc">Your personal dispatcher learns your business and becomes an extension of your team.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-5">
+            <span class="feature-number">05</span>
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Complete Back Office</h3>
+            <p class="feature-desc">From paperwork to compliance, we handle all administrative tasks to keep you focused on operations.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-6">
+            <span class="feature-number">06</span>
+            <div class="feature-icon">🔒</div>
+            <h3 class="feature-title">Secure & Compliant</h3>
+            <p class="feature-desc">HIPAA compliant for medical transport, DOT certified, and secure handling of all sensitive data.</p>
+        </div>
+    </div>
+</section>
         <!-- Testimonials -->
         <section class="testimonials">
-            <div class="section-header">
-                <span class="section-tag">Testimonials</span>
-                <h2 class="section-title reveal">Trusted by <span class="text-shimmer">Logistics companies</span> Nationwide</h2>
-            </div>
+    <div class="section-header">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title reveal">Trusted by <span class="text-shimmer">Industry Leaders</span> Nationwide</h2>
+        <p class="section-subtitle reveal">See what our clients across different industries have to say</p>
+    </div>
 
             <div class="testimonials-slider">
                 <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Haulxify transformed my business. Their dispatchers consistently find me high-paying loads and the weekend free service is a game changer."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🚛</div>
-                        <div>
-                            <h5>Mike Johnson</h5>
-                            <span>Owner Operator, Texas</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The back office support alone is worth every penny. No more paperwork nightmares. These guys handle everything professionally."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🚛</div>
-                        <div>
-                            <h5>Sarah Williams</h5>
-                            <span>Fleet Owner, California</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"At $4/hour with their expertise? It's a no-brainer. My revenue is up 30% since switching to Haulxify. Best decision I made."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🚛</div>
-                        <div>
-                            <h5>Robert Chen</h5>
-                            <span>Owner Operator, Florida</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Professional, responsive, and always looking out for my best interests. The route optimization has saved me thousands in fuel costs."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🚛</div>
-                        <div>
-                            <h5>James Martinez</h5>
-                            <span>Fleet Owner, Arizona</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Duplicate for infinite scroll -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Haulxify transformed my business. Their dispatchers consistently find me high-paying loads and the weekend free service is a game changer."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🚛</div>
-                        <div>
-                            <h5>Mike Johnson</h5>
-                            <span>Owner Operator, Texas</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The back office support alone is worth every penny. No more paperwork nightmares. These guys handle everything professionally."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🚛</div>
-                        <div>
-                            <h5>Sarah Williams</h5>
-                            <span>Fleet Owner, California</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="testimonial-stars">★★★★★</div>
+    <p class="testimonial-text">"Haulxify handles all our taxi dispatch seamlessly. Call volumes up 40% but customer satisfaction is at an all-time high thanks to their professional team."</p>
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">🚕</div>
+        <div>
+            <h5>David Chen</h5>
+            <span>Taxi Fleet Owner, Chicago</span>
+        </div>
+    </div>
+</div>
+              <div class="testimonial-card">
+    <div class="testimonial-stars">★★★★★</div>
+    <p class="testimonial-text">"Our tow truck business runs 24/7 and Haulxify never misses a beat. Fast response times and they know our service area better than some of our own drivers."</p>
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">🚗</div>
+        <div>
+            <h5>Maria Rodriguez</h5>
+            <span>Towing Company Owner, Texas</span>
+        </div>
+    </div>
+</div>
+              <div class="testimonial-card">
+    <div class="testimonial-stars">★★★★★</div>
+    <p class="testimonial-text">"As a medical transport provider, compliance is everything. Haulxify understands HIPAA requirements and handles patient scheduling with care and professionalism."</p>
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">🏥</div>
+        <div>
+            <h5>Robert Thompson</h5>
+            <span>NEMT Provider, Florida</span>
+        </div>
+    </div>
+</div>
+               <div class="testimonial-card">
+    <div class="testimonial-stars">★★★★★</div>
+    <p class="testimonial-text">"Running a dump truck operation means coordinating with multiple job sites. Haulxify keeps everything organized and our trucks moving efficiently."</p>
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">🚜</div>
+        <div>
+            <h5>James Patterson</h5>
+            <span>Construction Logistics, Arizona</span>
+        </div>
+    </div>
+</div> 
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2 class="cta-title reveal">Ready to <span class="text-shimmer">Maximize</span> Your Earnings?</h2>
-                <p class="cta-subtitle reveal">Join hundreds of successful companies who trust Haulxify for their dispatch needs.</p>
-                <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Start Your Journey</span></a>
-            </div>
-        </section>
+       <section class="cta-section">
+    <div class="cta-content">
+        <h2 class="cta-title reveal">Ready to <span class="text-shimmer">Transform</span> Your Operations?</h2>
+        <p class="cta-subtitle reveal">Join businesses across 9+ industries who trust Haulxify for professional dispatch services at just $4/hour.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Get Started Today</span></a>
+            <a href="#pricing" class="btn btn-secondary magnetic reveal" data-page="pricing"><span>View Pricing</span></a>
+        </div>
+    </div>
+</section>
     </div>
     <!-- SERVICES PAGE -->
     <div class="page" id="page-services">
@@ -6816,6 +7120,49 @@ function toggleAppleAccordion(header) {
         if(icon) icon.innerHTML = '−'; // Change to minus
     }
 } 
+       // Enhanced Scroll Animations with Intersection Observer
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Unobserve after animation to improve performance
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all reveal elements
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    observer.observe(el);
+});
+
+// Service card hover parallax effect (light, mobile-friendly)
+if (window.innerWidth > 768) {
+    document.querySelectorAll('.service-category-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            this.style.transform = `translateY(-8px) rotateX(${y * 5}deg) rotateY(${x * 5}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+}
+
+// Industry pill pulse effect on scroll
+document.querySelectorAll('.industry-pill').forEach((pill, index) => {
+    observer.observe(pill);
+    pill.style.animationDelay = `${index * 0.1}s`;
+}); 
     </script>
 </body>
 </html>
