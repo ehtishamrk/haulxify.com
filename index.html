@@ -8727,45 +8727,31 @@ document.addEventListener('keydown', (e) => {
 // MASTER INITIALIZATION SYSTEM - Single Entry Point
 // =================================================================
 
+// =================================================================
+// MASTER INITIALIZATION SYSTEM - Single Entry Point
+// =================================================================
+
 class WebsiteLoader {
     constructor() {
-        this.preloaderDuration = 1800; // 1.8 seconds
-        this.animationDelay = 300; // Start animations 300ms after preloader starts hiding
+        this.preloaderDuration = 1000; // Reduced to 1 second
+        this.animationDelay = 200;
         this.isAppMode = false;
         this.currentPage = 'home';
     }
-// Add this method inside the WebsiteLoader class
-    async init() {
-        // 1. Check if we are in App Mode (RigFolio/Wire)
-        this.initAppMode();
 
-        // 2. If NOT in App Mode, run the Normal Website Sequence
-        if (!this.isAppMode) {
-            // A. Wait for preloader to hide
-            await this.hidePreloader();
-            
-            // B. Initialize normal site features
-            this.initNormalMode();
-            
-            // C. Animate Hero Content
-            this.animateHeroContent();
-        }
-    }
     // ============= PRELOADER =============
     hidePreloader() {
+        const preloader = document.getElementById('preloader');
+        if (!preloader) return Promise.resolve();
+        
         return new Promise((resolve) => {
             setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                if (preloader) {
-                    preloader.style.opacity = '0';
-                    preloader.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                        resolve();
-                    }, 500);
-                } else {
+                preloader.style.opacity = '0';
+                preloader.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
                     resolve();
-                }
+                }, 400);
             }, this.preloaderDuration);
         });
     }
@@ -8782,10 +8768,8 @@ class WebsiteLoader {
             targetPage = document.getElementById('page-home');
         }
 
-        // Hide all pages
         document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
         
-        // Show target page
         if (targetPage) {
             targetPage.classList.add('active');
             this.currentPage = hash;
@@ -8806,35 +8790,29 @@ class WebsiteLoader {
         if (appMode === 'rigfolio' || appMode === 'wire') {
             this.isAppMode = true;
             
-            // Hide main site navigation
             const nav = document.getElementById('nav');
-            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenu = document.getElementById('mobileMenuOverlay');
             const footer = document.querySelector('.footer');
             const floatingCta = document.getElementById('floatingCta');
+            const preloader = document.getElementById('preloader');
             
             if (nav) nav.style.display = 'none';
             if (mobileMenu) mobileMenu.style.display = 'none';
             if (footer) footer.style.display = 'none';
             if (floatingCta) floatingCta.style.display = 'none';
-            
-            // Hide all main pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            
-            // Force hide preloader immediately in app mode
-            const preloader = document.getElementById('preloader');
             if (preloader) preloader.style.display = 'none';
+            
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 
-            // Launch app
             if (appMode === 'rigfolio') {
                 this.launchRigFolio();
             } else if (appMode === 'wire') {
                 this.launchWire();
             }
-        } else {
-            // Normal website mode
-            this.isAppMode = false;
-            this.initNormalMode();
+            
+            return true;
         }
+        return false;
     }
 
     launchRigFolio() {
@@ -8845,7 +8823,6 @@ class WebsiteLoader {
             document.title = "RIGFOLIO | The Asset Marketplace";
             document.body.style.overflow = 'auto';
             
-            // Random hero background
             const images = [
                 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070',
                 'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?q=80&w=2070'
@@ -8865,7 +8842,6 @@ class WebsiteLoader {
             document.title = "WIRE | The Logistics Network";
             document.body.style.overflow = 'auto';
             
-            // Fetch fuel prices for Wire
             if (typeof fetchFuelPrices === 'function') {
                 fetchFuelPrices();
             }
@@ -8873,19 +8849,11 @@ class WebsiteLoader {
     }
 
     initNormalMode() {
-        // Attach hash change listener
         window.addEventListener('hashchange', () => this.handleRoute());
-        
-        // Initial route
         this.handleRoute();
-        
-        // Scroll-based reveals
         window.addEventListener('scroll', () => this.revealOnScroll());
-        
-        // Initial reveal check
         this.revealOnScroll();
         
-        // Animate counters on home page
         if (this.currentPage === 'home') {
             this.animateCounters();
         }
@@ -8895,52 +8863,44 @@ class WebsiteLoader {
     animateHeroContent() {
         if (this.isAppMode) return;
 
-        setTimeout(() => {
-            const heroContent = document.querySelector('.hero-content');
-            if (!heroContent) return;
+        const heroContent = document.querySelector('.hero-content');
+        if (!heroContent) return;
 
-            const elements = heroContent.querySelectorAll(':scope > *');
+        const elements = heroContent.querySelectorAll(':scope > *');
+        
+        elements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             
-            elements.forEach((el, index) => {
-                // Set initial state
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                
-                // Animate in
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        }, this.preloaderDuration + this.animationDelay);
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
     }
 
     initGSAPAnimations() {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         if (this.isAppMode) return;
 
-        setTimeout(() => {
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Parallax effect for hero section
-            const heroGrid = document.querySelector('.hero-grid');
-            if (heroGrid) {
-                gsap.to('.hero-grid', {
-                    scrollTrigger: {
-                        trigger: '.hero',
-                        start: 'top top',
-                        end: 'bottom top',
-                        scrub: 1
-                    },
-                    y: 200,
-                    opacity: 0
-                });
-            }
-        }, this.preloaderDuration + this.animationDelay);
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const heroGrid = document.querySelector('.hero-grid');
+        if (heroGrid) {
+            gsap.to('.hero-grid', {
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                },
+                y: 200,
+                opacity: 0
+            });
+        }
     }
 
-    // ============= REVEAL ON SCROLL =============
     revealOnScroll() {
         const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
         
@@ -8955,7 +8915,6 @@ class WebsiteLoader {
         });
     }
 
-    // ============= COUNTER ANIMATION =============
     animateCounters() {
         const counters = document.querySelectorAll('.stat-value[data-count], .stat-premium-number[data-count]');
         
@@ -8983,18 +8942,24 @@ class WebsiteLoader {
 
     // ============= MASTER INIT =============
     async init() {
-        // Step 1: Check app mode first
-        this.initAppMode();
-        
-        // Step 2: Hide preloader (only in normal mode)
-        if (!this.isAppMode) {
-            await this.hidePreloader();
+        try {
+            // Check if in app mode
+            const isApp = this.initAppMode();
             
-            // Step 3: Animate hero content
-            this.animateHeroContent();
-            
-            // Step 4: Initialize GSAP animations
-            this.initGSAPAnimations();
+            // If not app mode, handle normal website
+            if (!isApp) {
+                await this.hidePreloader();
+                this.initNormalMode();
+                setTimeout(() => {
+                    this.animateHeroContent();
+                    this.initGSAPAnimations();
+                }, this.animationDelay);
+            }
+        } catch (error) {
+            console.error('Initialization error:', error);
+            // Fallback: hide preloader anyway
+            const preloader = document.getElementById('preloader');
+            if (preloader) preloader.style.display = 'none';
         }
     }
 }
@@ -9005,7 +8970,18 @@ class WebsiteLoader {
 window.addEventListener('load', () => {
     const loader = new WebsiteLoader();
     loader.init();
-}); 
+});
+
+// =================================================================
+// FALLBACK SAFETY - Force hide preloader after 3 seconds max
+// =================================================================
+setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if (preloader && preloader.style.display !== 'none') {
+        console.warn('Preloader fallback timeout triggered');
+        preloader.style.display = 'none';
+    }
+}, 3000);
     </script>
 </body>
 </html>
