@@ -8670,10 +8670,10 @@ document.querySelectorAll('.luxury-pricing-card').forEach(card => {
 });
 
 // Form validation enhancement
-const contactForm = document.getElementById('contactFormPremium');
-if (contactForm) {
-    const inputs = contactForm.querySelectorAll('.form-premium-input, .form-premium-select, .form-premium-textarea');
-    
+// Form validation enhancement
+const premiumContactForm = document.getElementById('contactFormPremium'); // <--- FIXED NAME
+if (premiumContactForm) {
+    const inputs = premiumContactForm.querySelectorAll('.form-premium-input, .form-premium-select, .form-premium-textarea');
     inputs.forEach(input => {
         // Add success state on valid input
         input.addEventListener('blur', function() {
@@ -8681,7 +8681,7 @@ if (contactForm) {
                 this.style.borderColor = '#22c55e';
             }
         });
-        
+
         // Reset border on focus
         input.addEventListener('focus', function() {
             if (this.style.borderColor === 'rgb(34, 197, 94)') {
