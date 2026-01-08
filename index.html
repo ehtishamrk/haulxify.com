@@ -7746,18 +7746,6 @@ body:not(.using-mouse) *:focus {
     </footer>
 </div>
     <script>
-        // Preloader
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const preloader = document.getElementById('preloader');
-            if(preloader) {
-                preloader.style.opacity = '0';
-                preloader.style.pointerEvents = 'none';
-                setTimeout(() => preloader.style.display = 'none', 500);
-            }
-        }, 2000);
-    });
-
     // Magnetic Effect
     document.querySelectorAll('.magnetic').forEach(btn => {
         btn.addEventListener('mousemove', function(e) {
@@ -8059,21 +8047,6 @@ window.toggleMobileDropdown = function(element) {
             }, 5000);
         });
     }
-
-    // GSAP Animations
-    if (typeof gsap !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.from('.hero-content', { opacity: 0, y: 50, duration: 1, delay: 2.2, ease: 'power3.out' });
-        gsap.from('.hero-badge', { opacity: 0, y: 20, duration: 0.8, delay: 2.4, ease: 'power3.out' });
-        gsap.from('.hero-title', { opacity: 0, y: 30, duration: 1, delay: 2.6, ease: 'power3.out' });
-        gsap.from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8, delay: 2.8, ease: 'power3.out' });
-        gsap.from('.hero-stats', { opacity: 0, y: 30, duration: 0.8, delay: 3, ease: 'power3.out' });
-        gsap.from('.hero-cta', { opacity: 0, y: 20, duration: 0.8, delay: 3.2, ease: 'power3.out' });
-        gsap.to('.hero-grid', {
-            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
-            y: 200, opacity: 0
-        });
-    }
     // =================================================================
 // CLOSE DESKTOP DROPDOWN ON CLICK
 // =================================================================
@@ -8207,8 +8180,6 @@ document.querySelectorAll('.dropdown-link').forEach(link => {
         }
     }
 
-    // INITIALIZE EVERYTHING
-    window.addEventListener('load', initApp);
    // --- WIRE APP LOGIC ---
     function showWireProfile() {
         document.getElementById('wire-home-view').style.display = 'none';
@@ -8719,18 +8690,6 @@ if (contactForm) {
         });
     });
 }
-
-// Page load animation sequence
-window.addEventListener('load', () => {
-    // Animate hero elements
-    const heroElements = document.querySelectorAll('.hero-content > *');
-    heroElements.forEach((el, index) => {
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, index * 150 + 500);
-    });
-});
         // Accessibility: Keyboard Navigation Enhancement
 document.addEventListener('keydown', function(e) {
     // Skip to main content with 'S' key
@@ -8764,6 +8723,273 @@ document.addEventListener('keydown', (e) => {
         document.body.classList.remove('using-mouse');
     }
 });
+       // =================================================================
+// MASTER INITIALIZATION SYSTEM - Single Entry Point
+// =================================================================
+
+class WebsiteLoader {
+    constructor() {
+        this.preloaderDuration = 1800; // 1.8 seconds
+        this.animationDelay = 300; // Start animations 300ms after preloader starts hiding
+        this.isAppMode = false;
+        this.currentPage = 'home';
+    }
+
+    // ============= PRELOADER =============
+    hidePreloader() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    preloader.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        resolve();
+                    }, 500);
+                } else {
+                    resolve();
+                }
+            }, this.preloaderDuration);
+        });
+    }
+
+    // ============= ROUTE HANDLING =============
+    handleRoute() {
+        if (this.isAppMode) return;
+
+        let hash = window.location.hash.substring(1) || 'home';
+        let targetPage = document.getElementById('page-' + hash);
+        
+        if (!targetPage) {
+            hash = 'home';
+            targetPage = document.getElementById('page-home');
+        }
+
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        
+        // Show target page
+        if (targetPage) {
+            targetPage.classList.add('active');
+            this.currentPage = hash;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            setTimeout(() => {
+                this.revealOnScroll();
+                if (hash === 'home') this.animateCounters();
+            }, 100);
+        }
+    }
+
+    // ============= APP MODE (RigFolio/Wire) =============
+    initAppMode() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const appMode = urlParams.get('app');
+
+        if (appMode === 'rigfolio' || appMode === 'wire') {
+            this.isAppMode = true;
+            
+            // Hide main site navigation
+            const nav = document.getElementById('nav');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const footer = document.querySelector('.footer');
+            const floatingCta = document.getElementById('floatingCta');
+            
+            if (nav) nav.style.display = 'none';
+            if (mobileMenu) mobileMenu.style.display = 'none';
+            if (footer) footer.style.display = 'none';
+            if (floatingCta) floatingCta.style.display = 'none';
+            
+            // Hide all main pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            
+            // Force hide preloader immediately in app mode
+            const preloader = document.getElementById('preloader');
+            if (preloader) preloader.style.display = 'none';
+
+            // Launch app
+            if (appMode === 'rigfolio') {
+                this.launchRigFolio();
+            } else if (appMode === 'wire') {
+                this.launchWire();
+            }
+        } else {
+            // Normal website mode
+            this.isAppMode = false;
+            this.initNormalMode();
+        }
+    }
+
+    launchRigFolio() {
+        const app = document.getElementById('rigfolio-app');
+        if (app) {
+            app.style.display = 'block';
+            app.classList.add('active');
+            document.title = "RIGFOLIO | The Asset Marketplace";
+            document.body.style.overflow = 'auto';
+            
+            // Random hero background
+            const images = [
+                'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070',
+                'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?q=80&w=2070'
+            ];
+            const bg = document.getElementById('rigHeroBg');
+            if (bg) {
+                bg.style.backgroundImage = `url('${images[Math.floor(Math.random() * images.length)]}')`;
+            }
+        }
+    }
+
+    launchWire() {
+        const app = document.getElementById('wire-app');
+        if (app) {
+            app.style.display = 'block';
+            app.classList.add('active');
+            document.title = "WIRE | The Logistics Network";
+            document.body.style.overflow = 'auto';
+            
+            // Fetch fuel prices for Wire
+            if (typeof fetchFuelPrices === 'function') {
+                fetchFuelPrices();
+            }
+        }
+    }
+
+    initNormalMode() {
+        // Attach hash change listener
+        window.addEventListener('hashchange', () => this.handleRoute());
+        
+        // Initial route
+        this.handleRoute();
+        
+        // Scroll-based reveals
+        window.addEventListener('scroll', () => this.revealOnScroll());
+        
+        // Initial reveal check
+        this.revealOnScroll();
+        
+        // Animate counters on home page
+        if (this.currentPage === 'home') {
+            this.animateCounters();
+        }
+    }
+
+    // ============= ANIMATIONS =============
+    animateHeroContent() {
+        if (this.isAppMode) return;
+
+        setTimeout(() => {
+            const heroContent = document.querySelector('.hero-content');
+            if (!heroContent) return;
+
+            const elements = heroContent.querySelectorAll(':scope > *');
+            
+            elements.forEach((el, index) => {
+                // Set initial state
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Animate in
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }, this.preloaderDuration + this.animationDelay);
+    }
+
+    initGSAPAnimations() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        if (this.isAppMode) return;
+
+        setTimeout(() => {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Parallax effect for hero section
+            const heroGrid = document.querySelector('.hero-grid');
+            if (heroGrid) {
+                gsap.to('.hero-grid', {
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1
+                    },
+                    y: 200,
+                    opacity: 0
+                });
+            }
+        }, this.preloaderDuration + this.animationDelay);
+    }
+
+    // ============= REVEAL ON SCROLL =============
+    revealOnScroll() {
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+            }
+        });
+    }
+
+    // ============= COUNTER ANIMATION =============
+    animateCounters() {
+        const counters = document.querySelectorAll('.stat-value[data-count], .stat-premium-number[data-count]');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count'));
+            if (isNaN(target)) return;
+            
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        });
+    }
+
+    // ============= MASTER INIT =============
+    async init() {
+        // Step 1: Check app mode first
+        this.initAppMode();
+        
+        // Step 2: Hide preloader (only in normal mode)
+        if (!this.isAppMode) {
+            await this.hidePreloader();
+            
+            // Step 3: Animate hero content
+            this.animateHeroContent();
+            
+            // Step 4: Initialize GSAP animations
+            this.initGSAPAnimations();
+        }
+    }
+}
+
+// =================================================================
+// SINGLE ENTRY POINT - Start Everything
+// =================================================================
+window.addEventListener('load', () => {
+    const loader = new WebsiteLoader();
+    loader.init();
+}); 
     </script>
 </body>
 </html>
