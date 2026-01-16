@@ -7103,28 +7103,7 @@ body:not(.using-mouse) *:focus {
     </section>
 </div>
 
-<script>
-// FAQ Contact Form Handler
-function handleFAQContactSubmit() {
-    const form = document.getElementById('faqContactForm');
-    const successMsg = document.getElementById('faqFormSuccessMessage');
-    
-    // Hide form and show success message
-    form.style.display = 'none';
-    successMsg.style.display = 'block';
-    
-    // In production, this would send data to your backend
-    console.log('FAQ question submitted successfully');
-    
-    // Scroll to success message
-    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
-    // Reset form after 5 seconds (optional)
-    setTimeout(() => {
-        form.reset();
-    }, 5000);
-}
-</script>4>What is Haulxify and what services do you provide?</h4>
+4>What is Haulxify and what services do you provide?</h4>
                         <i class="fas fa-chevron-down faq-toggle-icon"></i>
                     </div>
                     <div class="faq-answer-modern">
