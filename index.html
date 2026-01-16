@@ -8739,7 +8739,8 @@ body:not(.using-mouse) *:focus {
             this.appendChild(ripple);
             setTimeout(() => ripple.remove(), 600);
         });
-    }); // Loop closes here correctly
+    }); 
+        // Loop closes here correctly
     // Feature Card Mouse Follow
     document.querySelectorAll('.feature-card').forEach(card => {
         card.addEventListener('mousemove', function(e) {
