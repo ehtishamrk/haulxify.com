@@ -7006,104 +7006,9 @@ body:not(.using-mouse) *:focus {
                         <p>Cultural training is a key part of our onboarding. Dispatchers learn: American business communication styles and etiquette, customer service expectations (responsiveness, professionalism, problem-solving), industry-specific terminology and jargon, US time zones and business hours awareness, appropriate tone for different situations (urgent vs routine), and conflict resolution approaches that align with American business practices. We've been serving US businesses for years and have refined our cultural competency extensively.</p>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Contact Section for Unanswered Questions -->
-    <section class="faq-contact-section">
-        <div style="position: relative; z-index: 2;">
-            <h2 class="section-title reveal" style="color: #ffffff; margin-bottom: 1rem;">Still Have Questions?</h2>
-            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 1rem;">We've answered the most common questions above, but every business is unique. If you didn't find what you're looking for, we're here to help!</p>
-            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; font-weight: 600;">Our customer care representatives will respond within 24 hours.</p>
-            
-            <div class="faq-contact-box reveal">
-                <form id="faqContactForm" onsubmit="event.preventDefault(); handleFAQContactSubmit();">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div class="form-premium-group">
-                            <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Your Name *</label>
-                            <input type="text" class="form-premium-input" required placeholder="John Doe" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
-                        </div>
-                        
-                        <div class="form-premium-group">
-                            <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Email Address *</label>
-                            <input type="email" class="form-premium-input" required placeholder="john@company.com" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
-                        </div>
-                    </div>
-                    
-                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
-                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Phone Number</label>
-                        <input type="tel" class="form-premium-input" placeholder="+1 (555) 000-0000" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
-                    </div>
-                    
-                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
-                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Service You're Interested In *</label>
-                        <select class="form-premium-select" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
-                            <option value="" style="background: #1e293b;">Select a service</option>
-                            <option value="truck" style="background: #1e293b;">Truck Dispatch</option>
-                            <option value="tow" style="background: #1e293b;">Tow Truck Dispatch</option>
-                            <option value="car-hauler" style="background: #1e293b;">Car Hauler Dispatch</option>
-                            <option value="animal" style="background: #1e293b;">Animal Hauler Dispatch</option>
-                            <option value="dump" style="background: #1e293b;">Dump Truck Dispatch</option>
-                            <option value="after-hours" style="background: #1e293b;">After Hours Dispatch</option>
-                            <option value="nemt" style="background: #1e293b;">Medical Transport (NEMT)</option>
-                            <option value="taxi" style="background: #1e293b;">Taxi Dispatch</option>
-                            <option value="limo" style="background: #1e293b;">Limousine Dispatch</option>
-                            <option value="not-sure" style="background: #1e293b;">Not Sure / Multiple Services</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
-                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Your Question *</label>
-                        <textarea class="form-premium-textarea" required placeholder="Please describe your question in detail. The more information you provide, the better we can assist you..." style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); min-height: 150px;"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary magnetic" style="width: 100%; padding: 1.2rem; font-size: 1rem; background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light)); color: var(--primary-dark);">
-                        <span>Send My Question</span>
-                    </button>
-                </form>
-                
-                <div id="faqFormSuccessMessage" style="display: none; text-align: center; padding: 2rem; background: rgba(34, 197, 94, 0.1); border-radius: 12px; margin-top: 2rem; border: 1px solid rgba(34, 197, 94, 0.3);">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
-                    <h3 style="color: #22c55e; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem;">Question Received!</h3>
-                    <p style="color: rgba(255,255,255,0.9);">Our customer care team will respond within 24 hours. Check your email for our reply.</p>
-                </div>
-            </div>
-            
-            <div style="margin-top: 3rem; text-align: center;">
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Prefer to speak with someone directly?</p>
-                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-                    <div>
-                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">EMAIL US</p>
-                        <a href="mailto:support@haulxify.com" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">support@haulxify.com</a>
-                    </div>
-                    <div>
-                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">CALL US (US)</p>
-                        <a href="tel:+18001234567" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (800) 123-4567</a>
-                    </div>
-                    <div>
-                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">WHATSAPP</p>
-                        <a href="https://wa.me/923001234567" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+92 300 1234567</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Links to Other Pages -->
-    <section style="padding: 4rem 5%; background: #ffffff; text-align: center;">
-        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-navy); margin-bottom: 2rem;">Need More Information?</h3>
-        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-            <a href="#services" class="btn btn-secondary magnetic" data-page="services"><span>View All Services</span></a>
-            <a href="#pricing" class="btn btn-secondary magnetic" data-page="pricing"><span>See Pricing Details</span></a>
-            <a href="#about" class="btn btn-secondary magnetic" data-page="about"><span>About Haulxify</span></a>
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact"><span>Get Started Today</span></a>
-        </div>
-    </section>
-</div>
-
-4>What is Haulxify and what services do you provide?</h4>
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+            <h4>What is Haulxify and what services do you provide?</h4>
                         <i class="fas fa-chevron-down faq-toggle-icon"></i>
                     </div>
                     <div class="faq-answer-modern">
@@ -7453,7 +7358,101 @@ body:not(.using-mouse) *:focus {
 
                 <div class="faq-item-modern">
                     <div class="faq-question-modern">
-                        <h
+
+        </div>
+    </section>
+
+    <!-- Contact Section for Unanswered Questions -->
+    <section class="faq-contact-section">
+        <div style="position: relative; z-index: 2;">
+            <h2 class="section-title reveal" style="color: #ffffff; margin-bottom: 1rem;">Still Have Questions?</h2>
+            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 1rem;">We've answered the most common questions above, but every business is unique. If you didn't find what you're looking for, we're here to help!</p>
+            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; font-weight: 600;">Our customer care representatives will respond within 24 hours.</p>
+            
+            <div class="faq-contact-box reveal">
+                <form id="faqContactForm" onsubmit="event.preventDefault(); handleFAQContactSubmit();">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-premium-group">
+                            <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Your Name *</label>
+                            <input type="text" class="form-premium-input" required placeholder="John Doe" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                        </div>
+                        
+                        <div class="form-premium-group">
+                            <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Email Address *</label>
+                            <input type="email" class="form-premium-input" required placeholder="john@company.com" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                        </div>
+                    </div>
+                    
+                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Phone Number</label>
+                        <input type="tel" class="form-premium-input" placeholder="+1 (555) 000-0000" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                    </div>
+                    
+                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Service You're Interested In *</label>
+                        <select class="form-premium-select" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                            <option value="" style="background: #1e293b;">Select a service</option>
+                            <option value="truck" style="background: #1e293b;">Truck Dispatch</option>
+                            <option value="tow" style="background: #1e293b;">Tow Truck Dispatch</option>
+                            <option value="car-hauler" style="background: #1e293b;">Car Hauler Dispatch</option>
+                            <option value="animal" style="background: #1e293b;">Animal Hauler Dispatch</option>
+                            <option value="dump" style="background: #1e293b;">Dump Truck Dispatch</option>
+                            <option value="after-hours" style="background: #1e293b;">After Hours Dispatch</option>
+                            <option value="nemt" style="background: #1e293b;">Medical Transport (NEMT)</option>
+                            <option value="taxi" style="background: #1e293b;">Taxi Dispatch</option>
+                            <option value="limo" style="background: #1e293b;">Limousine Dispatch</option>
+                            <option value="not-sure" style="background: #1e293b;">Not Sure / Multiple Services</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Your Question *</label>
+                        <textarea class="form-premium-textarea" required placeholder="Please describe your question in detail. The more information you provide, the better we can assist you..." style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); min-height: 150px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary magnetic" style="width: 100%; padding: 1.2rem; font-size: 1rem; background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light)); color: var(--primary-dark);">
+                        <span>Send My Question</span>
+                    </button>
+                </form>
+                
+                <div id="faqFormSuccessMessage" style="display: none; text-align: center; padding: 2rem; background: rgba(34, 197, 94, 0.1); border-radius: 12px; margin-top: 2rem; border: 1px solid rgba(34, 197, 94, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
+                    <h3 style="color: #22c55e; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem;">Question Received!</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Our customer care team will respond within 24 hours. Check your email for our reply.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Prefer to speak with someone directly?</p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <div>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">EMAIL US</p>
+                        <a href="mailto:support@haulxify.com" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">support@haulxify.com</a>
+                    </div>
+                    <div>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">CALL US (US)</p>
+                        <a href="tel:+18001234567" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (800) 123-4567</a>
+                    </div>
+                    <div>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">WHATSAPP</p>
+                        <a href="https://wa.me/923001234567" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+92 300 1234567</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links to Other Pages -->
+    <section style="padding: 4rem 5%; background: #ffffff; text-align: center;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-navy); margin-bottom: 2rem;">Need More Information?</h3>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#services" class="btn btn-secondary magnetic" data-page="services"><span>View All Services</span></a>
+            <a href="#pricing" class="btn btn-secondary magnetic" data-page="pricing"><span>See Pricing Details</span></a>
+            <a href="#about" class="btn btn-secondary magnetic" data-page="about"><span>About Haulxify</span></a>
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact"><span>Get Started Today</span></a>
+        </div>
+    </section>
+</div>
     <!-- CONTACT PAGE -->
     <div class="page" id="page-contact">
         <section class="contact-hero-premium">
