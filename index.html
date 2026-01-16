@@ -5557,442 +5557,410 @@ body:not(.using-mouse) *:focus {
            
     </div>
 
-    <!-- PRICING PAGE -->
     <div class="page" id="page-pricing">
-       <section class="pricing-hero-luxury">
-    <div style="position: relative; z-index: 2;">
-        <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Transparent Pricing</span>
-        <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Choose Your <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Perfect Plan</span></h1>
-        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto;">Professional dispatch services with transparent pricing. Select your service below.</p>
-        
-        <!-- Service Selector Tabs -->
-        <div class="pricing-service-tabs">
-            <button class="pricing-tab-btn active" onclick="switchPricingService('truck')">
-                <i class="fas fa-truck"></i> Truck Dispatch
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('tow')">
-                <i class="fas fa-car"></i> Tow Truck
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('car-hauler')">
-                <i class="fas fa-car-side"></i> Car Hauler
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('animal')">
-                <i class="fas fa-horse"></i> Animal Hauler
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('dump')">
-                <i class="fas fa-tractor"></i> Dump Truck
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('after-hours')">
-                <i class="fas fa-moon"></i> After Hours
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('nemt')">
-                <i class="fas fa-ambulance"></i> Medical Transport
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('taxi')">
-                <i class="fas fa-taxi"></i> Taxi
-            </button>
-            <button class="pricing-tab-btn" onclick="switchPricingService('limo')">
-                <i class="fas fa-gem"></i> Limousine
-            </button>
+    <!-- Hero with Service Tabs -->
+    <section class="pricing-hero-luxury">
+        <div style="position: relative; z-index: 2;">
+            <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Transparent Pricing</span>
+            <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Choose Your <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Perfect Plan</span></h1>
+            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto;">Professional dispatch services with transparent pricing. Select your service below to see details.</p>
+            
+            <!-- Service Selector Tabs -->
+            <div class="pricing-service-tabs">
+                <button class="pricing-tab-btn active" onclick="switchPricingService('truck')">
+                    <i class="fas fa-truck"></i> Truck Dispatch
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('tow')">
+                    <i class="fas fa-car"></i> Tow Truck
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('car-hauler')">
+                    <i class="fas fa-car-side"></i> Car Hauler
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('animal')">
+                    <i class="fas fa-horse"></i> Animal Hauler
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('dump')">
+                    <i class="fas fa-tractor"></i> Dump Truck
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('after-hours')">
+                    <i class="fas fa-moon"></i> After Hours
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('nemt')">
+                    <i class="fas fa-ambulance"></i> Medical Transport
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('taxi')">
+                    <i class="fas fa-taxi"></i> Taxi
+                </button>
+                <button class="pricing-tab-btn" onclick="switchPricingService('limo')">
+                    <i class="fas fa-gem"></i> Limousine
+                </button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section style="padding: 6rem 5%; background: var(--bg-section);">
-    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem;">
+    <!-- Pricing Content Section -->
+    <section style="padding: 6rem 5%; background: var(--bg-section);">
         
         <!-- Truck Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Truck Dispatch</h3>
-            <p class="pricing-service-tagline">Complete logistics & load board management</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per truck</span>
+        <div class="pricing-service-content active" id="service-truck">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Truck Dispatch Services</h3>
+                <p class="pricing-service-tagline">Complete logistics & load board management</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per truck</span>
+                </div>
+                <p class="pricing-billing-note">Additional trucks: $3.50/hour each • 176hrs/month standard</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Dedicated dispatcher for your fleet</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Load finding & rate negotiation</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Complete back-office support</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Route planning & optimization</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-note-box">
+                    <div class="pricing-note-title">⚠ Important Note</div>
+                    <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional trucks: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Dedicated dispatcher for your fleet</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Load finding & rate negotiation</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Complete back-office support</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Route planning & optimization</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">⚠ Important Note</div>
-                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
         <!-- Tow Truck Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Tow Truck Dispatch</h3>
-            <p class="pricing-service-tagline">24/7 emergency & scheduled towing</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per line</span>
+        <div class="pricing-service-content" id="service-tow">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Tow Truck Dispatch</h3>
+                <p class="pricing-service-tagline">24/7 emergency & scheduled towing</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per line</span>
+                </div>
+                <p class="pricing-billing-note">Additional lines: $3.50/hour each • 720hrs/month (24/7)</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">24/7 dedicated phone line coverage</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">3-shift agent rotation per line</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Emergency dispatch coordination</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Customer call handling</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">720 hours monthly coverage</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-note-box">
+                    <div class="pricing-note-title">💡 Weekend Discounts</div>
+                    <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional lines: $3.50/hour each • 720hrs/month</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">24/7 dedicated phone line coverage</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">3-shift agent rotation per line</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Emergency dispatch coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Customer call handling</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">720 hours monthly coverage</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">💡 Billing Discounts</div>
-                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- Car Hauler Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Car Hauler Dispatch</h3>
-            <p class="pricing-service-tagline">Auto transport & dealer coordination</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per hauler</span>
+        <!-- Car Hauler -->
+        <div class="pricing-service-content" id="service-car-hauler">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Car Hauler Dispatch</h3>
+                <p class="pricing-service-tagline">Auto transport & dealer coordination</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per hauler</span>
+                </div>
+                <p class="pricing-billing-note">Additional haulers: $3.50/hour each • 176hrs/month</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Auto transport load booking</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Dealer & auction coordination</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Route optimization</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Documentation management</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-note-box">
+                    <div class="pricing-note-title">⚠ Important Note</div>
+                    <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies.</p>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional haulers: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Auto transport load booking</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Dealer & auction coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Route optimization</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Documentation management</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">⚠ Important Note</div>
-                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- Animal Hauler Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Animal Hauler Dispatch</h3>
-            <p class="pricing-service-tagline">Livestock & pet transport coordination</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per hauler</span>
+        <!-- Animal Hauler -->
+        <div class="pricing-service-content" id="service-animal">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Animal Hauler Dispatch</h3>
+                <p class="pricing-service-tagline">Livestock & pet transport coordination</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per hauler</span>
+                </div>
+                <p class="pricing-billing-note">Additional haulers: $3.50/hour each</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Specialized animal transport loads</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Veterinary compliance tracking</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Welfare monitoring coordination</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Temperature control oversight</span>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional haulers: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Specialized animal transport loads</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Veterinary compliance tracking</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Welfare monitoring coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Temperature control oversight</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">⚠ Important Note</div>
-                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- Dump Truck Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Dump Truck Dispatch</h3>
-            <p class="pricing-service-tagline">Construction & material hauling</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per truck</span>
+        <!-- Dump Truck -->
+        <div class="pricing-service-content" id="service-dump">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Dump Truck Dispatch</h3>
+                <p class="pricing-service-tagline">Construction & material hauling</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per truck</span>
+                </div>
+                <p class="pricing-billing-note">Additional trucks: $3.50/hour each</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Job site coordination</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Material delivery scheduling</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Multiple site management</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Load tracking & documentation</span>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional trucks: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">8 hours daily coverage (176hrs/month)</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Job site coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Material delivery scheduling</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Multiple site management</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Load tracking & documentation</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">⚠ Important Note</div>
-                <p class="pricing-note-text">Load board access required. If you don't provide login credentials, an additional $100/month flat fee applies for our load board subscriptions.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- After Hours Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">After Hours Dispatch</h3>
-            <p class="pricing-service-tagline">Evening & weekend coverage</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per agent</span>
+        <!-- After Hours -->
+        <div class="pricing-service-content" id="service-after-hours">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">After Hours Dispatch</h3>
+                <p class="pricing-service-tagline">Evening & weekend coverage</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per agent</span>
+                </div>
+                <p class="pricing-billing-note">Flexible scheduling • Nights, weekends, holidays</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Flexible scheduling options</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Evening & overnight support</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Weekend operations coverage</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Seamless handoff protocols</span>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Flexible scheduling options</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Evening & overnight support</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Weekend operations coverage</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Seamless handoff protocols</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Emergency escalation support</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">💡 Billing Discounts</div>
-                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- NEMT Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Medical Transport Dispatch</h3>
-            <p class="pricing-service-tagline">HIPAA-compliant NEMT coordination</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per agent</span>
+        <!-- NEMT -->
+        <div class="pricing-service-content" id="service-nemt">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Medical Transport Dispatch</h3>
+                <p class="pricing-service-tagline">HIPAA-compliant NEMT coordination</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per agent</span>
+                </div>
+                <p class="pricing-billing-note">HIPAA certified • Patient privacy protected</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">HIPAA-compliant call handling</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Patient appointment scheduling</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Insurance verification support</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Medical facility coordination</span>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">HIPAA-compliant call handling</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Patient appointment scheduling</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Insurance verification support</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Medical facility coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Secure patient data handling</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">💡 Billing Discounts</div>
-                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- Taxi Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Taxi Dispatch</h3>
-            <p class="pricing-service-tagline">24/7 ride coordination & call answering</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per agent</span>
+        <!-- Taxi -->
+        <div class="pricing-service-content" id="service-taxi">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Taxi Dispatch</h3>
+                <p class="pricing-service-tagline">24/7 ride coordination & call answering</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per agent</span>
+                </div>
+                <p class="pricing-billing-note">High-volume call handling • Real-time coordination</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">24/7 call answering service</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Real-time ride coordination</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Driver dispatch management</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Customer booking system</span>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(201, 162, 39, 0.05); border-radius: 12px;">
+                    <p style="color: var(--text-body); margin-bottom: 1rem;"><strong>Need specialized taxi dispatch info?</strong></p>
+                    <a href="#taxi-dispatch" class="btn btn-secondary magnetic" data-page="taxi-dispatch" style="display: inline-block;"><span>View Dedicated Taxi Page</span></a>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">24/7 call answering service</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Real-time ride coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Driver dispatch management</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Customer booking system</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Multi-line support available</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">💡 Billing Discounts</div>
-                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-        <!-- Limousine Dispatch -->
-        <div class="luxury-pricing-card reveal">
-            <h3 class="pricing-service-name">Limousine Dispatch</h3>
-            <p class="pricing-service-tagline">Premium VIP transportation services</p>
-            
-            <div class="pricing-amount-display">
-                <span class="pricing-dollar">$5</span>
-                <span class="pricing-rate">/hour per agent</span>
+        <!-- Limousine -->
+        <div class="pricing-service-content" id="service-limo">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Limousine Dispatch</h3>
+                <p class="pricing-service-tagline">Premium VIP transportation services</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$5</span>
+                    <span class="pricing-rate">/hour per agent</span>
+                </div>
+                <p class="pricing-billing-note">White-glove service • Corporate & event bookings</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">VIP client management</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Luxury fleet coordination</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Event & corporate bookings</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Concierge-level customer service</span>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
             </div>
-            <p class="pricing-billing-note">Additional agents: $3.50/hour each</p>
-            
-            <div class="pricing-feature-grid">
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">VIP client management</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Luxury fleet coordination</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Event & corporate bookings</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Concierge-level customer service</span>
-                </div>
-                <div class="pricing-feature-item">
-                    <div class="pricing-feature-icon">✓</div>
-                    <span class="pricing-feature-text">Premium client communication</span>
-                </div>
-            </div>
-            
-            <div class="pricing-note-box">
-                <div class="pricing-note-title">💡 Billing Discounts</div>
-                <p class="pricing-note-text"><strong>Monthly:</strong> Sundays FREE • <strong>Quarterly:</strong> Entire weekends FREE when operating on weekends.</p>
-            </div>
-            
-            <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
         </div>
 
-    </div>
-</section>
+    </section>
 
-<section class="cta-section">
-    <div class="cta-content">
-        <h2 class="cta-title reveal">Questions About <span class="text-shimmer">Pricing</span>?</h2>
-        <p class="cta-subtitle reveal">Our team is ready to create a custom package for your specific needs.</p>
-        <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Contact Us Today</span></a>
-    </div>
-</section>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title reveal">Questions About <span class="text-shimmer">Pricing</span>?</h2>
+            <p class="cta-subtitle reveal">Our team is ready to create a custom package for your specific needs.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="#faq" class="btn btn-secondary magnetic reveal" data-page="faq"><span>View FAQ</span></a>
+                <a href="#contact" class="btn btn-primary magnetic reveal" data-page="contact"><span>Contact Us Today</span></a>
+            </div>
         </div>
+    </section>
+</div>
 
         
-    </div>
+    
 <div class="page" id="page-taxi-dispatch">
     
     <section class="apple-hero">
@@ -7387,6 +7355,7 @@ body:not(.using-mouse) *:focus {
                 <h4>Resources</h4>
                 <ul>
                     <li><a href="#pricing" data-page="pricing">Pricing</a></li>
+                    <li><a href="#faq" data-page="faq">FAQ</a></li>
                     <li><a href="#blog" data-page="blog">Guides</a></li>
                     <li><a href="#contact" data-page="contact">Support</a></li>
 <li><a href="#pricing" onclick="setTimeout(() => document.getElementById('faq').scrollIntoView({behavior: 'smooth'}), 300)">FAQ</a></li>                </ul>
