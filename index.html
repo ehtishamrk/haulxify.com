@@ -2162,67 +2162,185 @@ section {
 /* =================================================================
    18. FAQ
    ================================================================= */
-.faq-grid {
-    max-width: 900px;
+.faq-page-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 10rem 5% 6rem;
+    text-align: center;
+}
+
+.faq-search-bar {
+    max-width: 700px;
+    margin: 2rem auto;
+    position: relative;
+}
+
+.faq-search-input {
+    width: 100%;
+    padding: 1.2rem 3.5rem 1.2rem 1.5rem;
+    border: 2px solid rgba(201, 162, 39, 0.3);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.faq-search-input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.1);
+}
+
+.faq-search-icon {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+}
+
+.faq-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+}
+
+.faq-category-card {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.faq-category-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(201, 162, 39, 0.15);
+}
+
+.faq-category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
+}
+
+.faq-category-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--primary-navy);
+    margin-bottom: 0.5rem;
+}
+
+.faq-category-count {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.faq-items-grid {
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.faq-item {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
+.faq-category-section {
+    margin-bottom: 4rem;
+}
+
+.faq-category-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--primary-navy);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.faq-item-modern {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     margin-bottom: 1rem;
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
-.faq-item:hover {
-    border-color: rgba(201, 162, 39, 0.4);
+.faq-item-modern:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.faq-question {
-    padding: 1.5rem 2rem;
+.faq-question-modern {
+    padding: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    gap: 1rem;
 }
 
-.faq-question:hover {
-    color: var(--accent-gold);
-}
-
-.faq-question h4 {
-    font-family: 'Playfair Display', serif;
+.faq-question-modern h4 {
+    font-family: 'Outfit', sans-serif;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--primary-navy);
+    margin: 0;
 }
 
-.faq-icon {
-    font-size: 1.5rem;
+.faq-toggle-icon {
+    font-size: 1.2rem;
     color: var(--accent-gold);
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
+.faq-item-modern.active .faq-toggle-icon {
+    transform: rotate(180deg);
 }
 
-.faq-answer {
+.faq-answer-modern {
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s ease;
 }
 
-.faq-item.active .faq-answer {
+.faq-item-modern.active .faq-answer-modern {
     max-height: 500px;
 }
 
-.faq-answer p {
-    padding: 0 2rem 1.5rem;
-    color: var(--text-muted);
+.faq-answer-modern p {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--text-body);
     line-height: 1.8;
+    margin: 0;
+}
+
+.faq-contact-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 6rem 5%;
+    text-align: center;
+}
+
+.faq-contact-box {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+}
+
+@media (max-width: 768px) {
+    .pricing-service-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .faq-categories {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* =================================================================
@@ -4835,6 +4953,64 @@ body:not(.using-mouse) *:focus {
 .skip-to-content:focus {
     top: 0;
 } 
+      /* =================================================================
+   PRICING SERVICE TABS - NEW DESIGN
+   ================================================================= */
+.pricing-service-tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 3rem auto 0;
+    padding: 0 1rem;
+}
+
+.pricing-tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 1.2rem 1rem;
+    border-radius: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pricing-tab-btn i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.pricing-tab-btn:hover {
+    background: rgba(201, 162, 39, 0.1);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    transform: translateY(-4px);
+}
+
+.pricing-tab-btn.active {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+    border-color: var(--accent-gold);
+    color: var(--primary-dark);
+    box-shadow: 0 8px 24px rgba(201, 162, 39, 0.3);
+}
+
+.pricing-service-content {
+    display: none;
+    animation: fadeInUp 0.5s ease;
+}
+
+.pricing-service-content.active {
+    display: block;
+}  
     </style>
 </head>
 <body>
@@ -5383,23 +5559,40 @@ body:not(.using-mouse) *:focus {
 
     <!-- PRICING PAGE -->
     <div class="page" id="page-pricing">
-        <section class="pricing-hero-luxury">
+       <section class="pricing-hero-luxury">
     <div style="position: relative; z-index: 2;">
         <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Transparent Pricing</span>
         <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Choose Your <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Perfect Plan</span></h1>
-        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto;">Professional dispatch services with flexible billing options. Select your service and billing cycle below.</p>
+        <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto;">Professional dispatch services with transparent pricing. Select your service below.</p>
         
-        <div class="pricing-selector">
-            <button class="pricing-selector-btn active" onclick="switchBillingCycle('weekly')" id="btn-weekly">
-                Weekly
+        <!-- Service Selector Tabs -->
+        <div class="pricing-service-tabs">
+            <button class="pricing-tab-btn active" onclick="switchPricingService('truck')">
+                <i class="fas fa-truck"></i> Truck Dispatch
             </button>
-            <button class="pricing-selector-btn" onclick="switchBillingCycle('monthly')" id="btn-monthly">
-                Monthly
-                <span class="pricing-discount-tag">Sundays FREE</span>
+            <button class="pricing-tab-btn" onclick="switchPricingService('tow')">
+                <i class="fas fa-car"></i> Tow Truck
             </button>
-            <button class="pricing-selector-btn" onclick="switchBillingCycle('quarterly')" id="btn-quarterly">
-                Quarterly
-                <span class="pricing-discount-tag">Weekends FREE</span>
+            <button class="pricing-tab-btn" onclick="switchPricingService('car-hauler')">
+                <i class="fas fa-car-side"></i> Car Hauler
+            </button>
+            <button class="pricing-tab-btn" onclick="switchPricingService('animal')">
+                <i class="fas fa-horse"></i> Animal Hauler
+            </button>
+            <button class="pricing-tab-btn" onclick="switchPricingService('dump')">
+                <i class="fas fa-tractor"></i> Dump Truck
+            </button>
+            <button class="pricing-tab-btn" onclick="switchPricingService('after-hours')">
+                <i class="fas fa-moon"></i> After Hours
+            </button>
+            <button class="pricing-tab-btn" onclick="switchPricingService('nemt')">
+                <i class="fas fa-ambulance"></i> Medical Transport
+            </button>
+            <button class="pricing-tab-btn" onclick="switchPricingService('taxi')">
+                <i class="fas fa-taxi"></i> Taxi
+            </button>
+            <button class="pricing-tab-btn" onclick="switchPricingService('limo')">
+                <i class="fas fa-gem"></i> Limousine
             </button>
         </div>
     </div>
@@ -5798,61 +5991,7 @@ body:not(.using-mouse) *:focus {
 </section>
         </div>
 
-        <!-- FAQ Section -->
-        <section id="faq">
-            <div class="section-header">
-                <span class="section-tag">FAQ</span>
-                <h2 class="section-title reveal">Common <span class="text-shimmer">Questions</span></h2>
-            </div>
-
-            <div class="faq-grid">
-                <div class="faq-item reveal stagger-1">
-                    <div class="faq-question">
-                        <h4>How does the $4/hour pricing work?</h4>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>You're billed for the actual hours our team works on your account. This includes load finding, negotiations, paperwork, and coordination. We track hours transparently and provide detailed reports.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal stagger-2">
-                    <div class="faq-question">
-                        <h4>What does "Free Weekends" mean?</h4>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>If you haul loads on Saturday or Sunday, we don't charge for dispatch services on those days. It's our way of supporting companies who work weekends.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal stagger-3">
-                    <div class="faq-question">
-                        <h4>How do the billing discounts work?</h4>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Monthly billing saves you 15% off the hourly rate ($3.40/hour). Quarterly billing saves you 25% ($3.00/hour). The longer the commitment, the more you save.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal stagger-4">
-                    <div class="faq-question">
-                        <h4>Is there a minimum commitment?</h4>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No long-term contracts required for weekly billing. Monthly and quarterly plans require the respective minimum periods but can be canceled at any time after.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal stagger-5">
-                    <div class="faq-question">
-                        <h4>What payment methods do you accept?</h4>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We accept all major credit cards, ACH transfers, Zelle, and PayPal. Invoices are sent weekly/monthly/quarterly based on your billing cycle.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
     </div>
 <div class="page" id="page-taxi-dispatch">
     
@@ -8982,6 +9121,80 @@ setTimeout(() => {
         preloader.style.display = 'none';
     }
 }, 3000);
+        // Pricing Service Switcher
+function switchPricingService(service) {
+    // Update button states
+    document.querySelectorAll('.pricing-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.closest('.pricing-tab-btn').classList.add('active');
+    
+    // Update content visibility
+    document.querySelectorAll('.pricing-service-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    const targetContent = document.getElementById('service-' + service);
+    if (targetContent) {
+        targetContent.classList.add('active');
+    }
+    
+    // Scroll to content
+    targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// FAQ Item Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.faq-question-modern').forEach(question => {
+        question.addEventListener('click', function() {
+            const item = this.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all items
+            document.querySelectorAll('.faq-item-modern').forEach(i => {
+                i.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+    
+    // FAQ Search
+    const searchInput = document.getElementById('faqSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            document.querySelectorAll('.faq-item-modern').forEach(item => {
+                const question = item.querySelector('h4').textContent.toLowerCase();
+                const answer = item.querySelector('p').textContent.toLowerCase();
+                
+                if (question.includes(query) || answer.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+});
+        // FAQ Contact Form Handler
+function handleFAQContactSubmit() {
+    const form = document.getElementById('faqContactForm');
+    const successMsg = document.getElementById('faqFormSuccessMessage');
+    
+    form.style.display = 'none';
+    successMsg.style.display = 'block';
+    
+    console.log('FAQ question submitted successfully');
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    setTimeout(() => {
+        form.reset();
+    }, 5000);
+}
     </script>
 </body>
 </html>
