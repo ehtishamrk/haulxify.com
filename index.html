@@ -6851,7 +6851,630 @@ body:not(.using-mouse) *:focus {
             </div>
         </section>
     </div>
+<!-- FAQ PAGE - Insert this after the Careers page section -->
+<div class="page" id="page-faq">
+    <!-- FAQ Hero Section -->
+    <section class="faq-page-hero">
+        <div style="position: relative; z-index: 2;">
+            <span class="section-tag" style="color: var(--accent-gold); border-color: var(--accent-gold);">Help Center</span>
+            <h1 class="section-title reveal" style="color: #ffffff; margin-bottom: 1.5rem;">Frequently Asked <span class="text-shimmer" style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Questions</span></h1>
+            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto 1rem;">Find answers to the most common questions about our dispatch services. Can't find what you're looking for? Contact us below.</p>
+            
+            <!-- Search Bar -->
+            <div class="faq-search-bar reveal">
+                <input type="text" class="faq-search-input" id="faqSearch" placeholder="Search for answers... (e.g., pricing, weekend, 24/7)">
+                <i class="fas fa-search faq-search-icon"></i>
+            </div>
+        </div>
+    </section>
 
+    <!-- Quick Category Navigation -->
+    <section style="padding: 4rem 5% 2rem; background: #ffffff;">
+        <div class="section-header">
+            <h2 class="section-title reveal">Browse by <span class="text-shimmer">Category</span></h2>
+            <p class="section-subtitle reveal">Jump to the section that best matches your question</p>
+        </div>
+        
+        <div class="faq-categories">
+            <div class="faq-category-card reveal stagger-1" onclick="document.getElementById('faq-general').scrollIntoView({behavior: 'smooth'})">
+                <div class="faq-category-icon">🚚</div>
+                <h3 class="faq-category-title">General Services</h3>
+                <p class="faq-category-count">8 questions</p>
+            </div>
+            
+            <div class="faq-category-card reveal stagger-2" onclick="document.getElementById('faq-pricing').scrollIntoView({behavior: 'smooth'})">
+                <div class="faq-category-icon">💰</div>
+                <h3 class="faq-category-title">Pricing & Billing</h3>
+                <p class="faq-category-count">9 questions</p>
+            </div>
+            
+            <div class="faq-category-card reveal stagger-3" onclick="document.getElementById('faq-operations').scrollIntoView({behavior: 'smooth'})">
+                <div class="faq-category-icon">⏰</div>
+                <h3 class="faq-category-title">Operations</h3>
+                <p class="faq-category-count">6 questions</p>
+            </div>
+            
+            <div class="faq-category-card reveal stagger-4" onclick="document.getElementById('faq-getting-started').scrollIntoView({behavior: 'smooth'})">
+                <div class="faq-category-icon">📞</div>
+                <h3 class="faq-category-title">Getting Started</h3>
+                <p class="faq-category-count">7 questions</p>
+            </div>
+            
+            <div class="faq-category-card reveal stagger-5" onclick="document.getElementById('faq-technical').scrollIntoView({behavior: 'smooth'})">
+                <div class="faq-category-icon">🔧</div>
+                <h3 class="faq-category-title">Technical</h3>
+                <p class="faq-category-count">6 questions</p>
+            </div>
+            
+            <div class="faq-category-card reveal stagger-6" onclick="document.getElementById('faq-service-areas').scrollIntoView({behavior: 'smooth'})">
+                <div class="faq-category-icon">🌍</div>
+                <h3 class="faq-category-title">Service Areas</h3>
+                <p class="faq-category-count">5 questions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Items Section -->
+    <section style="padding: 4rem 5%; background: var(--bg-section);">
+        <div class="faq-items-grid">
+            
+            <!-- GENERAL SERVICES -->
+            <div class="faq-category-section" id="faq-general">
+                <h2 class="faq-category-header">🚚 General Services</h2>
+                
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What if I don't have any dispatch software currently?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>No problem! We can recommend cost-effective solutions based on your business type and help you get set up. For small operations, we can even work with basic tools like Excel spreadsheets, Google Sheets, email, and phone communication initially. As you grow, we'll help you transition to proper dispatch software. Our goal is to make professional dispatch accessible regardless of your current technology setup.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How do you ensure data security and confidentiality?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We take security seriously: (1) All employees sign strict confidentiality agreements (NDAs), (2) Comprehensive background checks on all dispatchers, (3) Secure, monitored facility with no personal devices allowed, (4) Encrypted connections for all software access, (5) Regular security audits and compliance checks, (6) HIPAA-compliant procedures for medical transport services, (7) No data is stored on local machines - everything is cloud-based with your existing systems. Your business data and customer information are completely protected.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can your dispatchers use our company email and phone systems?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Absolutely! This is actually preferred for seamless brand representation. You can provide: (1) Company email addresses (dispatcher@yourcompany.com) for all external communications, (2) VoIP phone extensions or forwarded numbers so they answer as your company, (3) Access to your company communication platforms (Slack, Teams, etc.). To customers and partners, they appear as part of your in-house team - because they ARE part of your team, just working remotely.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE AREAS & LANGUAGES -->
+            <div class="faq-category-section" id="faq-service-areas">
+                <h2 class="faq-category-header">🌍 Service Areas & Languages</h2>
+                
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Which countries and regions do you serve?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We primarily serve businesses operating in the United States (all 50 states), Canada, and Mexico for cross-border operations. Our dispatchers are trained in US geography, regulations (DOT, FMCSA), and market conditions. We also support international clients in the UK, Australia, and select European countries. If you operate globally or in regions not listed, contact us - we can often accommodate with specialized training.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do your dispatchers speak English fluently?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! All our dispatchers are fluent in English with minimal accent and excellent communication skills. Pakistan has a strong English education system, and we specifically recruit individuals with exceptional language proficiency. During onboarding, we conduct thorough language assessments and accent neutralization training to ensure clear communication with your drivers, customers, and partners. You'll find our team communicates as effectively as any US-based dispatcher.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can you handle communications in Spanish or other languages?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We have bilingual English-Spanish dispatchers available for businesses serving Hispanic markets or operating US-Mexico cross-border routes. This is particularly valuable for companies with Spanish-speaking drivers or customers in regions like Texas, California, Arizona, and Florida. Other languages (French for Canada, Portuguese, etc.) can be arranged based on availability. Let us know your language requirements during onboarding.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do you understand US geography and regional differences?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Absolutely! Our dispatchers undergo extensive training in US geography including: major highways and interstates, common freight lanes and corridors, regional weather patterns and seasonal challenges, high-traffic areas and congestion points, truck-friendly vs restricted routes, state-specific regulations and toll systems, and major shipping/receiving hubs and ports. We use the same mapping tools (Google Maps, Rand McNally, PC*Miler) that US dispatchers use.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What about understanding American business culture and customer service expectations?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Cultural training is a key part of our onboarding. Dispatchers learn: American business communication styles and etiquette, customer service expectations (responsiveness, professionalism, problem-solving), industry-specific terminology and jargon, US time zones and business hours awareness, appropriate tone for different situations (urgent vs routine), and conflict resolution approaches that align with American business practices. We've been serving US businesses for years and have refined our cultural competency extensively.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section for Unanswered Questions -->
+    <section class="faq-contact-section">
+        <div style="position: relative; z-index: 2;">
+            <h2 class="section-title reveal" style="color: #ffffff; margin-bottom: 1rem;">Still Have Questions?</h2>
+            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 1rem;">We've answered the most common questions above, but every business is unique. If you didn't find what you're looking for, we're here to help!</p>
+            <p class="section-subtitle reveal" style="color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; font-weight: 600;">Our customer care representatives will respond within 24 hours.</p>
+            
+            <div class="faq-contact-box reveal">
+                <form id="faqContactForm" onsubmit="event.preventDefault(); handleFAQContactSubmit();">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-premium-group">
+                            <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Your Name *</label>
+                            <input type="text" class="form-premium-input" required placeholder="John Doe" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                        </div>
+                        
+                        <div class="form-premium-group">
+                            <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Email Address *</label>
+                            <input type="email" class="form-premium-input" required placeholder="john@company.com" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                        </div>
+                    </div>
+                    
+                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Phone Number</label>
+                        <input type="tel" class="form-premium-input" placeholder="+1 (555) 000-0000" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                    </div>
+                    
+                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Service You're Interested In *</label>
+                        <select class="form-premium-select" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                            <option value="" style="background: #1e293b;">Select a service</option>
+                            <option value="truck" style="background: #1e293b;">Truck Dispatch</option>
+                            <option value="tow" style="background: #1e293b;">Tow Truck Dispatch</option>
+                            <option value="car-hauler" style="background: #1e293b;">Car Hauler Dispatch</option>
+                            <option value="animal" style="background: #1e293b;">Animal Hauler Dispatch</option>
+                            <option value="dump" style="background: #1e293b;">Dump Truck Dispatch</option>
+                            <option value="after-hours" style="background: #1e293b;">After Hours Dispatch</option>
+                            <option value="nemt" style="background: #1e293b;">Medical Transport (NEMT)</option>
+                            <option value="taxi" style="background: #1e293b;">Taxi Dispatch</option>
+                            <option value="limo" style="background: #1e293b;">Limousine Dispatch</option>
+                            <option value="not-sure" style="background: #1e293b;">Not Sure / Multiple Services</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-premium-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-premium-label" style="color: rgba(255,255,255,0.9);">Your Question *</label>
+                        <textarea class="form-premium-textarea" required placeholder="Please describe your question in detail. The more information you provide, the better we can assist you..." style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); min-height: 150px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary magnetic" style="width: 100%; padding: 1.2rem; font-size: 1rem; background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light)); color: var(--primary-dark);">
+                        <span>Send My Question</span>
+                    </button>
+                </form>
+                
+                <div id="faqFormSuccessMessage" style="display: none; text-align: center; padding: 2rem; background: rgba(34, 197, 94, 0.1); border-radius: 12px; margin-top: 2rem; border: 1px solid rgba(34, 197, 94, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
+                    <h3 style="color: #22c55e; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem;">Question Received!</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Our customer care team will respond within 24 hours. Check your email for our reply.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Prefer to speak with someone directly?</p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <div>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">EMAIL US</p>
+                        <a href="mailto:support@haulxify.com" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">support@haulxify.com</a>
+                    </div>
+                    <div>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">CALL US (US)</p>
+                        <a href="tel:+18001234567" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (800) 123-4567</a>
+                    </div>
+                    <div>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 0.5rem;">WHATSAPP</p>
+                        <a href="https://wa.me/923001234567" style="color: var(--accent-gold); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+92 300 1234567</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links to Other Pages -->
+    <section style="padding: 4rem 5%; background: #ffffff; text-align: center;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-navy); margin-bottom: 2rem;">Need More Information?</h3>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#services" class="btn btn-secondary magnetic" data-page="services"><span>View All Services</span></a>
+            <a href="#pricing" class="btn btn-secondary magnetic" data-page="pricing"><span>See Pricing Details</span></a>
+            <a href="#about" class="btn btn-secondary magnetic" data-page="about"><span>About Haulxify</span></a>
+            <a href="#contact" class="btn btn-primary magnetic" data-page="contact"><span>Get Started Today</span></a>
+        </div>
+    </section>
+</div>
+
+<script>
+// FAQ Contact Form Handler
+function handleFAQContactSubmit() {
+    const form = document.getElementById('faqContactForm');
+    const successMsg = document.getElementById('faqFormSuccessMessage');
+    
+    // Hide form and show success message
+    form.style.display = 'none';
+    successMsg.style.display = 'block';
+    
+    // In production, this would send data to your backend
+    console.log('FAQ question submitted successfully');
+    
+    // Scroll to success message
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Reset form after 5 seconds (optional)
+    setTimeout(() => {
+        form.reset();
+    }, 5000);
+}
+</script>4>What is Haulxify and what services do you provide?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Haulxify is a premium dispatch service provider specializing in multiple transportation sectors. We offer professional dispatch services for truck dispatch, tow truck operations, car haulers, animal transport, dump trucks, after-hours coverage, non-emergency medical transportation (NEMT), taxi services, and limousine dispatch. Our team of trained professionals based in Pakistan serves American businesses 24/7/365, providing cost-effective solutions at just $5/hour per vehicle or agent.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Which industries do you serve?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We serve 9+ transportation industries including: Logistics & Freight, Medical Transportation (NEMT), Construction & Heavy Equipment, Taxi & Ride Services, Luxury Transportation, Towing & Recovery, Animal & Livestock Transport, Auto Transport, and general commercial vehicle operations. Each service is tailored to meet industry-specific requirements and compliance standards.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How many dispatchers will be assigned to my account?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>For standard 8-hour daily dispatch services (176 hours/month), you'll have one dedicated dispatcher who learns your business inside and out. For 24/7 services like tow truck or taxi dispatch (720 hours/month), we assign 3 agents working in shifts to ensure continuous coverage. Each agent is fully trained on your specific operations, software, and protocols to maintain consistency.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do you work with small businesses or only large fleets?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We work with businesses of all sizes! Whether you're an owner-operator with a single truck, a small taxi company with 5 vehicles, or a large fleet with 50+ units, our services scale to meet your needs. Our flexible pricing model makes professional dispatch accessible to everyone, and we customize our approach based on your specific business size and requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What makes Haulxify different from other dispatch services?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Our key differentiators include: (1) Multi-industry expertise across 9+ transportation sectors, (2) Transparent $5/hour pricing with no hidden fees, (3) True 24/7/365 availability including holidays, (4) Weekend operation benefits - Sundays FREE on monthly plans, entire weekends FREE on quarterly plans, (5) Dedicated dispatchers who become an extension of your team, (6) Complete back-office support beyond just dispatch, and (7) Up to 70% cost savings compared to in-house operations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can you handle high call volumes during peak hours?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Absolutely! For businesses with fluctuating call volumes (like taxi services or tow truck companies), we offer scalable solutions. You can add additional agents during peak hours at the same $5/hour rate for the first agent and $3.50/hour for additional agents. Our team is trained to handle high-pressure situations efficiently, ensuring no call goes unanswered even during your busiest times.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do you provide services for specialized transport (oversized loads, hazmat, etc.)?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! Our dispatchers can be trained on specialized transport requirements including oversized/overweight loads, hazardous materials, refrigerated goods, livestock welfare standards, and medical transport compliance. We ensure our team understands all relevant DOT regulations, permit requirements, and safety protocols specific to your specialized operations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What back-office services do you provide beyond dispatch?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Our comprehensive back-office support includes: paperwork management, rate confirmation processing, driver settlements, IFTA reporting assistance, compliance document tracking, invoice processing, customer communication follow-ups, booking confirmations, schedule management, and basic bookkeeping support. We handle the administrative burden so you can focus on operations and growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRICING & BILLING -->
+            <div class="faq-category-section" id="faq-pricing">
+                <h2 class="faq-category-header">💰 Pricing & Billing</h2>
+                
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How does the $5/hour pricing model work?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Our pricing is straightforward: $5/hour for the first vehicle or agent, and $3.50/hour for each additional vehicle/agent. For standard truck dispatch, this means 8 hours daily coverage (176 hours/month) at $880/month for one truck. For 24/7 services like tow truck dispatch, that's 720 hours/month at $3,600 per phone line. The hourly rate covers your dedicated dispatcher's time, training, software access, and management oversight - everything you need for professional dispatch.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Are there any hidden fees, setup costs, or long-term contracts?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>No hidden fees whatsoever! The only additional cost is a $100/month flat fee IF you don't provide your own load board access (applies to truck dispatch, car hauler, animal hauler, and dump truck services only). There are zero setup fees, no onboarding charges, no training fees, and no long-term contracts required. You can cancel anytime with appropriate notice based on your billing cycle.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What payment methods do you accept?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We accept all major credit cards (Visa, Mastercard, American Express), ACH bank transfers, Zelle, PayPal, and wire transfers. Invoices are sent based on your chosen billing cycle (weekly, monthly, or quarterly), and we offer autopay options for convenience. All transactions are secure and processed through industry-standard payment gateways.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How do the weekend discounts work exactly?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>If you operate on weekends, we reward you with discounts: <strong>Monthly Billing:</strong> Sundays are completely FREE - you're not charged for any dispatch hours on Sundays. <strong>Quarterly Billing:</strong> Both Saturday AND Sunday are FREE - entire weekends at no charge. This applies to businesses that actively haul loads or operate services on weekends. It's our way of supporting companies who work the toughest hours. Weekly billing does not include weekend discounts.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can I upgrade or downgrade my service plan?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! You can upgrade anytime (add more trucks, extend hours, add services) with immediate effect. Downgrades (reducing trucks or hours) require notice based on your billing cycle - typically 1 week for weekly billing, 1 month for monthly, or end of quarter for quarterly. This flexibility ensures you only pay for what you need as your business evolves.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do you offer discounts for multiple vehicles or services?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! Additional vehicles/agents after the first are automatically discounted to $3.50/hour (30% off). For example: First truck = $5/hour, trucks 2-10 = $3.50/hour each. This makes it extremely cost-effective to scale your dispatch needs. Volume discounts may be available for fleets of 20+ vehicles - contact us for custom enterprise pricing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What is your refund and cancellation policy?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We operate on a fair, transparent cancellation policy: You can cancel anytime with appropriate notice (1 week for weekly billing, 30 days for monthly, end of quarter for quarterly). Refunds are provided on a pro-rated basis for any unused service time. If you're unsatisfied within the first 14 days, we offer a full refund with no questions asked. There are no cancellation fees or penalties.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>When will I receive my first invoice?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Your first invoice is sent based on your billing cycle: Weekly billing = invoice every Monday for the previous week, Monthly billing = invoice on the 1st of each month, Quarterly billing = invoice at the start of each quarter. You'll receive detailed breakdowns showing hours worked, services provided, and any applicable discounts or additional fees.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Are there any volume-based enterprise pricing options?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Absolutely! For large operations (20+ vehicles, multiple locations, or combined services), we offer custom enterprise pricing with additional benefits like dedicated account managers, priority support, custom reporting dashboards, and flexible billing arrangements. Contact our sales team for a personalized quote based on your specific needs and scale.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPERATIONS & COVERAGE -->
+            <div class="faq-category-section" id="faq-operations">
+                <h2 class="faq-category-header">⏰ Operations & Coverage</h2>
+                
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Are you really available 24/7/365, including holidays?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>YES! We operate every single day of the year including Christmas, New Year's, Thanksgiving, and all other holidays. Our facility in Pakistan runs 24/7/365 with multiple shifts ensuring there's always someone available for your business. Whether it's 3 AM on Christmas morning or Sunday afternoon, your dedicated dispatcher or our on-call team is ready to handle your operations without interruption.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What are your standard coverage hours for truck dispatch?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Standard truck dispatch service includes 8 hours of daily coverage (176 hours/month), typically aligned with US business hours based on your time zone. For example: East Coast coverage might be 8 AM - 4 PM EST, while West Coast could be 8 AM - 4 PM PST. You can customize these hours based on when you need the most support. After-hours coverage is available as an add-on service.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can I get after-hours or weekend-only coverage?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! We offer flexible "After Hours Dispatch" service specifically for evening, overnight, and weekend coverage. This is perfect if you have in-house dispatch during the day but need professional coverage when your team is off. Pricing is the same $5/hour for the first agent, $3.50/hour for additional. Many clients use this to extend operations without hiring night-shift employees.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How do you handle time zone differences?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Our Pakistan-based team works on US time zones. We schedule our agents' shifts to perfectly align with your business hours, whether you operate on Eastern, Central, Mountain, or Pacific time. Our dispatchers work US "daytime" during their Pakistan "nighttime" - this 12-hour time difference actually works in our favor for providing seamless 24/7 coverage.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What happens if my dispatcher is sick or on vacation?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We maintain backup dispatchers trained on your account to ensure zero downtime. If your primary dispatcher is unavailable, a qualified backup agent who has been shadowing your account steps in seamlessly. For 24/7 services, we always have multiple agents trained on your operations. You'll never experience service interruption due to dispatcher availability issues.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do you provide emergency response for urgent dispatch needs?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>For 24/7 services (tow truck, taxi, medical transport), emergency response is built-in - your dispatcher handles urgent calls immediately. For standard 8-hour services, we offer emergency escalation protocols where critical issues outside normal hours can be routed to an on-call supervisor. This ensures breakdown situations, accidents, or urgent customer needs are addressed promptly even outside your regular coverage hours.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GETTING STARTED -->
+            <div class="faq-category-section" id="faq-getting-started">
+                <h2 class="faq-category-header">📞 Getting Started</h2>
+                
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How do I sign up for Haulxify services?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Getting started is simple: (1) Fill out our contact form or call us to discuss your needs, (2) We'll provide a customized quote based on your service type and requirements, (3) Sign our service agreement (no long-term commitment required), (4) Complete a brief onboarding questionnaire about your operations, (5) We'll set up your account and begin dispatcher training, (6) Go live! The entire process typically takes 1-2 weeks from initial contact to launch.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What information do I need to provide during onboarding?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>You'll need to provide: (1) Company information (MC number, DOT number, business structure), (2) Fleet details (number of vehicles, equipment types, driver information), (3) Load board access credentials if applicable, (4) Dispatch software login information, (5) Service area coverage maps, (6) Preferred customer communication protocols, (7) Rate guidelines and acceptance criteria, (8) Emergency contact procedures. We guide you through this entire process step-by-step.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>How long does onboarding and training take?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Standard onboarding takes 1-2 weeks: Week 1 includes account setup, software access, and initial dispatcher training on your operations. Week 2 involves shadowing (dispatcher works alongside you to learn), testing, and refinement. For urgent needs, we can expedite to 3-5 days with intensive training. More complex operations (specialized equipment, multiple locations) may take 2-3 weeks for full optimization.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do you provide training for your dispatchers on my specific business?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Absolutely! Every dispatcher assigned to your account goes through comprehensive training: (1) General dispatch fundamentals and industry regulations, (2) Your specific software systems and tools, (3) Your company policies, procedures, and expectations, (4) Your service area geography and common routes, (5) Your customer base and communication style, (6) Shadowing period working alongside you or your existing team. This ensures they become true extensions of your business, not just generic dispatchers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can I try your service before committing long-term?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! We offer a 14-day trial period with full money-back guarantee if you're not satisfied. Start with weekly billing (no long-term commitment) to test our services risk-free. Most clients upgrade to monthly or quarterly billing after experiencing our quality, but there's no pressure. We're confident that once you see the value we provide, you'll want to continue the partnership.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Will I have a dedicated account manager?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>All clients have access to our support team for questions and issues. Clients with 5+ vehicles or quarterly billing receive a dedicated account manager who proactively monitors your account, provides monthly performance reports, handles escalations, and ensures optimal service delivery. Enterprise clients (20+ vehicles) get priority account management with direct contact lines.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What if I'm not happy with my assigned dispatcher?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Your satisfaction is paramount. If you're not happy with your dispatcher for any reason, simply let us know and we'll reassign a different dispatcher to your account immediately - no questions asked, no additional charges. We maintain a pool of trained dispatchers specifically for this purpose. Typically, personality and working style mesh well, but we understand every business relationship is unique.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECHNICAL & INTEGRATION -->
+            <div class="faq-category-section" id="faq-technical">
+                <h2 class="faq-category-header">🔧 Technical & Integration</h2>
+                
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>What dispatch software and load boards do you support?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>We support virtually all major systems including: <strong>Load Boards:</strong> DAT, Truckstop.com, 123Loadboard, Direct Freight, Sylectus, Uber Freight. <strong>Dispatch Software:</strong> McLeod, TMW, Axon, PCS Software, TruckingOffice, Samsara, KeepTruckin. <strong>Taxi/Medical:</strong> Autocab, iCabbi, Taxi Butler, RouteMatch, Trapeze. <strong>Tow Truck:</strong> Towbook, CCC ONE. If you use proprietary or custom software, our team can learn it during onboarding.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Do I need to provide load board access, or do you have your own?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>You have two options: (1) <strong>Provide your own access:</strong> Give us login credentials to your existing load board subscriptions at no additional cost, or (2) <strong>Use our access:</strong> We provide load board subscriptions (DAT, Truckstop, etc.) for a flat $100/month fee. Most clients prefer option 1 as it's included in the base pricing, but option 2 is available if you don't currently have subscriptions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h4>Can you integrate with my existing TMS or ERP system?</h4>
+                        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer-modern">
+                        <p>Yes! Our dispatchers are trained to work within your existing Transportation Management System (TMS) or Enterprise Resource Planning (ERP) system. We access these systems as users (you provide login credentials), enter load information, update statuses, process paperwork, and maintain data accuracy according to your established workflows. We don't require API access or technical integration - we work as users just like your in-house team would.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-modern">
+                    <div class="faq-question-modern">
+                        <h
     <!-- CONTACT PAGE -->
     <div class="page" id="page-contact">
         <section class="contact-hero-premium">
