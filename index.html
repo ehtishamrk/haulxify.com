@@ -5285,6 +5285,7 @@ body:not(.using-mouse) *:focus {
 <a href="#services" class="dropdown-link" data-page="services">Car Hauler Dispatch</a>
 <a href="#services" class="dropdown-link" data-page="services">Animal Hauler Dispatch</a>
 <a href="#services" class="dropdown-link" data-page="services">Dump Truck Dispatch</a>
+<a href="#services" class="dropdown-link" data-page="services">Sprinter/Cargo Van VA Services</a>
 <a href="#services" class="dropdown-link" data-page="services">After Hours Dispatch</a>
 <a href="#services" class="dropdown-link" data-page="services">Non-Emergency Medical Transportation Dispatch</a>
 <a href="#taxi-dispatch" class="dropdown-link" data-page="taxi-dispatch">Taxi Dispatch</a>
@@ -5332,6 +5333,7 @@ body:not(.using-mouse) *:focus {
                 <li><a href="#services" data-page="services">Car Hauler</a></li>
                 <li><a href="#services" data-page="services">Animal Hauler Dispatch</a></li>
                 <li><a href="#services" data-page="services">Dump Truck Dispatch</a></li>
+                <li><a href="#services" data-page="services">Sprinter/Cargo Van VA</a></li>
                 <li><a href="#services" data-page="services">After Hours Dispatch</a></li>
                 <li><a href="#services" data-page="services">Non-Emergency Medical Transportation Dispatch</a></li>
                 <li><a href="#taxi-dispatch" data-page="taxi-dispatch">Taxi Dispatch</a></li>
@@ -5726,6 +5728,27 @@ body:not(.using-mouse) *:focus {
             </div>
         </div>
 
+        <!-- Sprinter/Cargo Van VA Services -->
+        <div class="premium-service-card reveal">
+            <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?q=80&w=800&fit=crop" alt="Sprinter Van Dispatch" class="service-card-image">
+            <div class="service-card-content">
+                <h3 class="service-card-title">Sprinter/Cargo Van Virtual Assistance</h3>
+                <p class="service-card-description">Dedicated virtual general manager for your sprinter van operations. From load hunting to bookkeeping, we handle everything so you can focus on growing your business.</p>
+                <ul class="service-features-list">
+                    <li>Dedicated VA General Manager</li>
+                    <li>Load hunting & route optimization</li>
+                    <li>Broker negotiations for max RPM</li>
+                    <li>Complete paperwork & record keeping</li>
+                    <li>24/7 operations (charged 8hrs/day)</li>
+                </ul>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-top: auto;">
+                    <span class="service-price-badge">$4/hour per van</span>
+                    <a href="#pricing" class="btn btn-secondary" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;" data-page="pricing" onclick="switchPricingService('sprinter-va')">View Details</a>
+                </div>
+            </div>
+        </div>
+
+
         <!-- After Hours Dispatch -->
         <div class="premium-service-card reveal">
             <img src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?q=80&w=800&fit=crop" alt="After Hours Dispatch" class="service-card-image">
@@ -5830,6 +5853,9 @@ body:not(.using-mouse) *:focus {
                 </button>
                 <button class="pricing-tab-btn" onclick="switchPricingService('dump')">
                     <i class="fas fa-tractor"></i> Dump Truck
+                </button>
+                 <button class="pricing-tab-btn" onclick="switchPricingService('sprinter-va')">
+                    <i class="fas fa-shuttle-van"></i> Sprinter/Cargo Van VA
                 </button>
                 <button class="pricing-tab-btn" onclick="switchPricingService('after-hours')">
                     <i class="fas fa-moon"></i> After Hours
@@ -6045,6 +6071,117 @@ body:not(.using-mouse) *:focus {
                 </div>
                 
                 <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started</span></a>
+            </div>
+        </div>
+          <!-- Sprinter/Cargo Van VA Services -->
+        <div class="pricing-service-content" id="service-sprinter-va">
+            <div class="luxury-pricing-card reveal" style="max-width: 900px; margin: 0 auto;">
+                <h3 class="pricing-service-name">Sprinter/Cargo Van Virtual Assistance Services</h3>
+                <p class="pricing-service-tagline">Your dedicated virtual general manager for complete van operations</p>
+                
+                <div class="pricing-amount-display">
+                    <span class="pricing-dollar">$4</span>
+                    <span class="pricing-rate">/hour per van</span>
+                </div>
+                <p class="pricing-billing-note">Additional vans: $1/hour each (up to 3 vans) • Bookkeeping: +$1/hour per van</p>
+                
+                <div class="pricing-feature-grid">
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Dedicated Virtual Assistant General Manager</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Load hunting & booking services</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Route planning & optimization</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Broker negotiations for maximum RPM</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Complete paperwork handling</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">Record keeping & documentation</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">24/7 operations (standard 8hrs/day charged)</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">After-hours coverage included FREE</span>
+                    </div>
+                    <div class="pricing-feature-item">
+                        <div class="pricing-feature-icon">✓</div>
+                        <span class="pricing-feature-text">40+ years combined team experience</span>
+                    </div>
+                </div>
+
+                <div class="pricing-note-box" style="margin-top: 2rem;">
+                    <div class="pricing-note-title">💰 Flexible Pricing Structure</div>
+                    <ul style="margin: 0.5rem 0 0 1.5rem; color: var(--text-body); line-height: 1.8;">
+                        <li><strong>First van:</strong> $4/hour</li>
+                        <li><strong>Additional vans (up to 3):</strong> +$1/hour per van</li>
+                        <li><strong>More than 3 vans:</strong> Custom negotiable rates</li>
+                        <li><strong>Business bookkeeping:</strong> +$1/hour per van (negotiable)</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-note-box" style="margin-top: 1.5rem; background: linear-gradient(135deg, rgba(201, 162, 39, 0.1), rgba(201, 162, 39, 0.05));">
+                    <div class="pricing-note-title">🎯 Payment Options & Discounts</div>
+                    <ul style="margin: 0.5rem 0 0 1.5rem; color: var(--text-body); line-height: 1.8;">
+                        <li><strong>Weekly:</strong> Service first, invoice Friday, pay by Monday</li>
+                        <li><strong>Monthly (prepaid):</strong> 15% discount</li>
+                        <li><strong>Quarterly (prepaid):</strong> 25% discount</li>
+                        <li><strong>No upfront charges</strong> for weekly service plans</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-note-box" style="margin-top: 1.5rem;">
+                    <div class="pricing-note-title">📋 Required Documents for Onboarding</div>
+                    <ul style="margin: 0.5rem 0 0 1.5rem; color: var(--text-body); line-height: 1.8;">
+                        <li>MC Number</li>
+                        <li>W9 Form</li>
+                        <li>Certificate of Insurance (CoI)</li>
+                        <li>Voided Check / Factoring Information</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                        <em>These documents enable us to book loads on your behalf and assist with payments from factoring companies or brokers. We don't directly handle your payments - you get paid directly by brokers.</em>
+                    </p>
+                </div>
+
+                <div class="pricing-note-box" style="margin-top: 1.5rem; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));">
+                    <div class="pricing-note-title">🚀 Onboarding Process</div>
+                    <ol style="margin: 0.5rem 0 0 1.5rem; color: var(--text-body); line-height: 1.8;">
+                        <li>Submit required documents</li>
+                        <li>Receive non-binding service agreement</li>
+                        <li>Get assigned your dedicated VA General Manager</li>
+                        <li>Start operations immediately</li>
+                    </ol>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                        <em>Our non-binding agreement is simply a letter stating our working relationship - no long-term commitments required.</em>
+                    </p>
+                </div>
+
+                <div class="pricing-note-box" style="margin-top: 1.5rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));">
+                    <div class="pricing-note-title">⭐ Why Choose Our VA Services?</div>
+                    <ul style="margin: 0.5rem 0 0 1.5rem; color: var(--text-body); line-height: 1.8;">
+                        <li><strong>Save Time:</strong> Focus on growing your business or spending time with family</li>
+                        <li><strong>Expert Team:</strong> American logistics specialists with 40+ years combined experience</li>
+                        <li><strong>Cost Effective:</strong> Overseas operations = lower overhead = savings passed to you</li>
+                        <li><strong>Flexible Services:</strong> Choose one service or all - customized to your needs</li>
+                        <li><strong>Proven Results:</strong> Currently serving 9+ logistics companies</li>
+                    </ul>
+                </div>
+                
+                <a href="#contact" class="btn btn-primary magnetic" data-page="contact" style="width: 100%; margin-top: 2rem;"><span>Get Started - No Upfront Payment</span></a>
             </div>
         </div>
 
